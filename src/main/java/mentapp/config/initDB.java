@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class initDB {
 
     public boolean initDB() {
-        System.out.println("Prova");
+        System.out.println("Prova2");
         return true;
     }
 
