@@ -12,15 +12,13 @@ import java.io.IOException;
 public class EventHandler {
 
     @Autowired
-    initDB initializatioDB;
+    InitializeDB initializeDB;
 
-    private final boolean testingMode = true;
+    //private final boolean testingMode = true;
 
     @EventListener(ApplicationReadyEvent.class)
     public void OnReady() throws IOException {
         System.out.println("System: OnReady");
-        initializatioDB.initDB();
-
-
+        initializeDB.initDB();
     }
 }
