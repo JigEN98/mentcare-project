@@ -14,11 +14,13 @@ public class Patient {
   private String name;
   private String surname;
   private Integer age;
-
-  public Patient(String name, String surname, Integer age) {
+  private String username;
+  public Patient() {}
+  public Patient(String name, String surname, Integer age, String username) {
     this.name = name;
     this.surname = surname;
     this.age = age;
+    this.username = username;
   }
   
   public void setName(String name) {

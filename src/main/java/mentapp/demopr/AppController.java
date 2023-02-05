@@ -16,11 +16,6 @@ public class AppController {
     @Autowired
     private PersonRepository repository;
 
-    @RequestMapping("/")
-    public String index(){
-        return "list";
-    }
-
     @RequestMapping("/list")
     public String list(Model model){
         List<Person> data = new LinkedList<>();
