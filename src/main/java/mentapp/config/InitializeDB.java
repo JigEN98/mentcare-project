@@ -22,7 +22,9 @@ public class InitializeDB {
         patientRepository.save(new Patient("Gianluca", "Verdi", 20, "gianlucaverdi"));
         patientRepository.save(new Patient("Fabrizio", "Viola", 20, "fabrizioviola"));
 
-        userRepository.save(new User("mariorossi", "password1", "patient"));
+        userRepository.save(new User("mariorossi", "mario", "patient"));
+        userRepository.save(new User("lucaciano", "luca", "doctor"));
+        userRepository.save(new User("admin", "admin", "admin"));
         
         return true;
     }

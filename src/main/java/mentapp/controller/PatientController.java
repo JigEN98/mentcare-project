@@ -23,7 +23,9 @@ public class PatientController {
     public String toPatient(@RequestParam(name="username", required=true) String username, Model model) {
         User user = userRepository.findByUsername(username);
         System.out.println(user.getUsername());
-        return "welcomepagepatient";
+            return "welcomepagepatient";
+
+
         /*if () {
             Patient patient = result.get();
             model.addAttribute("infoPatient", patient);
