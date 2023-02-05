@@ -1,0 +1,5 @@
+.gradle
+build
+bin
+.idea
+src/main/mentapp/demopr/*
