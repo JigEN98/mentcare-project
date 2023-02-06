@@ -6,7 +6,14 @@
 </head>
 
 <body>
-<h1 th:text="'Hello Mr ' + ${patient.surname} ">Hello - nomeutente-</h1>
+<h1>Profile</h1><br>
+<h4 th:text="'Name: ' + ${patient.name} ">Name: Luca</h4><br>
+<h4 th:text="'Surname: ' + ${patient.surname} ">Surname: Mallo</h4><br>
+<h4 th:text="'Age: ' + ${patient.age} ">Età: 12</h4><br>
+<h4 th:text="'Role: ' + ${patient.role} ">Ruolo: Pilot</h4><br>
+<h4 th:text="'Username: ' + ${patient.surname} ">Username: pid12</h4><br>
+<br>
+<br>
 <a href="profilepatient?id=99" th:href="@{profilepatient(id=${patient.id})}"> Profilo </a>
 <a href="app_list"> Lista appuntamenti </a>
 <a href="login"> Logout </a>
