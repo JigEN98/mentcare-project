@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Patient {
@@ -13,13 +14,13 @@ public class Patient {
   private Long id;
   private String name;
   private String surname;
-  private Integer age;
+  private Date birthDate;
   private Long doc;
   public Patient() {}
-  public Patient(String name, String surname, Integer age, Long doc) {
+  public Patient(String name, String surname, Date birthDate, Long doc) {
     this.name = name;
     this.surname = surname;
-    this.age = age;
+    this.birthDate = birthDate;
     this.doc = doc;
   }
   
@@ -31,8 +32,8 @@ public class Patient {
     this.surname = surname;
   }
 
-  public void setAge(Integer age) {
-    this.age = age;
+  public void setBirthDate(Integer age) {
+    this.birthDate = birthDate;
   }
 
   public Long getID() {
@@ -47,8 +48,8 @@ public class Patient {
     return this.surname;
   }
 
-  public Integer getAge() {
-    return this.age;
+  public Date getBirthDate() {
+    return this.birthDate;
   }
   public Long getDoc() {
     return this.doc;
@@ -56,6 +57,6 @@ public class Patient {
 
   @Override
   public String toString() {
-    return String.format("Customer[name='%s', surname='%s', age='%d']", this.name, this.surname, this.age);
+    return String.format("Customer[name='%s', surname='%s', birth date='%s']", this.name, this.surname, this.birthDate.toString());
   }
 }

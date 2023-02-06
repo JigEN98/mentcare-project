@@ -12,6 +12,7 @@ import mentapp.repository.PatientRepository;
 import mentapp.repository.DoctorRepository;
 import mentapp.models.Patient;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @Component
@@ -39,11 +40,11 @@ public class InitializeDB {
         Doctor d5 = new Doctor("Livia", "Picci", "Oculistica");
         doctorRepository.save(d5);
 
-        Patient p1 = new Patient("Mario", "Rossi", 20, d1.getID());
+        Patient p1 = new Patient("Mario", "Rossi", new Date(87, Calendar.MARCH, 02), d1.getID());
         patientRepository.save(p1);
-        Patient p2 = new Patient("Gianluca", "Verdi", 20, d2.getID());
+        Patient p2 = new Patient("Gianluca", "Verdi", new Date(90, Calendar.JANUARY, 20), d2.getID());
         patientRepository.save(p2);
-        Patient p3 = new Patient("Fabrizio", "Viola", 20, d3.getID());
+        Patient p3 = new Patient("Fabrizio", "Viola", new Date(100, Calendar.AUGUST, 15), d3.getID());
         patientRepository.save(p3);
 
         userRepository.save(new User("mariorossi", "mario", "patient", p1.getID()));

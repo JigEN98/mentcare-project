@@ -7,9 +7,9 @@
 
 <body>
 <h1>Profile</h1><br>
-<h4 th:text="'Name: ' + ${profilepatient.name} ">Name: Luca</h4><br>
-<h4 th:text="'Surname: ' + ${profilepatient.surname} ">Surname: Mallo</h4><br>
-<h4 th:text="'Age: ' + ${profilepatient.age} ">Età: 12</h4><br>
+<h4 th:text="'Nome: ' + ${profilepatient.name} ">Nome: Luca</h4><br>
+<h4 th:text="'Cognome: ' + ${profilepatient.surname} ">Cognome: Mallo</h4><br>
+<h4 th:text="'Data di nascita: ' + ${profilepatient.birthDate} ">Data di nascita: 12</h4><br>
 <br>
 <br>
 <a href="profilepatient?id=99" th:href="@{profilepatient(id=${profilepatient.getID()})}"> Profilo </a>
