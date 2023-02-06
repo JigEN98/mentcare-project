@@ -14,15 +14,15 @@ public class Appointment {
     private String time;
     private String description;
     private Date date;
-    private Long id_pat;
-    private Long id_doc;
+    private Long idPatient;
+    private Long idDoctor;
     public Appointment() {}
-    public Appointment(Date date, String time, String description, Long id_doc, Long id_pat) {
+    public Appointment(Date date, String time, String description, Long idPatient, Long idDoctor) {
         this.time = time;
         this.description = description;
         this.date = date;
-        this.id_pat = id_pat;
-        this.id_doc = id_doc;
+        this.idPatient = idPatient;
+        this.idDoctor = idDoctor;
     }
     public Long getID() {
         return this.id;
@@ -31,12 +31,12 @@ public class Appointment {
         return date;
     }
 
-    public Long getId_doc() {
-        return id_doc;
+    public Long getIdDoctor() {
+        return this.idDoctor;
     }
 
-    public Long getId_pat() {
-        return id_pat;
+    public Long getIdPatient() {
+        return this.idPatient;
     }
 
     public String getTime() {
@@ -45,6 +45,11 @@ public class Appointment {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Appointment[id='%d', date='%s', doc='%d', pat='%d']", this.id, this.date.toString(), this.idDoctor, this.idPatient);
     }
 
 }
