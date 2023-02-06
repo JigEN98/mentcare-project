@@ -1,9 +1,11 @@
 package mentapp.controller;
 
+import mentapp.models.Doctor;
 import mentapp.models.User;
 import mentapp.models.Patient;
 import mentapp.repository.PatientRepository;
 import mentapp.repository.UserRepository;
+import mentapp.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ public class LoginController {
     private PatientRepository patientRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private DoctorRepository doctorRepository;
 
 
 
@@ -44,14 +48,28 @@ public class LoginController {
         }
 
         if(user.getPassword().equals(password)) {
-                // check patient
-                for (Patient p :patientRepository.findAll()) {
-                    if(user.getUsername() == p.getUserName()) {
-                        System.out.println("user found!");
-                        return "redirect:/patient?id="+p.getID();
+
+                if(user.getRole().equals("patient")) {
+                    // check patient
+                    for (Patient p :patientRepository.findAll()) {
+                        if(user.getUsername().equals(p.getUserName())) {
+                            System.out.println("user found!");
+                            return "redirect:/patient?id="+p.getID();
+                        }
                     }
                 }
-                // check doctor
+                else if(user.getRole().equals("doctor")) {
+                    // check doctor
+                    for (Doctor d :doctorRepository.findAll()) {
+                        if(user.getUsername().equals(d.getUserName())) {
+                            System.out.println("user found!");
+                            return "redirect:/doctor?id="+d.getID();
+                        }
+                    }
+                }
+                else
+                    return "notfound";
+
                 // check admin
             } else {
                 // password wrong!
