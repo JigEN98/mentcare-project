@@ -49,35 +49,24 @@ public class LoginController {
 
         if(user.getPassword().equals(password)) {
 
-                if(user.getRole().equals("patient")) {
-                    // check patient
-                    for (Patient p :patientRepository.findAll()) {
-                        if(user.getUsername().equals(p.getUserName())) {
-                            System.out.println("user found!");
-                            return "redirect:/patient?id="+p.getID();
-                        }
-                    }
-                }
-                else if(user.getRole().equals("doctor")) {
-                    // check doctor
-                    for (Doctor d :doctorRepository.findAll()) {
-                        if(user.getUsername().equals(d.getUserName())) {
-                            System.out.println("user found!");
-                            return "redirect:/doctor?id="+d.getID();
-                        }
-                    }
-                }
-                else
-                    return "notfound";
-
-                // check admin
-            } else {
-                // password wrong!
-                System.out.println("psw wrong");
-                return "notfound";
+            if(user.getRole().equals("patient")) {
+                // check patient
+                return "redirect:/patient?id="+user.getID();
             }
+            else if(user.getRole().equals("doctor")) {
+                // check doctor
+                return "redirect:/doctor?id="+user.getID();
+            }
+            else
+                return "notfound";
 
-        return "notfound";
+            // check admin
+        } else {
+            // password wrong!
+            System.out.println("psw wrong");
+            return "notfound";
+        }
+
     }
 
 }

@@ -7,56 +7,19 @@ import javax.persistence.Id;
 
 @Entity
 public class Doctor {
-
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private Integer code;
     private String name;
     private String surname;
-    private Integer age;
-    private String username;
+    private String specialization;
     public Doctor() {}
-    public Doctor(String name, String surname, Integer age, String username) {
+    public Doctor(Integer id, String name, String surname, String specialization) {
+        this.code = id;
         this.name = name;
         this.surname = surname;
-        this.age = age;
-        this.username = username;
+        this.specialization = specialization;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Long getID() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getSurname() {
-        return this.surname;
-    }
-
-    public String getUserName() {
-        return this.username;
-    }
-
-    public Integer getAge() {
-        return this.age;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Customer[name='%s', surname='%s', age='%d']", this.name, this.surname, this.age);
+    public Integer getID() {
+        return this.code;
     }
 }

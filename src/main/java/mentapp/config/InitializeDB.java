@@ -22,15 +22,15 @@ public class InitializeDB {
     public boolean initDB() {
         System.out.println("Initialize database");
         
-        patientRepository.save(new Patient("Mario", "Rossi", 20, "mariorossi"));
-        patientRepository.save(new Patient("Gianluca", "Verdi", 20, "gianlucaverdi"));
-        patientRepository.save(new Patient("Fabrizio", "Viola", 20, "fabrizioviola"));
+        patientRepository.save(new Patient(1, "Mario", "Rossi", 20));
+        patientRepository.save(new Patient(2, "Gianluca", "Verdi", 20));
+        patientRepository.save(new Patient(3, "Fabrizio", "Viola", 20));
 
-        doctorRepository.save(new Doctor("Luca", "Ciano", 30, "lucaciano"));
+        doctorRepository.save(new Doctor(1, "Luca", "Ciano", "Pediatria"));
 
-        userRepository.save(new User("mariorossi", "mario", "patient"));
-        userRepository.save(new User("lucaciano", "luca", "doctor"));
-        userRepository.save(new User("admin", "admin", "admin"));
+        userRepository.save(new User("mariorossi", "mario", "patient", 1));
+        userRepository.save(new User("lucaciano", "luca", "doctor", 1));
+        userRepository.save(new User("admin", "admin", "admin", 1));
         
         return true;
     }

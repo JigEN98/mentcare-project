@@ -17,16 +17,16 @@ public class PatientController {
     private PatientRepository patientRepository;
 
     @RequestMapping("/patient")
-    public String patientlist(@RequestParam(name="id", required=true) Long id,
+    public String setPatient(@RequestParam(name="id", required=true) Integer id,
                               Model model) {
-        Optional<Patient> result = patientRepository.findById(id);
+        Patient result = patientRepository.findByCode(id);
 
-        if (result.isPresent()) {
-            Patient pat = result.get();
-            model.addAttribute("patient", pat);
+        if(result == null) {
+            return "notfound";
+        } else {
+            model.addAttribute("patient", result);
             return "welcomepagepatient";
         }
-        return "ciao";
     }
 
 

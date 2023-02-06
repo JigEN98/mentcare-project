@@ -6,7 +6,7 @@ import mentapp.models.Doctor;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface DoctorRepository extends CrudRepository<Doctor, Long> {
+public interface DoctorRepository extends CrudRepository<Doctor, Integer> {
     List<Doctor> findAll();
-    Doctor findById(long id);
+    Doctor findByCode(int id);
 }

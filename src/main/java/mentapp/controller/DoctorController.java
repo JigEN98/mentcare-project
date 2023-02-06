@@ -12,22 +12,21 @@ import java.util.Optional;
 
 @Controller
 public class DoctorController {
-
     @Autowired
     private DoctorRepository doctorRepository;
-
     @RequestMapping("/doctor")
-    public String doctorpage(@RequestParam(name="id", required=true) Long id,
-                              Model model) {
-        Optional<Doctor> result = doctorRepository.findById(id);
+    public String setDoctor(@RequestParam(name="id", required=true) Integer id, Model model) {
+        return "notfound";
+        /*Doctor result_doc = doctorRepository.findByID(id);
 
-        if (result.isPresent()) {
-            Doctor doc = result.get();
+        if(result_doc.isPresent()) {
+            Doctor doc = result_doc.get();
             model.addAttribute("doctor", doc);
-            return "welcomepagedoc";
-        }
-        return "ciao";
+            // TODO aggiungere lista pazienti del dottore (quindi metodo che prende tutti i pazienti = doc.getSurname)
+            // TODO fare la stessa cosa con le visite
+            return "welocomepagedoc";
+        } else {
+            return "notfound";
+        }*/
     }
-
-
 }
