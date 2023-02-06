@@ -33,18 +33,10 @@ public class DoctorController {
 
             // lista dei pazienti
             List<Patient> doctorPatients = patientRepository.findByDoc(doc.getID());
-            /*List<Patient> data_patients = new LinkedList<>();
-            for (Patient p: patientRepository.findAll()) {
-                data_patients.add(p);
-            }*/
             model.addAttribute("patients", doctorPatients);
 
             // lista degli appuntamenti
             List<Appointment> doctorAppointments = appointmentRepository.findByIdDoctor(doc.getID());
-            /*List<Appointment> data = new LinkedList<>();
-            for (Appointment a: appointmentRepository.findAll()) {
-                data.add(a);
-            }*/
             model.addAttribute("appointments", doctorAppointments);
 
             return "welcomepagedoc";
@@ -52,33 +44,45 @@ public class DoctorController {
             return "notfound";
         }
     }
+    @RequestMapping("/insertp")
+    public String inPatient() {
+        return "insertpatient";
+    }
     @RequestMapping("/insert_patient")
-    public String insertPatient(@RequestParam(name="id", required=true) Long id, Model model) {
+    public String insertPatient(Model model) {
+        // TODO request mapping dell'inserimento dei valori a di insertpatient.html
         return "notfound";
     }
 
     @RequestMapping("/modify_patient")
     public String modifyPatient(@RequestParam(name="id", required=true) Long id, Model model) {
-        return "notfound";
+        System.out.println(id);
+        return "modifypatient";
     }
+    // TODO la modifica da inserire nel db
 
     @RequestMapping("/delete_patient")
     public String deletePatient(@RequestParam(name="id", required=true) Long id, Model model) {
+        System.out.println(id);
         return "notfound";
     }
+    // TODO eliminazione da inserire nel db
 
     @RequestMapping("/insert_appointment")
-    public String insertAppointment(@RequestParam(name="id", required=true) Long id, Model model) {
+    public String insertAppointment(Model model) {
+        // TODO request mapping dell'inserimento dei valori a di insertappointment.html
         return "notfound";
     }
 
     @RequestMapping("/modify_appointment")
     public String modifyAppointment(@RequestParam(name="id", required=true) Long id, Model model) {
+        System.out.println(id);
         return "notfound";
     }
 
     @RequestMapping("/delete_appointment")
     public String deleteAppointment(@RequestParam(name="id", required=true) Long id, Model model) {
+        System.out.println(id);
         return "notfound";
     }
 }
