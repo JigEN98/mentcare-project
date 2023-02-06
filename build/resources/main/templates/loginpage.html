@@ -3,19 +3,19 @@
 <head>
   <title>MVC Web application</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet"  th:href="@{/css/login.css}" >
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
 </head>
 
 <body>
 <div class="center">
-  <h1>Login page</h1>
+  <h1>Login</h1>
   <form action="login_check" method="post">
     <div class="inputbox">
       <input type="text" required="required" name="username">
       <span>Username</span>
     </div>
     <div class="inputbox">
-      <input type="text" required="required" name="password">
+      <input type="password" required="required" name="password">
       <span>Password</span>
     </div>
     <div class="inputbox">
