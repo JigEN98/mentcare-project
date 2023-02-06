@@ -41,7 +41,6 @@ public class LoginController {
             Model model) {
 
         User user = userRepository.findByUsername(username);
-        System.out.println(user);
         if(user == null)
         {
             return "notfound";

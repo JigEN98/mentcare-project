@@ -11,9 +11,9 @@ public class User {
     private String username;
     private String password;
     private String role;
-    private Integer id;
+    private Long id;
     public User() {}
-    public User(String username, String password, String role, Integer id) {
+    public User(String username, String password, String role, Long id) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -26,7 +26,7 @@ public class User {
         return this.role;
     }
     public String getPassword() { return this.password;}
-    public Integer getID() {
+    public Long getID() {
         return this.id;
     }
 }

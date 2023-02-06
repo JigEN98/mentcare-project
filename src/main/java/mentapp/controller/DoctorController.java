@@ -20,18 +20,19 @@ public class DoctorController {
     @Autowired
     private PatientRepository patientRepository;
     @RequestMapping("/doctor")
-    public String setDoctor(@RequestParam(name="id", required=true) Integer id, Model model) {
+    public String setDoctor(@RequestParam(name="id", required=true) Long id, Model model) {
 
-        Doctor result_doc = doctorRepository.findByCode(id);
-        if(result_doc == null) {
-            return "notfound";
-        } else {
-            List<Patient> doctorPatients = patientRepository.findByDoc(result_doc.getID());
+        Optional<Doctor> result_doc = doctorRepository.findById(id);
+        if(result_doc.isPresent()) {
+            Doctor doc = result_doc.get();
+            List<Patient> doctorPatients = patientRepository.findByDoc(doc.getID());
             //System.out.println(doctorPatients.toString());
             model.addAttribute("patients", doctorPatients);
             // TODO fare la stessa cosa con le visite
-            model.addAttribute("doctor", result_doc);
+            model.addAttribute("doctor", doc);
             return "welcomepagedoc";
+        } else {
+            return "notfound";
         }
     }
     @RequestMapping("/insert_patient")

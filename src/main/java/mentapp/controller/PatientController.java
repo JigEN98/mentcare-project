@@ -18,28 +18,29 @@ public class PatientController {
     private PatientRepository patientRepository;
 
     @RequestMapping("/patient")
-    public String setPatient(@RequestParam(name="id", required=true) Integer id,
+    public String setPatient(@RequestParam(name="id", required=true) Long id,
                               Model model) {
-        Patient result = patientRepository.findByCode(id);
-
-        if(result == null) {
-            return "notfound";
-        } else {
-            model.addAttribute("patient", result);
+        Optional<Patient> result_patient = patientRepository.findById(id);
+        if(result_patient.isPresent()) {
+            Patient patient = result_patient.get();
+            model.addAttribute("patient", patient);
             return "welcomepagepatient";
+        } else {
+            return "notfound";
         }
     }
 
     @RequestMapping("/profilepatient")
     public String profilepatient(
-            @RequestParam(name="id", required=true) Integer id,
+            @RequestParam(name="id", required=true) Long id,
             Model model) {
-        Patient result = patientRepository.findByCode(id);
-        if(result == null) {
-            return "notfound";
-        } else {
-            model.addAttribute("profilepatient", result);
+        Optional<Patient> result_patient = patientRepository.findById(id);
+        if(result_patient.isPresent()) {
+            Patient patient = result_patient.get();
+            model.addAttribute("profilepatient", patient);
             return "profilepatient";
+        } else {
+            return "notfound";
         }
     }
 }

@@ -27,19 +27,32 @@ public class InitializeDB {
 
     public boolean initDB() {
         System.out.println("Initialize database");
-        
-        patientRepository.save(new Patient(1, "Mario", "Rossi", 20, 1));
-        patientRepository.save(new Patient(2, "Gianluca", "Verdi", 20, 2));
-        patientRepository.save(new Patient(3, "Fabrizio", "Viola", 20, 2));
 
-        doctorRepository.save(new Doctor(1, "Luca", "Ciano", "Pediatria"));
+        Doctor d1 = new Doctor("Luca", "Ciano", "Pediatria");
+        doctorRepository.save(d1);
+        Doctor d2 = new Doctor("Rosario", "Pelli", "Oculistica");
+        doctorRepository.save(d2);
+        Doctor d3 = new Doctor("Alice", "Leblanc", "Dermatologia");
+        doctorRepository.save(d3);
+        Doctor d4 = new Doctor("Giorgio", "Frizzi", "Cardiologia");
+        doctorRepository.save(d4);
+        Doctor d5 = new Doctor("Livia", "Picci", "Oculistica");
+        doctorRepository.save(d5);
 
-        userRepository.save(new User("mariorossi", "mario", "patient", 1));
-        userRepository.save(new User("lucaciano", "luca", "doctor", 1));
-        userRepository.save(new User("admin", "admin", "admin", 1));
+        Patient p1 = new Patient("Mario", "Rossi", 20, d1.getID());
+        patientRepository.save(p1);
+        Patient p2 = new Patient("Gianluca", "Verdi", 20, d2.getID());
+        patientRepository.save(p2);
+        Patient p3 = new Patient("Fabrizio", "Viola", 20, d3.getID());
+        patientRepository.save(p3);
 
-        appointmentRepository.save(new Appointment(1, new Date(2020,10,02), "9:00-10:00", "TEST", 1, 1));
-        
+        userRepository.save(new User("mariorossi", "mario", "patient", p1.getID()));
+        userRepository.save(new User("lucaciano", "luca", "doctor", d1.getID()));
+        //userRepository.save(new User("admin", "admin", "admin", 1));
+
+        appointmentRepository.save(new Appointment(new Date(2020,10,02), "9:00-10:00", "TEST 1", d1.getID(), p1.getID()));
+        appointmentRepository.save(new Appointment(new Date(2020,9,02), "10:00-11:00", "TEST 2", d1.getID(), p1.getID()));
+
         return true;
     }
 

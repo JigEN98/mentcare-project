@@ -5,8 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import mentapp.models.Patient;
 
-public interface PatientRepository extends CrudRepository<Patient, Integer> {
+public interface PatientRepository extends CrudRepository<Patient, Long> {
   List<Patient> findAll();
-  Patient findByCode(int id);
-  List<Patient> findByDoc(int doc);
+  Patient findById(long id);
+  List<Patient> findByDoc(long doc);
 }

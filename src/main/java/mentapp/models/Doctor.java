@@ -1,24 +1,26 @@
 package mentapp.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Doctor {
     @Id
-    private Integer code;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String name;
     private String surname;
     private String specialization;
     public Doctor() {}
-    public Doctor(Integer code, String name, String surname, String specialization) {
-        this.code = code;
+    public Doctor(String name, String surname, String specialization) {
         this.name = name;
         this.surname = surname;
         this.specialization = specialization;
     }
-    public Integer getID() {
-        return this.code;
+    public Long getID() {
+        return this.id;
     }
     public String getName() {
         return this.name;

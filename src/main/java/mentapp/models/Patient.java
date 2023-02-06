@@ -9,14 +9,14 @@ import javax.persistence.Id;
 public class Patient {
 
   @Id
-  private Integer code;
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  private Long id;
   private String name;
   private String surname;
   private Integer age;
-  private Integer doc;
+  private Long doc;
   public Patient() {}
-  public Patient(Integer id, String name, String surname, Integer age, Integer doc) {
-    this.code = id;
+  public Patient(String name, String surname, Integer age, Long doc) {
     this.name = name;
     this.surname = surname;
     this.age = age;
@@ -35,8 +35,8 @@ public class Patient {
     this.age = age;
   }
 
-  public Integer getID() {
-    return this.code;
+  public Long getID() {
+    return this.id;
   }
 
   public String getName() {
@@ -50,7 +50,7 @@ public class Patient {
   public Integer getAge() {
     return this.age;
   }
-  public Integer getDoc() {
+  public Long getDoc() {
     return this.doc;
   }
 
