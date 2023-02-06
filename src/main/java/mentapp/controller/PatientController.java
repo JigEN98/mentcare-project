@@ -34,14 +34,12 @@ public class PatientController {
     public String profilepatient(
             @RequestParam(name="id", required=true) Integer id,
             Model model) {
-        System.out.println("PROFILO");
         Patient result = patientRepository.findByCode(id);
         if(result == null) {
             return "notfound";
         } else {
-            model.addAttribute("profilepatient", result.getID());
-            System.out.println(result.getID());
-            return "redirect:/profilepatient?id="+id;
+            model.addAttribute("profilepatient", result);
+            return "profilepatient";
         }
     }
 }
