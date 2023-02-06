@@ -40,14 +40,11 @@ public class LoginController {
         System.out.println(user);
         if(user == null)
         {
-            System.out.println("Entro nel null");
             return "notfound";
         }
-        System.out.println(user.getPassword());
-        System.out.println(password);
+
         if(user.getPassword().equals(password)) {
                 // check patient
-                System.out.println("psw correct");
                 for (Patient p :patientRepository.findAll()) {
                     if(user.getUsername() == p.getUserName()) {
                         System.out.println("user found!");
