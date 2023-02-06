@@ -47,6 +47,10 @@ public class Patient {
     return this.surname;
   }
 
+  public String getUserName() {
+    return this.username;
+  }
+
   public Integer getAge() {
     return this.age;
   }

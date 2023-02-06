@@ -23,4 +23,5 @@ public class User {
     public String getRole() {
         return this.role;
     }
+    public String getPassword() { return this.password;}
 }
