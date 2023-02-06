@@ -6,9 +6,13 @@
 </head>
 
 <body>
-<h1>Benvenuto - nomeutente-</h1>
-<a href="profile"> Profilo </a>
-<a href="app_list"> Lista appuntamenti </a>
-<a href="loginpage"> Logout </a>
+<h1>Detail of appointments:</h1>
+<ul>
+  <li th:text="'Date: ' + ${person.firstName} "> John </li>
+  <li th:text="'Doctor: ' + ${person.lastName} "> Smith </li>
+</ul>
+
+<a href="logout"> Logout </a>
+
 </body>
 </html>
