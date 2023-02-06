@@ -41,14 +41,21 @@ public class LoginController {
         if(user == null)
         {
             return "notfound";
-        }
-
-        for (Patient p :patientRepository.findAll()) {
-            if((user.getUsername() == p.getUserName()) && (user.getPassword() == p.getPassword())) {
-                System.out.println("user found!");
-                return "welcomepagepatient";
+        } else {
+            if(user.getPassword() == password) {
+                // check patient
+                for (Patient p :patientRepository.findAll()) {
+                    if(user.getUsername() == p.getUserName()) {
+                        System.out.println("user found!");
+                        return "welcomepagepatient";
+                    }
+                }
+                // check doctor
+                // check admin
+            } else {
+                // password wrong!
+                return "notfound";
             }
-
         }
         return "notfound";
     }
