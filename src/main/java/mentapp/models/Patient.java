@@ -13,12 +13,14 @@ public class Patient {
   private String name;
   private String surname;
   private Integer age;
+  private Integer doc;
   public Patient() {}
-  public Patient(Integer id, String name, String surname, Integer age) {
+  public Patient(Integer id, String name, String surname, Integer age, Integer doc) {
     this.code = id;
     this.name = name;
     this.surname = surname;
     this.age = age;
+    this.doc = doc;
   }
   
   public void setName(String name) {
@@ -47,6 +49,9 @@ public class Patient {
 
   public Integer getAge() {
     return this.age;
+  }
+  public Integer getDoc() {
+    return this.doc;
   }
 
   @Override
