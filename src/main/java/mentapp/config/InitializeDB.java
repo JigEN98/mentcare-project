@@ -22,9 +22,9 @@ public class InitializeDB {
     public boolean initDB() {
         System.out.println("Initialize database");
         
-        patientRepository.save(new Patient(1, "Mario", "Rossi", 20));
-        patientRepository.save(new Patient(2, "Gianluca", "Verdi", 20));
-        patientRepository.save(new Patient(3, "Fabrizio", "Viola", 20));
+        patientRepository.save(new Patient(1, "Mario", "Rossi", 20, 1));
+        patientRepository.save(new Patient(2, "Gianluca", "Verdi", 20, 2));
+        patientRepository.save(new Patient(3, "Fabrizio", "Viola", 20, 2));
 
         doctorRepository.save(new Doctor(1, "Luca", "Ciano", "Pediatria"));
 
