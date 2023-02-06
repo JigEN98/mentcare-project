@@ -37,26 +37,31 @@ public class LoginController {
             Model model) {
 
         User user = userRepository.findByUsername(username);
-
+        System.out.println(user);
         if(user == null)
         {
+            System.out.println("Entro nel null");
             return "notfound";
-        } else {
-            if(user.getPassword() == password) {
+        }
+        System.out.println(user.getPassword());
+        System.out.println(password);
+        if(user.getPassword().equals(password)) {
                 // check patient
+                System.out.println("psw correct");
                 for (Patient p :patientRepository.findAll()) {
                     if(user.getUsername() == p.getUserName()) {
                         System.out.println("user found!");
-                        return "welcomepagepatient";
+                        return "redirect:/patient?id="+p.getID();
                     }
                 }
                 // check doctor
                 // check admin
             } else {
                 // password wrong!
+                System.out.println("psw wrong");
                 return "notfound";
             }
-        }
+
         return "notfound";
     }
 
