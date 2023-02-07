@@ -54,6 +54,7 @@ public class InitializeDB {
         appointmentRepository.save(new Appointment(new Date(2020,10,02), "9:00-10:00", "TEST 1", p1.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(new Date(2020,9,02), "10:00-11:00", "TEST 2", p1.getID(), d1.getID()));
 
+        System.out.println("All initialized!");
         return true;
     }
 

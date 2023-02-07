@@ -1,8 +1,10 @@
 package mentapp.controller;
 
 import mentapp.models.Appointment;
+import mentapp.models.Doctor;
 import mentapp.models.Patient;
 import mentapp.repository.AppointmentRepository;
+import mentapp.repository.DoctorRepository;
 import mentapp.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,11 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private DoctorRepository doctorRepository;
 
     @RequestMapping("/patient")
     public String setPatient(@RequestParam(name = "id", required = true) Long id,
@@ -52,13 +58,24 @@ public class PatientController {
         Optional<Patient> result_pat = patientRepository.findById(id);
         if(result_pat.isPresent()) {
             Patient pat = result_pat.get();
-            System.out.println(pat.getID());
+            model.addAttribute("patient", pat);
 
-            // lista degli appuntamenti
-            List<Appointment> patientAppointments = appointmentRepository.findByIdPatient(pat.getID());
-            model.addAttribute("appointments", patientAppointments);
+            Optional<Doctor> result_doc = doctorRepository.findById(pat.getDoc()) ;
+            if(result_doc.isPresent()) {
+                Doctor doc = result_doc.get();
+                model.addAttribute("doctor", doc);
 
-            return "patientapplist";
+                // lista degli appuntamenti
+                List<Appointment> patientAppointments = appointmentRepository.findByIdPatient(pat.getID());
+                model.addAttribute("appointments", patientAppointments);
+
+                return "patientapplist";
+            }
+            else {
+                //doc not present
+                return "notfound";
+            }
+
         } else {
             return "notfound";
         }

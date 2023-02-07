@@ -30,6 +30,7 @@ public class DoctorController {
         if(result_doc.isPresent()) {
             Doctor doc = result_doc.get();
             model.addAttribute("doctor", doc);
+            System.out.println(appointmentRepository.findAll());
             // lista dei pazienti
             List<Patient> doctorPatients = patientRepository.findByDoc(doc.getID());
             model.addAttribute("patients", doctorPatients);

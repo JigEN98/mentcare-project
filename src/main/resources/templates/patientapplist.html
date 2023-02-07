@@ -20,14 +20,14 @@
   <tr th:each="appointment: ${appointments}" align="center">
     <td th:text="${appointment.date}">1970-01-01</td>
     <td th:text="${appointment.time}"> 9:00-10:00 </td>
-    <td th:text="${appointment.doctor}"> Smith </td>
+    <td th:text="${doctor.surname}"> Smith </td>
     <td th:text="${appointment.description}"> TEST DESC </td>
   </tr>
   </tbody>
 </table>
 
-<a href="profilepatient?id=99" th:href="@{profilepatient(id=${patientapplist.getID()})}"> Profilo </a>
-<a href="patientapplist?id=99" th:href="@{patientapplist(id=${patientapplist.getID()})}"> Lista appuntamenti </a>
+<a href="profilepatient?id=99" th:href="@{profilepatient(id=${patient.getID()})}"> Profilo </a>
+<a href="patientapplist?id=99" th:href="@{patientapplist(id=${patient.getID()})}"> Lista appuntamenti </a>
 <a href="login"> Logout </a>
 
 </body>
