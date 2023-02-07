@@ -121,7 +121,6 @@ public class DoctorController {
         Optional<Patient> result = patientRepository.findById(id);
         if (result.isPresent()){
             patientRepository.delete(result.get());
-            System.out.println(result.get().getDoc());
             return "redirect:/doctor?id="+result.get().getDoc();
         }
         else
@@ -143,7 +142,12 @@ public class DoctorController {
 
     @RequestMapping("/delete_appointment")
     public String deleteAppointment(@RequestParam(name="id", required=true) Long id, Model model) {
-        System.out.println(id);
-        return "notfound";
+        Optional<Appointment> result = appointmentRepository.findById(id);
+        if (result.isPresent()){
+            appointmentRepository.delete(result.get());
+            return "redirect:/doctor?id="+result.get().getIdDoctor();
+        }
+        else
+            return  "notfound";
     }
 }
