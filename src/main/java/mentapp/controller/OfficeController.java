@@ -75,7 +75,6 @@ public class OfficeController {
         if (result_user.isPresent()) {
             User user = result_user.get();
             model.addAttribute("admin", user);
-
             // lista apps
             List<Appointment> appointments = appointmentRepository.findAll();
             model.addAttribute("appointments", appointments);
