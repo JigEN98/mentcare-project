@@ -10,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class PatientController {
@@ -23,10 +21,10 @@ public class PatientController {
     private AppointmentRepository appointmentRepository;
 
     @RequestMapping("/patient")
-    public String setPatient(@RequestParam(name="id", required=true) Long id,
-                              Model model) {
+    public String setPatient(@RequestParam(name = "id", required = true) Long id,
+                             Model model) {
         Optional<Patient> result_patient = patientRepository.findById(id);
-        if(result_patient.isPresent()) {
+        if (result_patient.isPresent()) {
             Patient patient = result_patient.get();
             model.addAttribute("patient", patient);
             return "welcomepagepatient";
@@ -37,10 +35,10 @@ public class PatientController {
 
     @RequestMapping("/profilepatient")
     public String profilepatient(
-            @RequestParam(name="id", required=true) Long id,
+            @RequestParam(name = "id", required = true) Long id,
             Model model) {
         Optional<Patient> result_patient = patientRepository.findById(id);
-        if(result_patient.isPresent()) {
+        if (result_patient.isPresent()) {
             Patient patient = result_patient.get();
             model.addAttribute("profilepatient", patient);
             return "profilepatient";
@@ -50,9 +48,20 @@ public class PatientController {
     }
 
     @RequestMapping("/patientapplist")
-    public String patientapplist(Model model) {
-        return "notfound";
+    public String patientapplist(@RequestParam(name="id", required=true) Long id, Model model) {
+        Optional<Patient> result_pat = patientRepository.findById(id);
+        if(result_pat.isPresent()) {
+            Patient pat = result_pat.get();
+            System.out.println(pat.getID());
+
+            // lista degli appuntamenti
+            List<Appointment> patientAppointments = appointmentRepository.findByIdPatient(pat.getID());
+            model.addAttribute("appointments", patientAppointments);
+
+            return "patientapplist";
+        } else {
+            return "notfound";
+        }
     }
 }
-
 

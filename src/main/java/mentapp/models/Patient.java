@@ -55,8 +55,4 @@ public class Patient {
     return this.doc;
   }
 
-  @Override
-  public String toString() {
-    return String.format("Customer[name='%s', surname='%s', birth date='%s']", this.name, this.surname, this.birthDate.toString());
   }
-}
