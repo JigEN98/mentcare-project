@@ -50,26 +50,28 @@ public class DoctorController {
     public String inPatient(Long id, Model model) {
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
-            Doctor doc = result_doc.get();
+            Long doc = result_doc.get().getID();
             model.addAttribute("doctor", doc);
             return "insertpatient";
         }
         return "notfound";
     }
-   /* @RequestMapping("/insert_patient")
+   @RequestMapping("/insert_patient")
     public String insertPatient(@RequestParam(name="name", required=true) String firstname,
                                 @RequestParam(name="surname", required=true) String lastname,
                                 @RequestParam(name="date", required=true) String date_s,
                                 @RequestParam(name="id", required=true) Long id, Model model) {
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
-            Doctor doc = result_doc.get();
+            System.out.println(result_doc.get().getID());
+            Long doc = result_doc.get().getID();
             model.addAttribute("doctor", doc);
+            String[] temp = date_s.split("-");
+            Integer year = Integer.parseInt(temp[0]);
+            Integer month =Integer.parseInt(temp[1]);
+            Integer day =Integer.parseInt(temp[2]);
 
-            //Date date =new Date("dd/MM/yyyy").parse(date_s);
-            Date date;
-
-            System.out.println(firstname + lastname + date + id);
+            Date date = new Date(year-1900,month-1,day-0);
             patientRepository.save(new Patient(firstname, lastname, date, id));
             return "redirect:/doctor?id=" + doc;
         }
@@ -77,7 +79,7 @@ public class DoctorController {
                 return "notfound";
         }
     }
-*/
+
     @RequestMapping("/modify_patient")
     public String modifyPatient(@RequestParam(name="id", required=true) Long id, Model model) {
         System.out.println(id);
