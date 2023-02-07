@@ -128,16 +128,75 @@ public class DoctorController {
     }
     // TODO eliminazione da inserire nel db
 
-    @RequestMapping("/insert_appointment")
-    public String insertAppointment(Model model) {
-        // TODO request mapping dell'inserimento dei valori a di insertappointment.html
+    @RequestMapping("/insertapp")
+    public String inAppointment(Long id, Model model) {
+        Optional<Doctor> result_doc = doctorRepository.findById(id);
+        if(result_doc.isPresent()) {
+            Long doc = result_doc.get().getID();
+            model.addAttribute("doctor", doc);
+            return "insertappointment";
+        }
         return "notfound";
     }
 
+    /*@RequestMapping("/insert_appointment")
+    public String insertAppointment(@RequestParam(name="date", required=true) String date_s,
+                                    @RequestParam(name="time", required=true) String time,
+                                    @RequestParam(name="description", required=true) String description,
+                                    @RequestParam(name="id", required=true) Long id, Model model) {
+        Optional<Doctor> result_doc = doctorRepository.findById(id);
+        if(result_doc.isPresent()) {
+            Long doc = result_doc.get().getID();
+            model.addAttribute("doctor", doc);
+            String[] temp = date_s.split("-");
+            Integer year = Integer.parseInt(temp[0]);
+            Integer month =Integer.parseInt(temp[1]);
+            Integer day =Integer.parseInt(temp[2]);
+
+            Date date = new Date(year-1900,month-1,day-0);
+            appointmentRepository.save(new Appointment(date, time, description, app.getIdPatient(), doc);
+            return "redirect:/doctor?id=" + doc;
+        }
+        else{
+            return "notfound";
+        }
+    }*/
+
     @RequestMapping("/modify_appointment")
     public String modifyAppointment(@RequestParam(name="id", required=true) Long id, Model model) {
-        System.out.println(id);
-        return "notfound";
+        Optional<Appointment> result = appointmentRepository.findById(id);
+        if (result.isPresent()) {
+            Appointment app = result.get();
+            model.addAttribute("appointment", app);
+            return "modifyappointment";
+        } else {
+            return "notfound";
+        }
+    }
+    // TODO la modifica da inserire nel db
+
+    @RequestMapping("/update_appointment")
+    public String updateAppointment(@RequestParam(name="date", required=true) String date_s,
+                                @RequestParam(name="time", required=true) String time,
+                                @RequestParam(name="description", required=true) String description,
+                                @RequestParam(name="id", required=true) Long id, Model model) {
+        Optional<Appointment> result = appointmentRepository.findById(id);
+        if (result.isPresent()) {
+            Appointment app = result.get();
+            model.addAttribute("appointment", app);
+            Long id_app = app.getID();
+            appointmentRepository.delete(result.get());
+            String[] temp = date_s.split("-");
+            Integer year = Integer.parseInt(temp[0]);
+            Integer month =Integer.parseInt(temp[1]);
+            String day_temp = temp[2].substring(0,2);
+            Integer day =Integer.parseInt(day_temp);
+            Date date = new Date(year-1900,month-1,day-0);
+            appointmentRepository.save(new Appointment(date, time, description, app.getIdPatient(), app.getIdDoctor()));
+            return "redirect:/doctor?id=" + app.getIdDoctor();
+        } else {
+            return "notfound";
+        }
     }
 
     @RequestMapping("/delete_appointment")

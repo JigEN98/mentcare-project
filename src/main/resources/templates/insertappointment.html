@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>MVC Web application</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Insert a new Patient:</h1>
+
+<form method="post" action="insert_appointment?id=99" th:action="@{insert_appointment(id=${doctor})}">
+  Appointment Date: <input type="date" name="date"><br>
+  Appointment Time<input type="text" name="time"><br>
+  Appointment Description<input type="text" name="descritpion"><br>
+  Select Patient<select th:field="*{patients}">
+  <option th:each="i : ${#numbers.sequence(0, 100)}" th:value="${i}" th:text="${i}">
+  </option>
+</select>
+
+  <input type="submit" />
+</form>
+
+<a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> Show the list </a><br>
+<a href="login"> Logout </a>
+
+</body>
+</html>

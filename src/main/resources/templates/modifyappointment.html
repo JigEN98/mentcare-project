@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>MVC Web application</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Edit a patient</h1>
+
+<form action="update_appointment?id=99" method="post" th:action="@{update_appointment(id=${appointment.getID()})}">
+  Date <input type="text" name="date" value="2022-02-07" th:value="${appointment.date}"><br>
+  Time<input type="text" name="time" value="John" th:value="${appointment.time}"><br>
+  Description:<input type="text" name="description" value="Smith" th:value="${appointment.description}"><br>
+  <input type="submit" />
+</form>
+
+<a href="doctor?id=99" th:href="@{doctor(id=${appointment.getIdDoctor()})}"> Show the list </a>
+
+</body>
+</html>
