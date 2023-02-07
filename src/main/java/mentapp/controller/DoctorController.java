@@ -63,7 +63,6 @@ public class DoctorController {
                                 @RequestParam(name="id", required=true) Long id, Model model) {
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
-            System.out.println(result_doc.get().getID());
             Long doc = result_doc.get().getID();
             model.addAttribute("doctor", doc);
             String[] temp = date_s.split("-");
@@ -82,10 +81,40 @@ public class DoctorController {
 
     @RequestMapping("/modify_patient")
     public String modifyPatient(@RequestParam(name="id", required=true) Long id, Model model) {
-        System.out.println(id);
-        return "modifypatient";
+        Optional<Patient> result = patientRepository.findById(id);
+        if (result.isPresent()) {
+            Patient pat = result.get();
+            model.addAttribute("patient", pat);
+            return "modifypatient";
+        } else {
+            return "notfound";
+        }
     }
     // TODO la modifica da inserire nel db
+
+    @RequestMapping("/update_patient")
+    public String updatePatient(@RequestParam(name="name", required=true) String firstname,
+                                @RequestParam(name="surname", required=true) String lastname,
+                                @RequestParam(name="date", required=true) String date_s,
+                                @RequestParam(name="id", required=true) Long id, Model model) {
+        Optional<Patient> result = patientRepository.findById(id);
+        if (result.isPresent()) {
+            Patient pat = result.get();
+            model.addAttribute("patient", pat);
+            Long id_pat = pat.getID();
+            patientRepository.delete(result.get());
+            String[] temp = date_s.split("-");
+            Integer year = Integer.parseInt(temp[0]);
+            Integer month =Integer.parseInt(temp[1]);
+            String day_temp = temp[2].substring(0,2);
+            Integer day =Integer.parseInt(day_temp);
+            Date date = new Date(year-1900,month-1,day-0);
+            patientRepository.save(new Patient(firstname, lastname, date, pat.getDoc()));
+            return "redirect:/doctor?id=" + pat.getDoc();
+        } else {
+            return "notfound";
+        }
+    }
 
     @RequestMapping("/delete_patient")
     public String deletePatient(@RequestParam(name="id", required=true) Long id, Model model) {
