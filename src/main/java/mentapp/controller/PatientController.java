@@ -1,6 +1,8 @@
 package mentapp.controller;
 
+import mentapp.models.Appointment;
 import mentapp.models.Patient;
+import mentapp.repository.AppointmentRepository;
 import mentapp.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +19,8 @@ public class PatientController {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    private AppointmentRepository appointmentRepository;
 
     @RequestMapping("/patient")
     public String setPatient(@RequestParam(name="id", required=true) Long id,
@@ -42,6 +47,11 @@ public class PatientController {
         } else {
             return "notfound";
         }
+    }
+
+    @RequestMapping("/patientapplist")
+    public String patientapplist(Model model) {
+        return "notfound";
     }
 }
 
