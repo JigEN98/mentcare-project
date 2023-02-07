@@ -16,11 +16,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="user: ${users}" align="center">
+  <tr th:each="user: ${users}">
     <td th:text="${user.username}">tony</td>
     <td th:text="${user.role}"> super </td>
-    <td th:text="${user.getID()}"> 1 </td>
-  </tr>
+    <td th:text="${user.name}"> 1 </td></tr>
+    <td th:text="${user.surname}"> 1 </td></tr>
   </tbody>
 </table>
 

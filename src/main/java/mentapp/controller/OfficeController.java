@@ -1,10 +1,7 @@
 package mentapp.controller;
 
 
-import mentapp.models.Appointment;
-import mentapp.models.Doctor;
-import mentapp.models.Patient;
-import mentapp.models.User;
+import mentapp.models.*;
 import mentapp.repository.AppointmentRepository;
 import mentapp.repository.PatientRepository;
 import mentapp.repository.UserRepository;
@@ -16,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +43,7 @@ public class OfficeController {
         }
     }
 
-    @GetMapping("statsDB")
+    @GetMapping("/statsDB")
     public String statsDB(@RequestParam(name = "id", required = true) Long id,
                           Model model){
         Optional<User> result_user = userRepository.findById(id);
@@ -94,10 +92,28 @@ public class OfficeController {
             User user = result_user.get();
             model.addAttribute("admin", user);
 
-            // lista apps
-            List<User> users = userRepository.findAll();
-            model.addAttribute("users", users);
-            return "officeuserlist";
+            // liste utenti con nomi e cognomi associati (senza admin)
+            List<OfficeListUsers> officeListUsers = new LinkedList<>();
+           for (User u: userRepository.findAll()) {
+               if(!u.getRole().equals("admin")) {
+                   if(u.getRole().equals("patient")) {
+                       Optional<Patient> p = patientRepository.findById(u.getID());
+                       if(p.isPresent()) {
+                           officeListUsers.add(new OfficeListUsers(u.getUsername(), u.getRole(), p.get().getName(), p.get().getSurname()));
+                       }
+                   }
+                   if(u.getRole().equals("doctor")) {
+                       Optional<Doctor> d = doctorRepository.findById(u.getID());
+                       if(d.isPresent()) {
+                           officeListUsers.add(new OfficeListUsers(u.getUsername(), u.getRole(), d.get().getName(), d.get().getSurname()));
+                       }
+                   }
+               }
+           }
+           System.out.println(officeListUsers.toString());
+
+           model.addAttribute("users", officeListUsers);
+           return "officeuserlist";
         }
         else {
             //error
