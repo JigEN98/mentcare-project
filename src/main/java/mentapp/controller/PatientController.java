@@ -69,6 +69,8 @@ public class PatientController {
                 List<Appointment> patientAppointments = appointmentRepository.findByIdPatient(pat.getID());
                 model.addAttribute("appointments", patientAppointments);
 
+                System.out.println(appointmentRepository.findByIdPatient(pat.getID()));
+
                 return "patientapplist";
             }
             else {

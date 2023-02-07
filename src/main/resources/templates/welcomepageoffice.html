@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>MENTCARE</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>ADMIN PANEL</h1>
+<a href="statsDB?id=99" th:href="@{statsDB(id=${admin.getID()})}"> Stats Database</a><br>
+<a href="officeuserlist?id=99" th:href="@{officeuserlist(id=${admin.getID()})}"> Lista Utenti</a><br>
+<a href="officeapplist?id=99" th:href="@{officeapplist(id=${admin.getID()})}"> Lista appuntamenti</a><br>
+<a href="login"> Logout </a>
+</body>
+</html>

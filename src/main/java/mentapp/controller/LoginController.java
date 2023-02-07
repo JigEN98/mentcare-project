@@ -56,6 +56,10 @@ public class LoginController {
                 // check doctor
                 return "redirect:/doctor?id="+user.getID();
             }
+            else if(user.getRole().equals("admin")) {
+                // check doctor
+                return "redirect:/admin?id="+user.getID();
+            }
             else
                 return "notfound";
 

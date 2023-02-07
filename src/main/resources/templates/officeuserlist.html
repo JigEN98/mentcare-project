@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>MVC Web application</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Users Details:</h1>
+<table border="1" align="center">
+  <thead>
+  <tr>
+    <th>Username</th>
+    <th>Role</th>
+    <th>Associated id</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user: ${users}" align="center">
+    <td th:text="${user.username}">tony</td>
+    <td th:text="${user.role}"> super </td>
+    <td th:text="${user.getID()}"> 1 </td>
+  </tr>
+  </tbody>
+</table>
+
+<a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> Admin panel </a>
+<a href="login"> Logout </a>
+
+</body>
+</html>

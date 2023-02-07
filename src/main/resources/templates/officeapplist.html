@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>MVC Web application</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Detail of appointments:</h1>
+<table border="1" align="center">
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Patient</th>
+    <th>Doctor</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="appointment: ${appointments}" align="center">
+    <td th:text="${appointment.date}">1970-01-01</td>
+    <td th:text="${appointment.time}"> 9:00-10:00 </td>
+    <td th:text="${appointment.idPatient}"> 1 </td>
+    <td th:text="${appointment.idDoctor}"> 1 </td>
+    <td th:text="${appointment.description}"> TEST DESC </td>
+  </tr>
+  </tbody>
+</table>
+
+<a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> Admin panel </a>
+<a href="login"> Logout </a>
+
+</body>
+</html>

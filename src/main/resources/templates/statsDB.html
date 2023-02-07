@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>MVC Web application</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+  <h1>Database Stats</h1>
+  Stats report:
+  <ul>
+    <li th:text="|Users: ${ct_users}|">Users: 0</li>
+    <li th:text="|Patients: ${ct_patients}|">Patients: 0</li>
+    <li th:text="|Doctors: ${ct_doctors}|">Doctors: 0</li>
+    <li th:text="|Appointments: ${ct_appointments}|">Appointments: 0</li>
+  </ul>
+  <br>
+  <a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> Admin panel </a>
+  <a href="login"> Logout </a>
+</body>
+</html>
