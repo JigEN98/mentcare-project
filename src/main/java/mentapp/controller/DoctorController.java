@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -44,15 +47,37 @@ public class DoctorController {
         }
     }
     @RequestMapping("/insertp")
-    public String inPatient() {
-        return "insertpatient";
-    }
-    @RequestMapping("/insert_patient")
-    public String insertPatient(Model model) {
-        // TODO request mapping dell'inserimento dei valori a di insertpatient.html
+    public String inPatient(Long id, Model model) {
+        Optional<Doctor> result_doc = doctorRepository.findById(id);
+        if(result_doc.isPresent()) {
+            Doctor doc = result_doc.get();
+            model.addAttribute("doctor", doc);
+            return "insertpatient";
+        }
         return "notfound";
     }
+   /* @RequestMapping("/insert_patient")
+    public String insertPatient(@RequestParam(name="name", required=true) String firstname,
+                                @RequestParam(name="surname", required=true) String lastname,
+                                @RequestParam(name="date", required=true) String date_s,
+                                @RequestParam(name="id", required=true) Long id, Model model) {
+        Optional<Doctor> result_doc = doctorRepository.findById(id);
+        if(result_doc.isPresent()) {
+            Doctor doc = result_doc.get();
+            model.addAttribute("doctor", doc);
 
+            //Date date =new Date("dd/MM/yyyy").parse(date_s);
+            Date date;
+
+            System.out.println(firstname + lastname + date + id);
+            patientRepository.save(new Patient(firstname, lastname, date, id));
+            return "redirect:/doctor?id=" + doc;
+        }
+        else{
+                return "notfound";
+        }
+    }
+*/
     @RequestMapping("/modify_patient")
     public String modifyPatient(@RequestParam(name="id", required=true) Long id, Model model) {
         System.out.println(id);
@@ -62,8 +87,14 @@ public class DoctorController {
 
     @RequestMapping("/delete_patient")
     public String deletePatient(@RequestParam(name="id", required=true) Long id, Model model) {
-        System.out.println(id);
-        return "notfound";
+        Optional<Patient> result = patientRepository.findById(id);
+        if (result.isPresent()){
+            patientRepository.delete(result.get());
+            System.out.println(result.get().getDoc());
+            return "redirect:/doctor?id="+result.get().getDoc();
+        }
+        else
+            return  "notfound";
     }
     // TODO eliminazione da inserire nel db
 

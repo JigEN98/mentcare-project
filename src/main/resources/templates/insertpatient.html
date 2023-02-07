@@ -8,7 +8,7 @@
 <body>
 <h1>Insert a new Patient:</h1>
 
-<form action="insert_patient" method="post">
+<form method="post" action="insert_patient?id=99" th:action="@{insert_patient(id=${doctor.getID()})}">
     Name:<input type="text" name="name"><br>
     Surname:<input type="text" name="surname"><br>
     Birth Date: <input type="date" name="date"><br>
