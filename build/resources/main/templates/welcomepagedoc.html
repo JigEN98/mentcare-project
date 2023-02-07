@@ -6,9 +6,55 @@
 </head>
 
 <body>
-<h1 th:text="'Hello Dr. ' + ${doctor.surname} ">Hello - nomeutente-</h1>
-<a href="profile"> Lista pazienti </a>
-<a href="app_list"> Lista appuntamenti </a>
+<h1 th:text="'Hello Dr. ' + ${doctor.surname} ">Hello</h1>
+<h2>Lista appuntamenti </h2>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>DESC</th>
+    <th>modify</th>
+    <th>delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="appointment: ${appointments}">
+    <td th:text="${appointment.getID()}"><b>1</b></td>
+    <td th:text="${appointment.date}">1970-01-01</td>
+    <td th:text="${appointment.time}"> 9:00-10:00 </td>
+    <td th:text="${appointment.description}"> TEST DESC </td>
+    <td> <a href="modify_appointment?id=10" th:href="@{modify_appointment(id=${appointment.getID()})}"> modify </a></td>
+    <td> <a href="delete_appointment?id=10" th:href="@{delete_appointment(id=${appointment.getID()})}"> delete </a></td>
+  </tr>
+  </tbody>
+</table>
+<a href="insertappointment"> insert appointment </a>
+<h2> Lista pazienti </h2>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>show</th>
+    <th>modify</th>
+    <th>delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="patient: ${patients}">
+    <td th:text="${patient.getID()}"><b>1</b></td>
+    <td th:text="${patient.name}"> Name </td>
+    <td th:text="${patient.surname}"> Surname </td>
+    <td th:text="${patient.birthDate}"> birth date </td>
+    <td> <a href="modify_patient?id=10" th:href="@{modify_patient(id=${patient.getID()})}"> modify </a></td>
+    <td> <a href="delete_patient?id=10" th:href="@{delete_patient(id=${patient.getID()})}"> delete </a></td>
+  </tr>
+  </tbody>
+</table>
+<a href="insertp"> insert patient </a><br>
 <a href="login"> Logout </a>
 </body>
 </html>
