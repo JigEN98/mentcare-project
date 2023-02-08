@@ -134,15 +134,19 @@ public class DoctorController {
         if(result_doc.isPresent()) {
             Long doc = result_doc.get().getID();
             model.addAttribute("doctor", doc);
+            List<Patient> pat = patientRepository.findByDoc(doc);
+            model.addAttribute("patients", pat);
+
             return "insertappointment";
         }
         return "notfound";
     }
 
-    /*@RequestMapping("/insert_appointment")
+    @RequestMapping("/insert_appointment")
     public String insertAppointment(@RequestParam(name="date", required=true) String date_s,
                                     @RequestParam(name="time", required=true) String time,
                                     @RequestParam(name="description", required=true) String description,
+                                    @RequestParam(name="id_pat", required=true) Long id_pat,
                                     @RequestParam(name="id", required=true) Long id, Model model) {
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
@@ -152,15 +156,15 @@ public class DoctorController {
             Integer year = Integer.parseInt(temp[0]);
             Integer month =Integer.parseInt(temp[1]);
             Integer day =Integer.parseInt(temp[2]);
-
+            System.out.println("pat" +id_pat + "doc" + doc);
             Date date = new Date(year-1900,month-1,day-0);
-            appointmentRepository.save(new Appointment(date, time, description, app.getIdPatient(), doc);
+            appointmentRepository.save(new Appointment(date, time, description, id_pat, doc));
             return "redirect:/doctor?id=" + doc;
         }
         else{
             return "notfound";
         }
-    }*/
+    }
 
     @RequestMapping("/modify_appointment")
     public String modifyAppointment(@RequestParam(name="id", required=true) Long id, Model model) {

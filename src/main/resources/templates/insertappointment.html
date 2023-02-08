@@ -11,11 +11,13 @@
 <form method="post" action="insert_appointment?id=99" th:action="@{insert_appointment(id=${doctor})}">
   Appointment Date: <input type="date" name="date"><br>
   Appointment Time<input type="text" name="time"><br>
-  Appointment Description<input type="text" name="descritpion"><br>
-  Select Patient<select th:field="*{patients}">
-  <option th:each="i : ${#numbers.sequence(0, 100)}" th:value="${i}" th:text="${i}">
-  </option>
-</select>
+  Appointment Description<input type="text" name="description"><br>
+  Select Patient<select name="id_pat">
+  <option value=""> -- </option>
+  <option th:each="patient : ${patients}"
+          th:value="${patient.getID()}"
+          th:utext="${patient.getName()}"/>
+  </select><br>
 
   <input type="submit" />
 </form>
