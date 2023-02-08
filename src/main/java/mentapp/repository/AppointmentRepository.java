@@ -10,4 +10,6 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Long>
     Appointment findById(long id);
     List<Appointment> findByIdDoctor(long idDoctor);
     List<Appointment> findByIdPatient(long idPatient);
+
+    void deleteByIdPatient(Long idPatient);
 }

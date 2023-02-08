@@ -40,13 +40,13 @@ public class InitializeDB {
 
         Patient p1 = new Patient("Mario", "Rossi", LocalDate.of(1987, 3, 1), d1.getID());
         patientRepository.save(p1);
-        Patient p2 = new Patient("Gianluca", "Verdi", LocalDate.of(1990, 1, 20), d2.getID());
+        Patient p2 = new Patient("Gianluca", "Verdi", LocalDate.of(1990, 1, 20), d1.getID());
         patientRepository.save(p2);
         Patient p3 = new Patient("Fabrizio", "Viola", LocalDate.of(2000, 8, 15), d3.getID());
         patientRepository.save(p3);
-        Patient p4 = new Patient("Marco", "Celeste", LocalDate.of(1995, 1, 1), d1.getID());
+        Patient p4 = new Patient("Marco", "Celeste", LocalDate.of(1995, 1, 1), d2.getID());
         patientRepository.save(p4);
-        Patient p5 = new Patient("Ettore", "Marroni", LocalDate.of(1997, 8, 30), d1.getID());
+        Patient p5 = new Patient("Ettore", "Marroni", LocalDate.of(1997, 8, 30), d2.getID());
         patientRepository.save(p5);
 
         userRepository.save(new User("mariorossi", "mario", "patient", p1.getID()));
@@ -67,8 +67,11 @@ public class InitializeDB {
         appointmentRepository.save(new Appointment(LocalDateTime.of(2024,10,2,9,00), "Visita glicemia", p1.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(LocalDateTime.of(2024,9,2,10,00), "Controllo dieta", p2.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(LocalDateTime.of(2023,9,22,11,00), "Visita di controllo", p1.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(LocalDateTime.of(2023,11,2,12,00), "Controllo esami sangue", p4.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(LocalDateTime.of(2023,5,12,13,00), "Visita dermatologica", p5.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDateTime.of(2023,11,2,12,00), "Controllo esami sangue", p2.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDateTime.of(2023,5,12,13,00), "Visita dermatologica", p2.getID(), d1.getID()));
+
+        appointmentRepository.save(new Appointment(LocalDateTime.of(2025,11,2,12,00), "Visita corona", p4.getID(), d2.getID()));
+        appointmentRepository.save(new Appointment(LocalDateTime.of(2025,5,12,13,00), "Visita rettale", p5.getID(), d2.getID()));
 
 
 

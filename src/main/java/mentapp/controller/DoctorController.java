@@ -12,12 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Controller
 public class DoctorController {
     @Autowired
@@ -146,6 +148,9 @@ public class DoctorController {
         Optional<Patient> result = patientRepository.findById(id);
         if (result.isPresent()){
             patientRepository.delete(result.get());
+            Long id_paziente = result.get().getID();
+            appointmentRepository.deleteByIdPatient(id_paziente);
+
             return "redirect:/doctor?id="+result.get().getDoc();
         }
         else{
