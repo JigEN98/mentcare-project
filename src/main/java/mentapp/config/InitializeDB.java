@@ -63,11 +63,11 @@ public class InitializeDB {
 
         userRepository.save(new User("admin", "admin", "admin", p1.getID()+93));
 
-        appointmentRepository.save(new Appointment(LocalDate.of(2020,10,2), "9:00", "Visita glicemia", p1.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(LocalDate.of(2020,9,2), "10:00", "Controllo dieta", p2.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(LocalDate.of(2020,9,22), "12:00", "Visita di controllo", p1.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(LocalDate.of(2020,11,2), "15:00", "Controllo esami sangue", p4.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(LocalDate.of(2020,5,12), "11:00", "Visita dermatologica", p5.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDate.of(2024,10,2), "9:00", "Visita glicemia", p1.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDate.of(2024,9,2), "10:00", "Controllo dieta", p2.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDate.of(2023,9,22), "12:00", "Visita di controllo", p1.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDate.of(2023,11,2), "15:00", "Controllo esami sangue", p4.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDate.of(2023,5,12), "11:00", "Visita dermatologica", p5.getID(), d1.getID()));
 
 
 
