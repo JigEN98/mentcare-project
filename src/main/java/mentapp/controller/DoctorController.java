@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -168,13 +170,12 @@ public class DoctorController {
 
     @RequestMapping("/insert_appointment")
     public String insertAppointment(@RequestParam(name="date", required=true) String date_s,
-                                    @RequestParam(name="time", required=true) String time,
                                     @RequestParam(name="description", required=true) String description,
                                     @RequestParam(name="id_pat", required=true) Long id_pat,
                                     @RequestParam(name="id", required=true) Long id, Model model) {
 
         //check dati
-        if(  date_s.isEmpty()  || time.isEmpty() || description.isEmpty() ) {
+        if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {
             return "redirect:/inputerror?id="+id+"&&message=Empty";
         }
 
@@ -182,24 +183,22 @@ public class DoctorController {
         if(result_doc.isPresent()) {
             Long doc = result_doc.get().getID();
             model.addAttribute("doctor", doc);
-            String[] temp = date_s.split("-");
-            Integer year = Integer.parseInt(temp[0]);
-            Integer month =Integer.parseInt(temp[1]);
-            Integer day =Integer.parseInt(temp[2]);
-            LocalDate date = LocalDate.of(year,month,day);
-            
-            
-            //check date and time
-            if(  date.isBefore(LocalDate.now())) {
-                return "redirect:/inputerror?id="+id+"&&message=Date";
-            }
-            String temp2[] = time.split(":");
-            Integer time_s = Integer.parseInt(temp2[0]);
-            if(time_s < 8 || time_s>18){
-                return "redirect:/inputerror?id="+id+"&&message=Time";
+            //trasformo le date da stringa a LocalDateTime
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+            LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);
+            List <Appointment> apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore
+            for (Appointment a :apps){
+                if(  appDate.isEqual(a.getDate())  &&  a.getID()!=id  ){
+                    return "redirect:/inputerror?id="+id+"&message=Date";//errore il dottore è impegnato
+                }
             }
 
-            appointmentRepository.save(new Appointment(date, time, description, id_pat, doc));
+            //check date and time
+            if( appDate.isBefore(LocalDateTime.now())) {
+                return "redirect:/inputerror?id="+id+"&&message=Date";
+            }
+
+            appointmentRepository.save(new Appointment(appDate,description, id_pat, doc));
             return "redirect:/doctor?id=" + doc;
         }
         else{
@@ -224,12 +223,11 @@ public class DoctorController {
     @RequestMapping("/update_appointment")
     public String updateAppointment(@RequestParam(name="id_doc", required=true) Long id_doc,
                                     @RequestParam(name="date", required=true) String date_s,
-                                    @RequestParam(name="time", required=true) String time,
                                     @RequestParam(name="description", required=true) String description,
                                     @RequestParam(name="id", required=true) Long id, Model model) {
 
         //check dati
-        if(  date_s.isEmpty()  || time.isEmpty() || description.isEmpty() ) {
+        if(  date_s.isEmpty()  || description.isEmpty() || id==null ) {
             return "redirect:/inputerror?id="+id_doc+"&&message=Empty";
         }
         Optional<Appointment> result = appointmentRepository.findById(id);
@@ -238,24 +236,23 @@ public class DoctorController {
             model.addAttribute("appointment", app);
             Long id_app = app.getID();
             appointmentRepository.delete(result.get());
-            String[] temp = date_s.split("-");
-            Integer year = Integer.parseInt(temp[0]);
-            Integer month =Integer.parseInt(temp[1]);
-            String day_temp = temp[2].substring(0,2);
-            Integer day =Integer.parseInt(day_temp);
-            LocalDate date = LocalDate.of(year,month,day);
+
+            //trasformo le date da stringa a LocalDateTime
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+            LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);
+            List <Appointment> apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore
+            for (Appointment a :apps){
+                if(  appDate.isEqual(a.getDate())  &&  a.getID()!=id  ){
+                    return "redirect:/inputerror?id="+id_doc+"&message=Date";//errore il dottore è impegnato
+                }
+            }
 
             //check date and time
-            if(  date.isBefore(LocalDate.now())) {
+            if( appDate.isBefore(LocalDateTime.now())) {
                 return "redirect:/inputerror?id="+id_doc+"&&message=Date";
             }
-            String temp2[] = time.split(":");
-            Integer time_s = Integer.parseInt(temp2[0]);
-            if(time_s < 8 || time_s>18){
-                return "redirect:/inputerror?id="+id_doc+"&&message=Time";
-            }
 
-            appointmentRepository.save(new Appointment(date, time, description, app.getIdPatient(), app.getIdDoctor()));
+            appointmentRepository.save(new Appointment(appDate, description, app.getIdPatient(), app.getIdDoctor()));
             return "redirect:/doctor?id=" + app.getIdDoctor();
         } else {
             return "redirect:/inputerror?id="+id_doc+"&&message=Generic";

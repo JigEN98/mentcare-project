@@ -12,7 +12,6 @@
   <thead>
   <tr>
     <th>Date</th>
-    <th>Time</th>
     <th>DESC</th>
     <th>modify</th>
     <th>delete</th>
@@ -21,7 +20,6 @@
   <tbody>
   <tr th:each="appointment: ${appointments}">
     <td th:text="${appointment.date}">1970-01-01</td>
-    <td th:text="${appointment.time}"> 9:00 </td>
     <td th:text="${appointment.description}"> TEST DESC </td>
     <td> <a href="modify_appointment?id_doc=10&&id=11" th:href="@{modify_appointment(id_doc=${appointment.getIdDoctor()}, id=${appointment.getID()})}"> modify </a></td>
     <td> <a href="delete_appointment?id_doc=10&&id=11" th:href="@{delete_appointment(id_doc=${appointment.getIdDoctor()}, id=${appointment.getID()})}"> delete </a></td>
