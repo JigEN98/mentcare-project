@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -13,11 +14,11 @@ public class Appointment {
     private Long id;
     private String time;
     private String description;
-    private Date date;
+    private LocalDate date;
     private Long idPatient;
     private Long idDoctor;
     public Appointment() {}
-    public Appointment(Date date, String time, String description, Long idPatient, Long idDoctor) {
+    public Appointment(LocalDate date, String time, String description, Long idPatient, Long idDoctor) {
         this.time = time;
         this.description = description;
         this.date = date;
@@ -27,7 +28,7 @@ public class Appointment {
     public Long getID() {
         return this.id;
     }
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

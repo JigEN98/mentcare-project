@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -157,7 +158,7 @@ public class DoctorController {
             Integer month =Integer.parseInt(temp[1]);
             Integer day =Integer.parseInt(temp[2]);
             System.out.println("pat" +id_pat + "doc" + doc);
-            Date date = new Date(year-1900,month-1,day-0);
+            LocalDate date = LocalDate.of(year,month,day);
             appointmentRepository.save(new Appointment(date, time, description, id_pat, doc));
             return "redirect:/doctor?id=" + doc;
         }
@@ -195,7 +196,7 @@ public class DoctorController {
             Integer month =Integer.parseInt(temp[1]);
             String day_temp = temp[2].substring(0,2);
             Integer day =Integer.parseInt(day_temp);
-            Date date = new Date(year-1900,month-1,day-0);
+            LocalDate date = LocalDate.of(year,month,day);
             appointmentRepository.save(new Appointment(date, time, description, app.getIdPatient(), app.getIdDoctor()));
             return "redirect:/doctor?id=" + app.getIdDoctor();
         } else {
