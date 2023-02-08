@@ -11,7 +11,7 @@
 <form action="update_patient?id=99" method="post" th:action="@{update_patient(id=${patient.getID()})}">
     Name:<input type="text" name="name" value="John" th:value="${patient.name}"><br>
     Surname:<input type="text" name="surname" value="Smith" th:value="${patient.surname}"><br>
-    Date of Birth<input type="text" name="date" value="2022-02-07" th:value="${patient.birthDate}"><br>
+    Date of Birth<input type="date" name="date" value="2022-02-07" th:value="${patient.birthDate}"><br>
     <input type="submit" />
 </form>
 

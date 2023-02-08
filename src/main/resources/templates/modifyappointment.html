@@ -11,7 +11,7 @@
 <form action="update_appointment?id=99" method="post" th:action="@{update_appointment(id=${appointment.getID()})}">
   Date <input type="text" name="date" value="2022-02-07" th:value="${appointment.date}"><br>
   Time<input type="text" name="time" value="John" th:value="${appointment.time}"><br>
-  Description:<input type="text" name="description" value="Smith" th:value="${appointment.description}"><br>
+  Description:<input type="date" name="description" value="Smith" th:value="${appointment.description}"><br>
   <input type="submit" />
 </form>
 
