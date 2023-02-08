@@ -71,7 +71,7 @@ public class DoctorController {
             Integer month =Integer.parseInt(temp[1]);
             Integer day =Integer.parseInt(temp[2]);
 
-            Date date = new Date(year-1900,month-1,day-0);
+            LocalDate date = LocalDate.of(year,month,day);
             patientRepository.save(new Patient(firstname, lastname, date, id));
             return "redirect:/doctor?id=" + doc;
         }
@@ -109,7 +109,7 @@ public class DoctorController {
             Integer month =Integer.parseInt(temp[1]);
             String day_temp = temp[2].substring(0,2);
             Integer day =Integer.parseInt(day_temp);
-            Date date = new Date(year-1900,month-1,day-0);
+            LocalDate date = LocalDate.of(year,month,day);
             patientRepository.save(new Patient(firstname, lastname, date, pat.getDoc()));
             return "redirect:/doctor?id=" + pat.getDoc();
         } else {
