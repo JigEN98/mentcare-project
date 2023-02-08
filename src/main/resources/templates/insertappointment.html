@@ -16,7 +16,7 @@
   <option value=""> -- </option>
   <option th:each="patient : ${patients}"
           th:value="${patient.getID()}"
-          th:text="${patient.getName()}"/>
+          th:text="${patient.getName()} + ' ' + ${patient.getSurname()}"/>
   </select><br>
 
   <input type="submit" />

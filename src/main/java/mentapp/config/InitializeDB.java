@@ -12,8 +12,11 @@ import mentapp.repository.PatientRepository;
 import mentapp.repository.DoctorRepository;
 import mentapp.models.Patient;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 
 @Component
 public class InitializeDB {
@@ -70,7 +73,10 @@ public class InitializeDB {
         appointmentRepository.save(new Appointment(new Date(2020-1900,9-1,02), "10:00", "Controllo dieta", p2.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(new Date(2020-1900,9-1,22), "12:00", "Visita di controllo", p1.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(new Date(2020-1900,11-1,02), "15:00", "Controllo esami sangue", p4.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(new Date(2020-1900,9-1,03), "11:00", "Visita dermatologica", p5.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(new Date(2020-1900,5-1,12), "11:00", "Visita dermatologica", p5.getID(), d1.getID()));
+
+
+
 
         System.out.println("All initialized!");
         return true;
