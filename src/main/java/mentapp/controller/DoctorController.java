@@ -120,7 +120,7 @@ public class DoctorController {
             Patient pat = result.get();
             model.addAttribute("patient", pat);
             Long id_pat = pat.getID();
-            patientRepository.delete(result.get());
+
             String[] temp = date_s.split("-");
             Integer year = Integer.parseInt(temp[0]);
             Integer month =Integer.parseInt(temp[1]);
@@ -132,7 +132,7 @@ public class DoctorController {
             if(  date.isAfter(LocalDate.now())  || date.isBefore(LocalDate.of(1920,1,1))) {
                 return "redirect:/inputerror?id="+id_doc+"&&message=Date";
             }
-
+            patientRepository.delete(result.get());
             patientRepository.save(new Patient(firstname, lastname, date, pat.getDoc()));
             return "redirect:/doctor?id=" + pat.getDoc();
         } else{
