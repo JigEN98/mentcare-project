@@ -3,13 +3,24 @@
 <head>
   <title>MENTCARE</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
 </head>
 
 <body>
-<h1>ADMIN PANEL</h1>
-<a href="statsDB?id=99" th:href="@{statsDB(id=${admin.getID()})}"> Stats Database</a><br>
-<a href="officeuserlist?id=99" th:href="@{officeuserlist(id=${admin.getID()})}"> Lista Utenti</a><br>
-<a href="officeapplist?id=99" th:href="@{officeapplist(id=${admin.getID()})}"> Lista appuntamenti</a><br>
-<a href="login"> Logout </a>
+<div class="center">
+<h2>ADMIN PANEL</h2>
+  <div class="inputbox">
+    <a href="statsDB?id=99" th:href="@{statsDB(id=${admin.getID()})}"> <input type="button" value="Stats Database"></a><br>
+  </div>
+  <div class="inputbox">
+    <a href="officeuserlist?id=99" th:href="@{officeuserlist(id=${admin.getID()})}"> <input type="button" value="Lista Utenti"></a><br>
+  </div>
+  <div class="inputbox">
+    <a href="officeapplist?id=99" th:href="@{officeapplist(id=${admin.getID()})}"> <input type="button" value="Lista appuntamenti"></a><br>
+  </div>
+  <div class="logout">
+    <a href="login"> <input type="button" value="Logout"> </a><br>
+  </div>
+</div>
 </body>
 </html>

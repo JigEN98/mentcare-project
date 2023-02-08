@@ -12,11 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,13 +51,19 @@ public class DoctorController {
             model.addAttribute("doctor", doc);
             return "insertpatient";
         }
-        return "notfound";
+        return "redirect:/inputerror?id="+id+"&&message=Generic";
     }
    @RequestMapping("/insert_patient")
     public String insertPatient(@RequestParam(name="name", required=true) String firstname,
                                 @RequestParam(name="surname", required=true) String lastname,
                                 @RequestParam(name="date", required=true) String date_s,
                                 @RequestParam(name="id", required=true) Long id, Model model) {
+
+        //check dati
+        if(  firstname.isEmpty()  || lastname.isEmpty() || date_s.isEmpty() ) {
+           return "redirect:/inputerror?id="+id+"&&message=Empty";
+        }
+
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
             Long doc = result_doc.get().getID();
@@ -72,32 +74,45 @@ public class DoctorController {
             Integer day =Integer.parseInt(temp[2]);
 
             LocalDate date = LocalDate.of(year,month,day);
+
+            //check date
+            if(  date.isAfter(LocalDate.now())  || date.isBefore(LocalDate.of(1920,1,1))) {
+                return "redirect:/inputerror?id="+id+"&&message=Date";
+            }
             patientRepository.save(new Patient(firstname, lastname, date, id));
             return "redirect:/doctor?id=" + doc;
         }
         else{
-                return "notfound";
+            return "redirect:/inputerror?id="+id+"&&message=Generic";
         }
     }
 
     @RequestMapping("/modify_patient")
-    public String modifyPatient(@RequestParam(name="id", required=true) Long id, Model model) {
+    public String modifyPatient(@RequestParam(name="id_doc", required=true) Long id_doc,
+                                @RequestParam(name="id", required=true) Long id, Model model) {
         Optional<Patient> result = patientRepository.findById(id);
         if (result.isPresent()) {
             Patient pat = result.get();
             model.addAttribute("patient", pat);
             return "modifypatient";
         } else {
-            return "notfound";
+            return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }
     }
     // TODO la modifica da inserire nel db
 
     @RequestMapping("/update_patient")
-    public String updatePatient(@RequestParam(name="name", required=true) String firstname,
+    public String updatePatient(@RequestParam(name="id_doc", required=true) Long id_doc,
+                                @RequestParam(name="name", required=true) String firstname,
                                 @RequestParam(name="surname", required=true) String lastname,
                                 @RequestParam(name="date", required=true) String date_s,
                                 @RequestParam(name="id", required=true) Long id, Model model) {
+
+        //check dati
+        if(  firstname.isEmpty()  || lastname.isEmpty() || date_s.isEmpty() ) {
+            return "redirect:/inputerror?id="+id_doc+"&&message=Empty";
+        }
+
         Optional<Patient> result = patientRepository.findById(id);
         if (result.isPresent()) {
             Patient pat = result.get();
@@ -110,10 +125,16 @@ public class DoctorController {
             String day_temp = temp[2].substring(0,2);
             Integer day =Integer.parseInt(day_temp);
             LocalDate date = LocalDate.of(year,month,day);
+
+            //check date
+            if(  date.isAfter(LocalDate.now())  || date.isBefore(LocalDate.of(1920,1,1))) {
+                return "redirect:/inputerror?id="+id_doc+"&&message=Date";
+            }
+
             patientRepository.save(new Patient(firstname, lastname, date, pat.getDoc()));
             return "redirect:/doctor?id=" + pat.getDoc();
-        } else {
-            return "notfound";
+        } else{
+            return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }
     }
 
@@ -124,8 +145,9 @@ public class DoctorController {
             patientRepository.delete(result.get());
             return "redirect:/doctor?id="+result.get().getDoc();
         }
-        else
-            return  "notfound";
+        else{
+            return "redirect:/inputerror?id="+id+"&&message=Generic";
+        }
     }
     // TODO eliminazione da inserire nel db
 
@@ -213,5 +235,17 @@ public class DoctorController {
         }
         else
             return  "notfound";
+    }
+
+    @RequestMapping("/inputerror")
+    public String inputerror(
+            @RequestParam(name="id", required=true) Long id,
+            @RequestParam(name="message", required=true) String message,
+            Model model) {
+
+        model.addAttribute("doctor", id);
+        model.addAttribute("message", message);
+
+        return "inputerror";
     }
 }
