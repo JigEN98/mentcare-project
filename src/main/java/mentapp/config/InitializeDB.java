@@ -46,13 +46,31 @@ public class InitializeDB {
         patientRepository.save(p2);
         Patient p3 = new Patient("Fabrizio", "Viola", new Date(100, Calendar.AUGUST, 15), d3.getID());
         patientRepository.save(p3);
+        Patient p4 = new Patient("Marco", "Celeste", new Date(95, Calendar.JANUARY, 01), d1.getID());
+        patientRepository.save(p4);
+        Patient p5 = new Patient("Ettore", "Marroni", new Date(97, Calendar.AUGUST, 30), d1.getID());
+        patientRepository.save(p5);
 
         userRepository.save(new User("mariorossi", "mario", "patient", p1.getID()));
+        userRepository.save(new User("glucaverdi", "gluca", "patient", p2.getID()));
+        userRepository.save(new User("fabrizioviola", "fabrizio", "patient", p3.getID()));
+        //userRepository.save(new User("marcoceleste", "marco", "patient", p4.getID()));
+        //userRepository.save(new User("ettoremarroni", "ettore", "patient", p5.getID()));
+
         userRepository.save(new User("lucaciano", "luca", "doctor", d1.getID()));
+        userRepository.save(new User("rosariopelli", "rosario", "doctor", d2.getID()));
+        userRepository.save(new User("aliceleblanc", "alice", "doctor", d3.getID()));
+        userRepository.save(new User("giorgiofrizzi", "giorgio", "doctor", d4.getID()));
+        userRepository.save(new User("liviapicci", "livia", "doctor", d5.getID()));
+
+
         userRepository.save(new User("admin", "admin", "admin", p1.getID()-1));
 
-        appointmentRepository.save(new Appointment(new Date(2020,10,02), "9:00-10:00", "TEST 1", p1.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(new Date(2020,9,02), "10:00-11:00", "TEST 2", p1.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(new Date(2020-1900,10-1,02), "9:00", "Visita glicemia", p1.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(new Date(2020-1900,9-1,02), "10:00", "Controllo dieta", p2.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(new Date(2020-1900,9-1,22), "12:00", "Visita di controllo", p1.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(new Date(2020-1900,11-1,02), "15:00", "Controllo esami sangue", p4.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(new Date(2020-1900,9-1,03), "11:00", "Visita dermatologica", p5.getID(), d1.getID()));
 
         System.out.println("All initialized!");
         return true;
