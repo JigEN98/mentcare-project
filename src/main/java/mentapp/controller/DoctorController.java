@@ -139,14 +139,15 @@ public class DoctorController {
     }
 
     @RequestMapping("/delete_patient")
-    public String deletePatient(@RequestParam(name="id", required=true) Long id, Model model) {
+    public String deletePatient(@RequestParam(name="id_doc", required=true) Long id_doc,
+                                @RequestParam(name="id", required=true) Long id, Model model) {
         Optional<Patient> result = patientRepository.findById(id);
         if (result.isPresent()){
             patientRepository.delete(result.get());
             return "redirect:/doctor?id="+result.get().getDoc();
         }
         else{
-            return "redirect:/inputerror?id="+id+"&&message=Generic";
+            return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }
     }
     // TODO eliminazione da inserire nel db
@@ -162,7 +163,7 @@ public class DoctorController {
 
             return "insertappointment";
         }
-        return "notfound";
+        return "redirect:/inputerror?id="+id+"&&message=Generic";
     }
 
     @RequestMapping("/insert_appointment")
@@ -171,6 +172,12 @@ public class DoctorController {
                                     @RequestParam(name="description", required=true) String description,
                                     @RequestParam(name="id_pat", required=true) Long id_pat,
                                     @RequestParam(name="id", required=true) Long id, Model model) {
+
+        //check dati
+        if(  date_s.isEmpty()  || time.isEmpty() || description.isEmpty() ) {
+            return "redirect:/inputerror?id="+id+"&&message=Empty";
+        }
+
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
             Long doc = result_doc.get().getID();
@@ -179,34 +186,52 @@ public class DoctorController {
             Integer year = Integer.parseInt(temp[0]);
             Integer month =Integer.parseInt(temp[1]);
             Integer day =Integer.parseInt(temp[2]);
-            System.out.println("pat" +id_pat + "doc" + doc);
             LocalDate date = LocalDate.of(year,month,day);
+            
+            
+            //check date and time
+            if(  date.isBefore(LocalDate.now())) {
+                return "redirect:/inputerror?id="+id+"&&message=Date";
+            }
+            String temp2[] = time.split(":");
+            Integer time_s = Integer.parseInt(temp2[0]);
+            if(time_s < 8 || time_s>18){
+                return "redirect:/inputerror?id="+id+"&&message=Time";
+            }
+
             appointmentRepository.save(new Appointment(date, time, description, id_pat, doc));
             return "redirect:/doctor?id=" + doc;
         }
         else{
-            return "notfound";
+            return "redirect:/inputerror?id="+id+"&&message=Generic";
         }
     }
 
     @RequestMapping("/modify_appointment")
-    public String modifyAppointment(@RequestParam(name="id", required=true) Long id, Model model) {
+    public String modifyAppointment(@RequestParam(name="id_doc", required=true) Long id_doc,
+                                    @RequestParam(name="id", required=true) Long id, Model model) {
         Optional<Appointment> result = appointmentRepository.findById(id);
         if (result.isPresent()) {
             Appointment app = result.get();
             model.addAttribute("appointment", app);
             return "modifyappointment";
         } else {
-            return "notfound";
+            return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }
     }
     // TODO la modifica da inserire nel db
 
     @RequestMapping("/update_appointment")
-    public String updateAppointment(@RequestParam(name="date", required=true) String date_s,
-                                @RequestParam(name="time", required=true) String time,
-                                @RequestParam(name="description", required=true) String description,
-                                @RequestParam(name="id", required=true) Long id, Model model) {
+    public String updateAppointment(@RequestParam(name="id_doc", required=true) Long id_doc,
+                                    @RequestParam(name="date", required=true) String date_s,
+                                    @RequestParam(name="time", required=true) String time,
+                                    @RequestParam(name="description", required=true) String description,
+                                    @RequestParam(name="id", required=true) Long id, Model model) {
+
+        //check dati
+        if(  date_s.isEmpty()  || time.isEmpty() || description.isEmpty() ) {
+            return "redirect:/inputerror?id="+id_doc+"&&message=Empty";
+        }
         Optional<Appointment> result = appointmentRepository.findById(id);
         if (result.isPresent()) {
             Appointment app = result.get();
@@ -219,22 +244,34 @@ public class DoctorController {
             String day_temp = temp[2].substring(0,2);
             Integer day =Integer.parseInt(day_temp);
             LocalDate date = LocalDate.of(year,month,day);
+
+            //check date and time
+            if(  date.isBefore(LocalDate.now())) {
+                return "redirect:/inputerror?id="+id_doc+"&&message=Date";
+            }
+            String temp2[] = time.split(":");
+            Integer time_s = Integer.parseInt(temp2[0]);
+            if(time_s < 8 || time_s>18){
+                return "redirect:/inputerror?id="+id_doc+"&&message=Time";
+            }
+
             appointmentRepository.save(new Appointment(date, time, description, app.getIdPatient(), app.getIdDoctor()));
             return "redirect:/doctor?id=" + app.getIdDoctor();
         } else {
-            return "notfound";
+            return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }
     }
 
     @RequestMapping("/delete_appointment")
-    public String deleteAppointment(@RequestParam(name="id", required=true) Long id, Model model) {
+    public String deleteAppointment(@RequestParam(name="id_doc", required=true) Long id_doc,
+                                    @RequestParam(name="id", required=true) Long id, Model model) {
         Optional<Appointment> result = appointmentRepository.findById(id);
         if (result.isPresent()){
             appointmentRepository.delete(result.get());
             return "redirect:/doctor?id="+result.get().getIdDoctor();
         }
         else
-            return  "notfound";
+            return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
     }
 
     @RequestMapping("/inputerror")

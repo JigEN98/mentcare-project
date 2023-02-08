@@ -10,6 +10,7 @@
 <div style="box">
   <b><div th:switch="${message}" align="center">
     <p th:case="'Date'">ERROR: Date format</p>
+    <p th:case="'Time'">ERROR: Time format</p>
     <p th:case="'Empty'">ERROR: Empty field</p>
     <p th:case="*">ERROR: Generic Error</p>
   </div>
