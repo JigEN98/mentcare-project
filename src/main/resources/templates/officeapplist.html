@@ -18,7 +18,7 @@
   </thead>
   <tbody>
   <tr th:each="appointment: ${appointments}" align="center">
-    <td th:text="${appointment.date}">1970-01-01</td>
+    <td th:text="${appointment.date.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd HH:mm'))}">1970-01-01</td>
     <td th:text="${appointment.idPatient}"> 1 </td>
     <td th:text="${appointment.idDoctor}"> 1 </td>
     <td th:text="${appointment.description}"> TEST DESC </td>

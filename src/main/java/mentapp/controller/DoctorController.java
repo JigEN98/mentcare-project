@@ -235,7 +235,6 @@ public class DoctorController {
             Appointment app = result.get();
             model.addAttribute("appointment", app);
             Long id_app = app.getID();
-            appointmentRepository.delete(result.get());
 
             //trasformo le date da stringa a LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
@@ -251,7 +250,7 @@ public class DoctorController {
             if( appDate.isBefore(LocalDateTime.now())) {
                 return "redirect:/inputerror?id="+id_doc+"&&message=Date";
             }
-
+            appointmentRepository.delete(result.get());
             appointmentRepository.save(new Appointment(appDate, description, app.getIdPatient(), app.getIdDoctor()));
             return "redirect:/doctor?id=" + app.getIdDoctor();
         } else {
