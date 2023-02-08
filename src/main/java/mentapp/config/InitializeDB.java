@@ -67,7 +67,7 @@ public class InitializeDB {
         userRepository.save(new User("liviapicci", "livia", "doctor", d5.getID()));
 
 
-        userRepository.save(new User("admin", "admin", "admin", p1.getID()-1));
+        userRepository.save(new User("admin", "admin", "admin", p1.getID()+93));
 
         appointmentRepository.save(new Appointment(new Date(2020-1900,10-1,02), "9:00", "Visita glicemia", p1.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(new Date(2020-1900,9-1,02), "10:00", "Controllo dieta", p2.getID(), d1.getID()));
