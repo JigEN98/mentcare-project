@@ -28,17 +28,17 @@ body {
   padding: 10px;
   color: #000;
   letter-spacing: 5px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   font-weight: bold;
   padding-left: 10px;
 }
-.center .inputbox {
+.center .inputbox, .center .logout{
   position: relative;
   width: 300px;
   height: 50px;
   margin-bottom: 50px;
 }
-.center .inputbox input {
+.center .inputbox input, .center .logout input {
   position: absolute;
   top: 0;
   left: 0;
@@ -50,7 +50,7 @@ body {
   border-radius: 10px;
   font-size: 1.2em;
 }
-.center .inputbox:last-child {
+.center .inputbox:last-child, .center .logout:last-child {
   margin-bottom: 0;
 }
 .center .inputbox span {
@@ -67,11 +67,36 @@ body {
   font-size: 1em;
 }
 .center .inputbox [type="submit"] {
-  width: 50%;
+  margin-left: 20%;
+  width: 60%;
   background: dodgerblue;
   color: #fff;
   border: #fff;
 }
+
+.center .inputbox [type="button"] {
+  margin-left: 20%;
+  width: 60%;
+  background: dodgerblue;
+  color: #fff;
+  border: #fff;
+}
+
+.center .logout [type="button"] {
+  margin-left: 20%;
+  width: 60%;
+  background: #FF1635;
+  color: #fff;
+  border: #fff;
+}
+
+.center .logout:hover [type="button"] {
+  background: linear-gradient(45deg, #FF9900, #FF1635);
+}
 .center .inputbox:hover [type="submit"] {
+  background: linear-gradient(45deg, greenyellow, dodgerblue);
+}
+
+.center .inputbox:hover [type="button"] {
   background: linear-gradient(45deg, greenyellow, dodgerblue);
 }
