@@ -110,7 +110,7 @@ public class DoctorController {
 
         //check dati
         if(  firstname.isEmpty()  || lastname.isEmpty() || date_s.isEmpty() ) {
-            return "redirect:/inputerror?id="+id+"&&message=Empty";
+            return "redirect:/inputerror?id="+id_doc+"&&message=Empty";
         }
 
         Optional<Patient> result = patientRepository.findById(id);
@@ -128,7 +128,7 @@ public class DoctorController {
 
             //check date
             if(  date.isAfter(LocalDate.now())  || date.isBefore(LocalDate.of(1920,1,1))) {
-                return "redirect:/inputerror?id="+id+"&&message=Date";
+                return "redirect:/inputerror?id="+id_doc+"&&message=Date";
             }
 
             patientRepository.save(new Patient(firstname, lastname, date, pat.getDoc()));
