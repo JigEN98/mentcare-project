@@ -7,16 +7,10 @@ import mentapp.repository.AppointmentRepository;
 import mentapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import mentapp.repository.PatientRepository;
 import mentapp.repository.DoctorRepository;
 import mentapp.models.Patient;
-
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.sql.Date;
 
 @Component
 public class InitializeDB {
@@ -43,15 +37,15 @@ public class InitializeDB {
         Doctor d5 = new Doctor("Livia", "Picci", "Oculistica");
         doctorRepository.save(d5);
 
-        Patient p1 = new Patient("Mario", "Rossi", LocalDate.of(87, Calendar.MARCH, 02), d1.getID());
+        Patient p1 = new Patient("Mario", "Rossi", LocalDate.of(1987, 3, 1), d1.getID());
         patientRepository.save(p1);
-        Patient p2 = new Patient("Gianluca", "Verdi", LocalDate.of(90, Calendar.JANUARY, 20), d2.getID());
+        Patient p2 = new Patient("Gianluca", "Verdi", LocalDate.of(1990, 1, 20), d2.getID());
         patientRepository.save(p2);
-        Patient p3 = new Patient("Fabrizio", "Viola", LocalDate.of(100, Calendar.AUGUST, 15), d3.getID());
+        Patient p3 = new Patient("Fabrizio", "Viola", LocalDate.of(2000, 8, 15), d3.getID());
         patientRepository.save(p3);
-        Patient p4 = new Patient("Marco", "Celeste", LocalDate.of(95, Calendar.JANUARY, 01), d1.getID());
+        Patient p4 = new Patient("Marco", "Celeste", LocalDate.of(1995, 1, 1), d1.getID());
         patientRepository.save(p4);
-        Patient p5 = new Patient("Ettore", "Marroni", LocalDate.of(97, Calendar.AUGUST, 30), d1.getID());
+        Patient p5 = new Patient("Ettore", "Marroni", LocalDate.of(1997, 8, 30), d1.getID());
         patientRepository.save(p5);
 
         userRepository.save(new User("mariorossi", "mario", "patient", p1.getID()));
@@ -69,10 +63,10 @@ public class InitializeDB {
 
         userRepository.save(new User("admin", "admin", "admin", p1.getID()+93));
 
-        appointmentRepository.save(new Appointment(LocalDate.of(2020,10,02), "9:00", "Visita glicemia", p1.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(LocalDate.of(2020,9,02), "10:00", "Controllo dieta", p2.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDate.of(2020,10,2), "9:00", "Visita glicemia", p1.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDate.of(2020,9,2), "10:00", "Controllo dieta", p2.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(LocalDate.of(2020,9,22), "12:00", "Visita di controllo", p1.getID(), d1.getID()));
-        appointmentRepository.save(new Appointment(LocalDate.of(2020,11,02), "15:00", "Controllo esami sangue", p4.getID(), d1.getID()));
+        appointmentRepository.save(new Appointment(LocalDate.of(2020,11,2), "15:00", "Controllo esami sangue", p4.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(LocalDate.of(2020,5,12), "11:00", "Visita dermatologica", p5.getID(), d1.getID()));
 
 

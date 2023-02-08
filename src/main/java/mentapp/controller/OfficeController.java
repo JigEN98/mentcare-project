@@ -76,6 +76,7 @@ public class OfficeController {
             // lista apps
             List<Appointment> appointments = appointmentRepository.findAll();
             model.addAttribute("appointments", appointments);
+
             return "officeapplist";
             }
             else {
