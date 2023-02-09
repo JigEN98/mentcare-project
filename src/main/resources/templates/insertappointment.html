@@ -9,7 +9,7 @@
 
 <body>
 <div class="center">
-<h1>Insert a new Appointment:</h1>
+<h2>Insert a new Appointment:</h2>
 
 <form method="post" action="insert_appointment?id=99" th:action="@{insert_appointment(id=${doctor})}">
   Appointment Date: <input type="datetime-local" name="date"><br>
@@ -21,11 +21,16 @@
           th:text="${patient.getName()} + ' ' + ${patient.getSurname()}"/>
   </select><br>
 
-  <input type="submit" />
+  <div class="inputbox">
+    <input type="submit" value="submit">
+  </div>
 </form>
-
-<a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> Show the list </a><br>
-<a href="login"> Logout </a>
+<div class="inputbox">
+  <a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> <input type="button" value="Show the list"> </a><br>
+</div>
+  <div class="logout">
+    <a href="login"> <input type="button" value="Logout"> </a><br>
+  </div>
 </div>
 </body>
 </html>

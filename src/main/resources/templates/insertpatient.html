@@ -15,11 +15,17 @@
     Name:<input type="text" name="name"><br>
     Surname:<input type="text" name="surname"><br>
     Birth Date: <input type="date" name="date"><br>
-    <input type="submit" />
+    <div class="inputbox">
+        <input type="submit" value="submit">
+    </div>
 </form>
 
-<a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> Show the list </a><br>
-<a href="login"> Logout </a>
+<div class="inputbox">
+    <a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> <input type="button" value="Show the list"> </a>
+</div>
+    <div class="logout">
+        <a href="login"> <input type="button" value="Logout"> </a><br>
+    </div>
 </div>
 </body>
 </html>
