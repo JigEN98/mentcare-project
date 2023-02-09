@@ -67,39 +67,6 @@ public class OfficeController {
         }
     }
 
-    @RequestMapping("/officeapplist")
-    public String officeapplist(@RequestParam(name="id", required=true) Long id, Model model) {
-        Optional<User> result_user = userRepository.findById(id);
-        if (result_user.isPresent()) {
-            User user = result_user.get();
-            model.addAttribute("admin", user);
-            // lista apps
-            List<Appointment> appointments = appointmentRepository.findAll();
-            List<String> docs = new LinkedList<>();
-            List<String> pats = new LinkedList<>();
-            for (Appointment a: appointmentRepository.findAll()) {
-                Optional<Doctor> doc = doctorRepository.findById(a.getIdDoctor());
-                if(doc.isPresent()) {
-                    docs.add(doc.get().getName().concat(" ").concat(doc.get().getSurname()));
-                }
-                Optional<Patient> pat = patientRepository.findById(a.getIdPatient());
-                if(pat.isPresent()) {
-                    pats.add(pat.get().getName().concat(" ").concat(pat.get().getSurname()));
-                }
-            }
-            model.addAttribute("appointments", appointments);
-            model.addAttribute("docs", docs);
-            model.addAttribute("pats", pats);
-
-            return "officeapplist";
-            }
-            else {
-                //error
-                return "notfound";
-            }
-
-        }
-
     @RequestMapping("/officeuserlist")
     public String officeuserlist(@RequestParam(name="id", required=true) Long id, Model model) {
         Optional<User> result_user = userRepository.findById(id);
