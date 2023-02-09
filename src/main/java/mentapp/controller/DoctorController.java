@@ -114,7 +114,6 @@ public class DoctorController {
             return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }
     }
-    // TODO la modifica da inserire nel db
 
     @RequestMapping("/update_patient")
     public String updatePatient(@RequestParam(name="id_doc", required=true) Long id_doc,
@@ -132,7 +131,6 @@ public class DoctorController {
         if (result.isPresent()) {
             Patient pat = result.get();
             model.addAttribute("patient", pat);
-            Long id_pat = pat.getID();
 
             String[] temp = date_s.split("-");
             Integer year = Integer.parseInt(temp[0]);
@@ -168,7 +166,6 @@ public class DoctorController {
             return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }
     }
-    // TODO eliminazione da inserire nel db
 
     @RequestMapping("/insertapp")
     public String inAppointment(Long id, Model model) {
@@ -234,7 +231,6 @@ public class DoctorController {
             return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }
     }
-    // TODO la modifica da inserire nel db
 
     @RequestMapping("/update_appointment")
     public String updateAppointment(@RequestParam(name="id_doc", required=true) Long id_doc,
@@ -250,7 +246,6 @@ public class DoctorController {
         if (result.isPresent()) {
             Appointment app = result.get();
             model.addAttribute("appointment", app);
-            Long id_app = app.getID();
 
             //trasformo le date da stringa a LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
