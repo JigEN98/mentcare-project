@@ -9,13 +9,13 @@
 
 <body>
 <div class="center">
-<h2>Insert a new Appointment:</h2>
+<h2>Insert Appointment:</h2>
 
 <form method="post" action="insert_appointment?id=99" th:action="@{insert_appointment(id=${doctor})}">
   <div class="inputbox"> <input type="datetime-local" name="date"><br> </div>
   <div class="inputbox"><input type="text" name="description" value="Description" onfocus="if(this.value==this.defaultValue)this.value=''"><br></div>
   <div class="inputbox"><select name="id_pat">
-  <option value=""> -- </option>
+  <option value=""> Select Patient: </option>
   <option th:each="patient : ${patients}"
           th:value="${patient.getID()}"
           th:text="${patient.getName()} + ' ' + ${patient.getSurname()}"/>
