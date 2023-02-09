@@ -8,8 +8,8 @@
 
 <body>
 <div class="center">
-<h1>Users Details:</h1>
-<table border="1" align="center">
+<h2>Users Details:</h2>
+<table>
   <thead>
   <tr>
     <th>Username</th>
@@ -26,7 +26,9 @@
   </tbody>
 </table>
 
-<a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> Admin panel </a>
+  <div class="inputbox">
+    <a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> <input type="button" value="Admin panel"> </a>
+  </div>
   <div class="logout">
     <a href="login"> <input type="button" value="Logout"> </a><br>
   </div>

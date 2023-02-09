@@ -63,6 +63,7 @@ public class InitializeDB {
 
 
         userRepository.save(new User("admin", "admin", "admin", p1.getID()+93));
+        userRepository.save(new User("guest", "guest", "guest", p1.getID()+92));
 
         appointmentRepository.save(new Appointment(LocalDateTime.of(2024,10,2,9,00), "Visita glicemia", p1.getID(), d1.getID()));
         appointmentRepository.save(new Appointment(LocalDateTime.of(2024,9,2,10,00), "Controllo dieta", p2.getID(), d1.getID()));
