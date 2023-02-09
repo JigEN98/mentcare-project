@@ -8,7 +8,7 @@
 
 <body>
 <div class="center">
-  <h1>Database Stats</h1>
+  <h2>Database Stats</h2>
   Stats report:
   <ul>
     <li th:text="|Users: ${ct_users}|">Users: 0</li>
@@ -17,7 +17,9 @@
     <li th:text="|Appointments: ${ct_appointments}|">Appointments: 0</li>
   </ul>
   <br>
-  <a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> Admin panel </a>
+  <div class="inputbox">
+    <a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> <input type="button" value="Admin panel"> </a>
+  </div>
   <div class="logout">
     <a href="login"> <input type="button" value="Logout"> </a><br>
   </div>
