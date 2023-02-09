@@ -61,6 +61,9 @@ public class WelcomePageDoctorPageObject extends PageObject {
     @FindBy(name = "insertPatient")
     private WebElement insertPatient;
 
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[5]/a[1]")
+    private WebElement delete_app;
+
     // logout
     @FindBy(name = "logout")
     private WebElement logout;
@@ -115,6 +118,11 @@ public class WelcomePageDoctorPageObject extends PageObject {
     public InsertAppointment showInsertAppointment() {
         this.insertAppointment.click();
         return new InsertAppointment(driver);
+    }
+
+    public WelcomePageDoctorPageObject delete() {
+        this.delete_app.click();
+        return new WelcomePageDoctorPageObject(driver);
     }
 
     public LoginPageObject logout() {

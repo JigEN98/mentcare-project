@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > PatientRepository</title>
+  <title>Coverage Report > DoctorRepository</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,14 +21,14 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">mentapp.repository</a>
 </div>
 
-<h1>Coverage Summary for Class: PatientRepository (mentapp.repository)</h1>
+<h1>Coverage Summary for Class: DoctorRepository (mentapp.repository)</h1>
 
 <table class="coverageStats">
 <tr>
   <th class="name">Class</th>
 </tr>
 <tr>
-  <td class="name">PatientRepository</td>
+  <td class="name">DoctorRepository</td>
 </tr>
 
 </table>
@@ -41,14 +41,14 @@ Current scope:     <a href="../../index.html">all classes</a>
 <code class="sourceCode" id="sourceCode">&nbsp;package mentapp.repository;
 &nbsp;
 &nbsp;import java.util.List;
+&nbsp;
+&nbsp;import mentapp.models.Doctor;
 &nbsp;import org.springframework.data.repository.CrudRepository;
 &nbsp;
-&nbsp;import mentapp.models.Patient;
 &nbsp;
-&nbsp;public interface PatientRepository extends CrudRepository&lt;Patient, Long&gt; {
-&nbsp;  List&lt;Patient&gt; findAll();
-&nbsp;  Patient findById(long id);
-&nbsp;  List&lt;Patient&gt; findByDoc(long doc);
+&nbsp;public interface DoctorRepository extends CrudRepository&lt;Doctor, Long&gt; {
+&nbsp;    List&lt;Doctor&gt; findAll();
+&nbsp;    Doctor findById(long id);
 &nbsp;}
 </code>
 </pre>
@@ -73,7 +73,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-09 21:53</div>
+    <div style="float:right;">generated on 2023-02-09 22:39</div>
 </div>
 </body>
 </html>

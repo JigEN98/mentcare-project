@@ -4,40 +4,21 @@ import mentapp.PO.LoginPageObject;
 import mentapp.PO.doctor.InsertAppointment;
 import mentapp.PO.doctor.WelcomePageDoctorPageObject;
 import mentapp.PO.NotFoundPageObject;
-import mentapp.PO.patient.WelcomePagePatientPageObject;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class DoctorTest extends BaseTest {
-    @Test
-    // scenario 4 login del dottore
-    public void loginDoctor() {
-        driver.get("http://localhost:8080/");
-        // -------------------- Login dottore --------------------
-        LoginPageObject login_page = new LoginPageObject(driver);
-        assertEquals("Verifico di essere nella Home","MentCare Login", login_page.Title());
-        WelcomePageDoctorPageObject welc_page = login_page.welcomedoc("lucaciano", "luca");
-        assertEquals("Verifico di aver fatto il login con il dottore ed essere nella sua Dashboard","Hello Dr. Ciano", welc_page.Title());
-
-        // -------------------- Logout --------------------
-        login_page = welc_page.logout();
-        assertEquals("Verifico di essere di nuovo nella Home","MentCare Login", login_page.Title());
-
-        // -------------------- Errori possibili --------------------
-        NotFoundPageObject NotFound_page = login_page.UserNotFound("mariorossi", "rossi");
-        login_page = NotFound_page.ShowLogin();
-        assertEquals("Verifico di essere ancora nella pagina login dopo l'autenticazione errata","MentCare Login", login_page.Title());
-    }
 
     @Test
     // scenario 5 dashboard
     public void lists() {
         driver.get("http://localhost:8080/");
-        // -------------------- Login dottore --------------------
+        // -------------------- Premesse --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
 
+        // -------------------- dashboard dottore --------------------
         assertEquals("check size list patient", 5, docPage.getSizeAppointments());
         assertEquals("2024-10-02 09:00", docPage.getDateAppointment());
         assertEquals("Visita glicemia", docPage.getDescriptionAppointment());
@@ -55,6 +36,15 @@ public class DoctorTest extends BaseTest {
         // -------------------- Errori possibili --------------------
         NotFoundPageObject NotFound_page = login_page.UserNotFound("mariorossi", "rossi");
         login_page = NotFound_page.ShowLogin();
+
+        NotFoundPageObject NotFound_page2 = login_page.UserNotFound("guest", "guest");
+        login_page = NotFound_page2.ShowLogin();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+
+        NotFoundPageObject NotFound_page3 = login_page.UserNotFound("isaialucco", "isaia");
+        login_page = NotFound_page3.ShowLogin();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+
     }
 
     @Test
@@ -90,9 +80,15 @@ public class DoctorTest extends BaseTest {
     // scenario 12 eliminazione appuntamento
     public void deleteAppointment() {
         driver.get("http://localhost:8080/");
-        // -------------------- Login dottore --------------------
+        // -------------------- premesse --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
+
+        // -------------------- eliminazione appuntamento--------------------
+        docPage.getDateAppointment();
+        assertEquals("2024-10-02 09:00", docPage.getDateAppointment());
+        docPage.delete();
+        assertEquals("2024-09-02 10:00", docPage.getDateAppointment());
     }
 
     @Test
@@ -114,6 +110,10 @@ public class DoctorTest extends BaseTest {
     @Test
     // scenario 9 eliminazione paziente
     public void deletePatient() {
+        driver.get("http://localhost:8080/");
+        // -------------------- premesse --------------------
+        LoginPageObject login_page = new LoginPageObject(driver);
+        WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
 
     }
 
