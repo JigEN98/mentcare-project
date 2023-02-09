@@ -18,7 +18,7 @@ public class AdminTest extends BaseTest {
         WelcomePageOfficePageObject welc_page = login_page.welcomeadmin("admin", "admin");
         assertEquals("Verifico che sia la pagina corretta","ADMIN PANEL", welc_page.Title());
 
-        // -------------------- lista appuntamenti paziente --------------------
+        // -------------------- statistiche db --------------------
         StatsDBPageObject stats_page = welc_page.statsDB();
         assertEquals("Verifico che sia la pagina corretta", "Database Stats", stats_page.Title());
         assertEquals("Verifico che il numero di utenti sia corretto", "Users: 10", stats_page.checkUsers());

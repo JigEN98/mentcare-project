@@ -1,6 +1,9 @@
 package mentapp;
 
 import mentapp.PO.*;
+import mentapp.PO.admin.StatsDBPageObject;
+import mentapp.PO.admin.UserListPageObject;
+import mentapp.PO.admin.WelcomePageOfficePageObject;
 import mentapp.PO.patient.PatientAppListPageObject;
 import mentapp.PO.patient.ProfilePatientPageObject;
 import mentapp.PO.patient.WelcomePagePatientPageObject;
@@ -8,6 +11,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class UtilitiesTest extends BaseTest {
+
+    //serie di test su utilities sviluppate nell'applicativo ma non utilizzate negli scenari
     @Test
 // profilo paziente
     public void Profile_Patient() {
@@ -30,7 +35,7 @@ public class UtilitiesTest extends BaseTest {
     }
 
     @Test
-// lista appuntamenti paziente
+    // lista appuntamenti paziente
     public void Appointments_Patient() {
         driver.get("http://localhost:8080/");
         // -------------------- Premesse --------------------
@@ -48,5 +53,25 @@ public class UtilitiesTest extends BaseTest {
         // -------------------- Logout --------------------
         login_page = app_page.logout();
         assertEquals("Verifico che sia la pagina corretta", "MentCare Login", login_page.Title());
+    }
+
+    @Test
+    //admin user list
+    public void admin_userlist() {
+        driver.get("http://localhost:8080/");
+        // -------------------- Premesse --------------------
+        LoginPageObject login_page = new LoginPageObject(driver);
+        WelcomePageOfficePageObject welc_page = login_page.welcomeadmin("admin", "admin");
+        assertEquals("Verifico che sia la pagina corretta","ADMIN PANEL", welc_page.Title());
+
+        // -------------------- lista users --------------------
+        UserListPageObject users = welc_page.showUserList();
+        assertEquals("Verifico che la pagina sia corretta", "Users Details:", users.Title());
+        assertEquals("Verifico il numero di utenti",10, users.rowTable());
+
+
+        // -------------------- back to panel --------------------
+        welc_page = users.panel();
+        assertEquals("Verifico che sia la pagina corretta", "ADMIN PANEL", welc_page.Title());
     }
 }

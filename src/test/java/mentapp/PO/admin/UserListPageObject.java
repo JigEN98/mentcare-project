@@ -2,6 +2,7 @@ package mentapp.PO.admin;
 
 import mentapp.PO.LoginPageObject;
 import mentapp.PO.PageObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,11 +23,17 @@ public class UserListPageObject extends PageObject {
     @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/a[1]/input[1]")
     private WebElement logout;
 
+    @FindBy(tagName = "table")
+    private WebElement table;
+
     // ---------- Methods ----------
     public String Title(){
         return h2list.getText();
     }
-    public WelcomePageOfficePageObject statsDB() {
+    public int rowTable(){
+        return table.findElements(By.tagName("tr")).size();
+    }
+    public WelcomePageOfficePageObject panel() {
         this.panel.click();
         return new WelcomePageOfficePageObject(driver);
     }

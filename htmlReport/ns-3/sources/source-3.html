@@ -51,18 +51,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    25%
+    100%
   </span>
   <span class="absValue">
-    (1/4)
+    (4/4)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    2,2%
+    93,5%
   </span>
   <span class="absValue">
-    (1/46)
+    (43/46)
   </span>
 </td>
 </tr>
@@ -109,11 +109,11 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @RequestMapping(&quot;/admin&quot;)
 &nbsp;    public String setAdmin(@RequestParam(name = &quot;id&quot;, required = true) Long id,
 &nbsp;                             Model model) {
-<b class="nc">&nbsp;        Optional&lt;User&gt; result_user = userRepository.findById(id);</b>
-<b class="nc">&nbsp;        if (result_user.isPresent()) {</b>
-<b class="nc">&nbsp;            User user = result_user.get();</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;admin&quot;, user);</b>
-<b class="nc">&nbsp;            return &quot;welcomepageoffice&quot;;</b>
+<b class="fc">&nbsp;        Optional&lt;User&gt; result_user = userRepository.findById(id);</b>
+<b class="fc">&nbsp;        if (result_user.isPresent()) {</b>
+<b class="fc">&nbsp;            User user = result_user.get();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;admin&quot;, user);</b>
+<b class="fc">&nbsp;            return &quot;welcomepageoffice&quot;;</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            return &quot;notfound&quot;;</b>
 &nbsp;        }
@@ -122,21 +122,21 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @GetMapping(&quot;/statsDB&quot;)
 &nbsp;    public String statsDB(@RequestParam(name = &quot;id&quot;, required = true) Long id,
 &nbsp;                          Model model){
-<b class="nc">&nbsp;        Optional&lt;User&gt; result_user = userRepository.findById(id);</b>
-<b class="nc">&nbsp;        if (result_user.isPresent()) {</b>
-<b class="nc">&nbsp;            User user = result_user.get();</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;admin&quot;, user);</b>
-<b class="nc">&nbsp;            long ct_doctors = doctorRepository.count();</b>
-<b class="nc">&nbsp;            long ct_users = userRepository.count();</b>
-<b class="nc">&nbsp;            long ct_patients = patientRepository.count();</b>
-<b class="nc">&nbsp;            long ct_appointments = appointmentRepository.count();</b>
+<b class="fc">&nbsp;        Optional&lt;User&gt; result_user = userRepository.findById(id);</b>
+<b class="fc">&nbsp;        if (result_user.isPresent()) {</b>
+<b class="fc">&nbsp;            User user = result_user.get();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;admin&quot;, user);</b>
+<b class="fc">&nbsp;            long ct_doctors = doctorRepository.count();</b>
+<b class="fc">&nbsp;            long ct_users = userRepository.count();</b>
+<b class="fc">&nbsp;            long ct_patients = patientRepository.count();</b>
+<b class="fc">&nbsp;            long ct_appointments = appointmentRepository.count();</b>
 &nbsp;
-<b class="nc">&nbsp;            model.addAttribute(&quot;ct_doctors&quot;, ct_doctors);</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;ct_users&quot;, ct_users);</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;ct_patients&quot;, ct_patients);</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;ct_appointments&quot;, ct_appointments);</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;ct_doctors&quot;, ct_doctors);</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;ct_users&quot;, ct_users);</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;ct_patients&quot;, ct_patients);</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;ct_appointments&quot;, ct_appointments);</b>
 &nbsp;
-<b class="nc">&nbsp;            return &quot;statsDB&quot;;</b>
+<b class="fc">&nbsp;            return &quot;statsDB&quot;;</b>
 &nbsp;        }
 &nbsp;        else {
 <b class="nc">&nbsp;            return &quot;notfound&quot;;</b>
@@ -145,37 +145,37 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    @RequestMapping(&quot;/officeuserlist&quot;)
 &nbsp;    public String officeuserlist(@RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
-<b class="nc">&nbsp;        Optional&lt;User&gt; result_user = userRepository.findById(id);</b>
-<b class="nc">&nbsp;        if (result_user.isPresent()) {</b>
-<b class="nc">&nbsp;            User user = result_user.get();</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;admin&quot;, user);</b>
+<b class="fc">&nbsp;        Optional&lt;User&gt; result_user = userRepository.findById(id);</b>
+<b class="fc">&nbsp;        if (result_user.isPresent()) {</b>
+<b class="fc">&nbsp;            User user = result_user.get();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;admin&quot;, user);</b>
 &nbsp;
 &nbsp;            // liste utenti con nomi e cognomi associati (senza admin)
-<b class="nc">&nbsp;            List&lt;String&gt; userNS = new LinkedList&lt;&gt;();</b>
-<b class="nc">&nbsp;            List&lt;User&gt; officeListUsers = new LinkedList&lt;&gt;();</b>
-<b class="nc">&nbsp;            for (User u: userRepository.findAll()) {</b>
-<b class="nc">&nbsp;               if(!u.getRole().equals(&quot;admin&quot;)) {</b>
-<b class="nc">&nbsp;                   if(u.getRole().equals(&quot;patient&quot;)) {</b>
-<b class="nc">&nbsp;                       Optional&lt;Patient&gt; p = patientRepository.findById(u.getID());</b>
-<b class="nc">&nbsp;                       if(p.isPresent()) {</b>
-<b class="nc">&nbsp;                           userNS.add(p.get().getName().concat(&quot; &quot;).concat(p.get().getSurname()));</b>
+<b class="fc">&nbsp;            List&lt;String&gt; userNS = new LinkedList&lt;&gt;();</b>
+<b class="fc">&nbsp;            List&lt;User&gt; officeListUsers = new LinkedList&lt;&gt;();</b>
+<b class="fc">&nbsp;            for (User u: userRepository.findAll()) {</b>
+<b class="fc">&nbsp;               if(!u.getRole().equals(&quot;admin&quot;)) {</b>
+<b class="fc">&nbsp;                   if(u.getRole().equals(&quot;patient&quot;)) {</b>
+<b class="fc">&nbsp;                       Optional&lt;Patient&gt; p = patientRepository.findById(u.getID());</b>
+<b class="fc">&nbsp;                       if(p.isPresent()) {</b>
+<b class="fc">&nbsp;                           userNS.add(p.get().getName().concat(&quot; &quot;).concat(p.get().getSurname()));</b>
 &nbsp;                       }
-<b class="nc">&nbsp;                   }</b>
-<b class="nc">&nbsp;                   else if(u.getRole().equals(&quot;doctor&quot;)) {</b>
-<b class="nc">&nbsp;                       Optional&lt;Doctor&gt; d = doctorRepository.findById(u.getID());</b>
-<b class="nc">&nbsp;                       if(d.isPresent()) {</b>
-<b class="nc">&nbsp;                           userNS.add(d.get().getName().concat(&quot; &quot;).concat(d.get().getSurname()));</b>
+<b class="fc">&nbsp;                   }</b>
+<b class="fc">&nbsp;                   else if(u.getRole().equals(&quot;doctor&quot;)) {</b>
+<b class="fc">&nbsp;                       Optional&lt;Doctor&gt; d = doctorRepository.findById(u.getID());</b>
+<b class="fc">&nbsp;                       if(d.isPresent()) {</b>
+<b class="fc">&nbsp;                           userNS.add(d.get().getName().concat(&quot; &quot;).concat(d.get().getSurname()));</b>
 &nbsp;                       }
-<b class="nc">&nbsp;                   }</b>
+<b class="fc">&nbsp;                   }</b>
 &nbsp;                   else {
-<b class="nc">&nbsp;                           userNS.add(&quot;guest&quot;);</b>
+<b class="fc">&nbsp;                           userNS.add(&quot;guest&quot;);</b>
 &nbsp;                   }
-<b class="nc">&nbsp;                   officeListUsers.add(u);</b>
+<b class="fc">&nbsp;                   officeListUsers.add(u);</b>
 &nbsp;               }
-<b class="nc">&nbsp;            }</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;users&quot;, officeListUsers);</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;ns&quot;, userNS);</b>
-<b class="nc">&nbsp;            return &quot;officeuserlist&quot;;</b>
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;users&quot;, officeListUsers);</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;ns&quot;, userNS);</b>
+<b class="fc">&nbsp;            return &quot;officeuserlist&quot;;</b>
 &nbsp;        }
 &nbsp;        else {
 &nbsp;            //error
@@ -208,7 +208,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-09 20:15</div>
+    <div style="float:right;">generated on 2023-02-09 20:58</div>
 </div>
 </body>
 </html>
