@@ -3,11 +3,13 @@
 <head>
     <title>Insert Patient</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet"  th:href="@{/css/login.css}">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 
 <body>
-<h1>Insert a new Patient:</h1>
+<div class="center">
+<h2>Insert a new Patient:</h2>
 
 <form method="post" action="insert_patient?id=99" th:action="@{insert_patient(id=${doctor})}">
     Name:<input type="text" name="name"><br>
@@ -18,7 +20,7 @@
 
 <a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> Show the list </a><br>
 <a href="login"> Logout </a>
-
+</div>
 </body>
 </html>
 

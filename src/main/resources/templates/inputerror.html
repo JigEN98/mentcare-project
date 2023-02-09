@@ -3,12 +3,12 @@
 <head>
   <title>Patient Error</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-
 </head>
 
 <body>
-<div style="box">
+<div class="center">
   <b><div th:switch="${message}" align="center">
     <p th:case="'Date'">ERROR: Date format</p>
     <p th:case="'Time'">ERROR: Time format</p>
@@ -16,10 +16,10 @@
     <p th:case="*">ERROR: Generic Error</p>
   </div>
   </b>
-</div>
 
 <p align="center">
   <a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> <button>Back to list</button> </a>
 </p>
+</div>
 </body>
 </html>

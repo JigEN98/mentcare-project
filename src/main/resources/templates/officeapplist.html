@@ -3,10 +3,11 @@
 <head>
   <title>Appointment List</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-</head>
-
 <body>
+<div class="center">
 <h1>Detail of appointments:</h1>
 <table border="1" align="center">
   <thead>
@@ -28,7 +29,9 @@
 </table>
 
 <a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> Admin panel </a>
-<a href="login"> Logout </a>
-
+  <div class="logout">
+    <a href="login"> <input type="button" value="Logout"> </a><br>
+  </div>
+</div>
 </body>
 </html>

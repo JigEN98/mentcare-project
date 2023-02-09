@@ -3,10 +3,12 @@
 <head>
   <title>Insert Appointment</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 
 <body>
+<div class="center">
 <h1>Insert a new Appointment:</h1>
 
 <form method="post" action="insert_appointment?id=99" th:action="@{insert_appointment(id=${doctor})}">
@@ -24,6 +26,6 @@
 
 <a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> Show the list </a><br>
 <a href="login"> Logout </a>
-
+</div>
 </body>
 </html>

@@ -3,13 +3,17 @@
 <head>
     <title>Not Found</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet"  th:href="@{/css/login.css}">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 
 <body>
+<div class="center">
 <h3><b>ERROR: User not found</b></h3>
 <br><br>
-    <a href="login"> <button>Return to Login</button> </a>
-
+    <div class="logout">
+        <a href="login"> <input type="button" value="Logout"> </a><br>
+    </div>
+</div>
 </body>
 </html>

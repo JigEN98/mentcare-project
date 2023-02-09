@@ -3,10 +3,11 @@
 <head>
   <title>stats db</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-</head>
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'></head>
 
 <body>
+<div class="center">
   <h1>Database Stats</h1>
   Stats report:
   <ul>
@@ -17,6 +18,9 @@
   </ul>
   <br>
   <a href="admin?id=99" th:href="@{admin(id=${admin.getID()})}"> Admin panel </a>
-  <a href="login"> Logout </a>
+  <div class="logout">
+    <a href="login"> <input type="button" value="Logout"> </a><br>
+  </div>
+</div>
 </body>
 </html>

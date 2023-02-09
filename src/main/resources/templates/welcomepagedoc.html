@@ -3,10 +3,11 @@
 <head>
   <title>MENTCARE doctor</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-</head>
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'></head>
 
 <body>
+<div class="center">
 <h1 th:text="'Hello Dr. ' + ${doctor.surname} ">Hello</h1>
 <h2>Lista appuntamenti </h2>
 <table border="1">
@@ -52,6 +53,9 @@
   </tbody>
 </table>
 <a href="insertp?id=99" th:href="@{insertp(id=${doctor.getID()})}"> insert patient </a><br>
-<a href="login"> Logout </a>
+  <div class="logout">
+    <a href="login"> <input type="button" value="Logout"> </a><br>
+  </div>
+</div>
 </body>
 </html>
