@@ -108,27 +108,28 @@ public class OfficeController {
             model.addAttribute("admin", user);
 
             // liste utenti con nomi e cognomi associati (senza admin)
-            List<OfficeListUsers> officeListUsers = new LinkedList<>();
-           for (User u: userRepository.findAll()) {
+            List<String> userNS = new LinkedList<>();
+            List<User> officeListUsers = new LinkedList<>();
+            for (User u: userRepository.findAll()) {
                if(!u.getRole().equals("admin")) {
                    if(u.getRole().equals("patient")) {
                        Optional<Patient> p = patientRepository.findById(u.getID());
                        if(p.isPresent()) {
-                           officeListUsers.add(new OfficeListUsers(u.getUsername(), u.getRole(), p.get().getName(), p.get().getSurname()));
+                           userNS.add(p.get().getName().concat(" ").concat(p.get().getSurname()));
                        }
                    }
                    if(u.getRole().equals("doctor")) {
                        Optional<Doctor> d = doctorRepository.findById(u.getID());
                        if(d.isPresent()) {
-                           officeListUsers.add(new OfficeListUsers(u.getUsername(), u.getRole(), d.get().getName(), d.get().getSurname()));
+                           userNS.add(d.get().getName().concat(" ").concat(d.get().getSurname()));
                        }
                    }
+                   officeListUsers.add(u);
                }
-           }
-           System.out.println(officeListUsers.toString());
-
-           model.addAttribute("users", officeListUsers);
-           return "officeuserlist";
+            }
+            model.addAttribute("users", officeListUsers);
+            model.addAttribute("ns", userNS);
+            return "officeuserlist";
         }
         else {
             //error
