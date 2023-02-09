@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PatientController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">mentapp.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: PatientController (mentapp.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PatientController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85,2%
+  </span>
+  <span class="absValue">
+    (23/27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package mentapp.controller;
+&nbsp;
+&nbsp;import mentapp.models.Appointment;
+&nbsp;import mentapp.models.Doctor;
+&nbsp;import mentapp.models.Patient;
+&nbsp;import mentapp.repository.AppointmentRepository;
+&nbsp;import mentapp.repository.DoctorRepository;
+&nbsp;import mentapp.repository.PatientRepository;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Controller;
+&nbsp;import org.springframework.ui.Model;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestParam;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;@Controller
+<b class="fc">&nbsp;public class PatientController {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private PatientRepository patientRepository;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private AppointmentRepository appointmentRepository;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private DoctorRepository doctorRepository;
+&nbsp;
+&nbsp;    @RequestMapping(&quot;/patient&quot;)
+&nbsp;    public String setPatient(@RequestParam(name = &quot;id&quot;, required = true) Long id,
+&nbsp;                             Model model) {
+<b class="fc">&nbsp;        Optional&lt;Patient&gt; result_patient = patientRepository.findById(id);</b>
+<b class="fc">&nbsp;        if (result_patient.isPresent()) {</b>
+<b class="fc">&nbsp;            Patient patient = result_patient.get();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;patient&quot;, patient);</b>
+<b class="fc">&nbsp;            return &quot;welcomepagepatient&quot;;</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            return &quot;notfound&quot;;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(&quot;/profilepatient&quot;)
+&nbsp;    public String profilepatient(
+&nbsp;            @RequestParam(name = &quot;id&quot;, required = true) Long id,
+&nbsp;            Model model) {
+<b class="fc">&nbsp;        Optional&lt;Patient&gt; result_patient = patientRepository.findById(id);</b>
+<b class="fc">&nbsp;        if (result_patient.isPresent()) {</b>
+<b class="fc">&nbsp;            Patient patient = result_patient.get();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;profilepatient&quot;, patient);</b>
+<b class="fc">&nbsp;            return &quot;profilepatient&quot;;</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            return &quot;notfound&quot;;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(&quot;/patientapplist&quot;)
+&nbsp;    public String patientapplist(@RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
+<b class="fc">&nbsp;        Optional&lt;Patient&gt; result_pat = patientRepository.findById(id);</b>
+<b class="fc">&nbsp;        if(result_pat.isPresent()) {</b>
+<b class="fc">&nbsp;            Patient pat = result_pat.get();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;patient&quot;, pat);</b>
+&nbsp;
+<b class="fc">&nbsp;            Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(pat.getDoc()) ;</b>
+<b class="fc">&nbsp;            if(result_doc.isPresent()) {</b>
+<b class="fc">&nbsp;                Doctor doc = result_doc.get();</b>
+<b class="fc">&nbsp;                model.addAttribute(&quot;doctor&quot;, doc);</b>
+&nbsp;
+&nbsp;                // lista degli appuntamenti
+<b class="fc">&nbsp;                List&lt;Appointment&gt; patientAppointments = appointmentRepository.findByIdPatient(pat.getID());</b>
+<b class="fc">&nbsp;                model.addAttribute(&quot;appointments&quot;, patientAppointments);</b>
+&nbsp;
+<b class="fc">&nbsp;                System.out.println(appointmentRepository.findByIdPatient(pat.getID()));</b>
+&nbsp;
+<b class="fc">&nbsp;                return &quot;patientapplist&quot;;</b>
+&nbsp;            }
+&nbsp;            else {
+&nbsp;                //doc not present
+<b class="nc">&nbsp;                return &quot;notfound&quot;;</b>
+&nbsp;            }
+&nbsp;
+&nbsp;        } else {
+<b class="nc">&nbsp;            return &quot;notfound&quot;;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-02-09 18:34</div>
+</div>
+</body>
+</html>

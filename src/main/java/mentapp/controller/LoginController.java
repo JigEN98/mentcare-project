@@ -32,10 +32,6 @@ public class LoginController {
             Model model) {
 
         User user = userRepository.findByUsername(username);
-        if(user == null)
-        {
-            return "notfound";
-        }
 
         if(user.getPassword().equals(password)) {
 
