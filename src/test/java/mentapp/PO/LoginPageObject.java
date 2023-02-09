@@ -15,13 +15,13 @@ public class LoginPageObject extends PageObject {
     @FindBy(tagName = "h2")
     private WebElement h2loginpage;
 
-    @FindBy(xpath = "//input[@name='username']")
+    @FindBy(xpath = "//body/div[1]/form[1]/div[1]/input[1]")
     private WebElement username;
 
-    @FindBy(xpath = "//input[@name='password']")
+    @FindBy(xpath = "//body/div[1]/form[1]/div[2]/input[1]")
     private WebElement password;
 
-    @FindBy(id = "login")
+    @FindBy(xpath = "//body/div[1]/form[1]/div[3]/input[1]")
     private WebElement submitButton;
 
 

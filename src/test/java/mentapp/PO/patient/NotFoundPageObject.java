@@ -13,7 +13,7 @@ public class NotFoundPageObject extends PageObject {
     @FindBy(tagName = "b")
     private WebElement Error;
 
-    @FindBy(xpath = "//a/button")
+    @FindBy(xpath = "//button[contains(text(),'Return to Login')]")
     private WebElement ReturnLoginButton;
 
     // ---------- Methods ----------
