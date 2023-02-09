@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.text.ParseException;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestDoctor extends BaseTest {
+public class UnitTestDoctor extends BaseTest {
 
 
     @Test

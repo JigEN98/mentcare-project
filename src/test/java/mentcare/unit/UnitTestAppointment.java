@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestAppointment extends BaseTest {
+public class UnitTestAppointment extends BaseTest {
 
 
     @Test

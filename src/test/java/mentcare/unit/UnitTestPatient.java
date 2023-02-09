@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import mentapp.models.Patient;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestPatient extends BaseTest {
+public class UnitTestPatient extends BaseTest {
 
 
     @Test
