@@ -67,7 +67,7 @@ public class UtilitiesTest extends BaseTest {
         // -------------------- lista users --------------------
         UserListPageObject users = welc_page.showUserList();
         assertEquals("Verifico che la pagina sia corretta", "Users Details:", users.Title());
-        assertEquals("Verifico il numero di utenti",10, users.rowTable());
+        assertEquals("Verifico il numero di utenti",11, users.rowTable());
 
 
         // -------------------- back to panel --------------------

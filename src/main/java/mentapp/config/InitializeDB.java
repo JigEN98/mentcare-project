@@ -61,6 +61,9 @@ public class InitializeDB {
         userRepository.save(new User("giorgiofrizzi", "giorgio", "doctor", d4.getID()));
         userRepository.save(new User("liviapicci", "livia", "doctor", d5.getID()));
 
+        //user che non è un paziente
+        userRepository.save(new User("isaialucco", "isaia", "patient", d1.getID()));
+
 
         userRepository.save(new User("admin", "admin", "admin", p1.getID()+93));
         userRepository.save(new User("guest", "guest", "guest", p1.getID()+92));

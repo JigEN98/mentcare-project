@@ -31,6 +31,10 @@ public class LoginTest extends BaseTest  {
         NotFoundPageObject NotFound_page2 = login_page.UserNotFound("guest", "guest");
         login_page = NotFound_page2.ShowLogin();
         assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+
+        NotFoundPageObject NotFound_page3 = login_page.UserNotFound("isaialucco", "isaia");
+        login_page = NotFound_page3.ShowLogin();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
     }
 
     @Test

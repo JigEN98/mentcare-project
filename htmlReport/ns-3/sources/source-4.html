@@ -59,10 +59,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    85,2%
+    88,5%
   </span>
   <span class="absValue">
-    (23/27)
+    (23/26)
   </span>
 </td>
 </tr>
@@ -132,12 +132,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @RequestMapping(&quot;/patientapplist&quot;)
 &nbsp;    public String patientapplist(@RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
 <b class="fc">&nbsp;        Optional&lt;Patient&gt; result_pat = patientRepository.findById(id);</b>
-<b class="fc">&nbsp;        if(result_pat.isPresent()) {</b>
+<b class="fc">&nbsp;        if (result_pat.isPresent()) {</b>
 <b class="fc">&nbsp;            Patient pat = result_pat.get();</b>
 <b class="fc">&nbsp;            model.addAttribute(&quot;patient&quot;, pat);</b>
 &nbsp;
-<b class="fc">&nbsp;            Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(pat.getDoc()) ;</b>
-<b class="fc">&nbsp;            if(result_doc.isPresent()) {</b>
+<b class="fc">&nbsp;            Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(pat.getDoc());</b>
+<b class="fc">&nbsp;            if (result_doc.isPresent()) {</b>
 <b class="fc">&nbsp;                Doctor doc = result_doc.get();</b>
 <b class="fc">&nbsp;                model.addAttribute(&quot;doctor&quot;, doc);</b>
 &nbsp;
@@ -149,14 +149,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 <b class="fc">&nbsp;                return &quot;patientapplist&quot;;</b>
 &nbsp;            }
-&nbsp;            else {
-&nbsp;                //doc not present
-<b class="nc">&nbsp;                return &quot;notfound&quot;;</b>
-&nbsp;            }
 &nbsp;
-&nbsp;        } else {
-<b class="nc">&nbsp;            return &quot;notfound&quot;;</b>
 &nbsp;        }
+<b class="nc">&nbsp;            return &quot;notfound&quot;;</b>
+&nbsp;        
 &nbsp;    }
 &nbsp;}
 &nbsp;
@@ -183,7 +179,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-09 20:58</div>
+    <div style="float:right;">generated on 2023-02-09 21:03</div>
 </div>
 </body>
 </html>
