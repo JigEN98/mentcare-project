@@ -12,12 +12,16 @@
 <h2>Edit an appointment</h2>
 
 <form action="update_appointment?id_doc=10&&id=11" method="post" th:action="@{update_appointment(id_doc=${appointment.getIdDoctor()}, id=${appointment.getID()})}">
-  Date <input type="datetime-local" name="date" value="2022-02-07" th:value="${appointment.date}"><br>
-  Description:<input type="text" name="description" value="Smith" th:value="${appointment.description}"><br>
-  <input type="submit" />
+  <div class="inputbox"> <input type="datetime-local" name="date" value="2022-02-07" th:value="${appointment.date}"><br> </div>
+  <div class="inputbox"> <input type="text" name="description" value="Smith" th:value="${appointment.description}"><br> </div>
+  <div class="inputbox">
+    <input type="submit" value="submit">
+  </div>
 </form>
 
-<a href="doctor?id=99" th:href="@{doctor(id=${appointment.getIdDoctor()})}"> Show the list </a>
+  <div class="inputbox">
+    <a href="doctor?id=99" th:href="@{doctor(id=${appointment.getIdDoctor()})}"> <input type="button" value="Show the list"> </a>
+  </div>
 </div>
 </body>
 </html>
