@@ -29,7 +29,7 @@
   </tbody>
 </table>
   <div class="inputbox">
-    <a href="insertapp?id=11" th:href="@{insertapp(id=${doctor.getID()})}"> <input type="button" value="Insert appointment"> </a>
+    <a href="insertapp?id=11" th:href="@{insertapp(id=${doctor.getID()})}"> <input type="button" value="Insert appointment" name="insertAppointment"> </a>
   </div>
 <h2> Lista pazienti </h2>
 <table>
@@ -51,10 +51,10 @@
   </tbody>
 </table>
   <div class="inputbox">
-    <a href="insertp?id=99" th:href="@{insertp(id=${doctor.getID()})}"> <input type="button" value="Insert patient"> </a><br>
+    <a href="insertp?id=99" th:href="@{insertp(id=${doctor.getID()})}"> <input type="button" value="Insert patient" name="insertPatient"> </a><br>
   </div>
   <div class="logout">
-    <a href="login"> <input type="button" value="Logout"> </a><br>
+    <a href="login"> <input type="button" value="Logout" name="logout"> </a><br>
   </div>
 </div>
 </body>

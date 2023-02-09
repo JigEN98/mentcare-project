@@ -16,7 +16,7 @@ public class DoctorTest extends BaseTest {
         LoginPageObject login_page = new LoginPageObject(driver);
         assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
         WelcomePageDoctorPageObject welc_page = login_page.welcomedoc("lucaciano", "luca");
-        assertEquals("Verifico che sia la pagina corretta","Hello Dot. Ciano", welc_page.Title());
+        assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", welc_page.Title());
 
         // -------------------- Logout --------------------
         login_page = welc_page.logout();
