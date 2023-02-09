@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,12 +35,22 @@ public class DoctorController {
         if(result_doc.isPresent()) {
             Doctor doc = result_doc.get();
             model.addAttribute("doctor", doc);
+
             // lista dei pazienti
             List<Patient> doctorPatients = patientRepository.findByDoc(doc.getID());
             model.addAttribute("patients", doctorPatients);
 
             // lista degli appuntamenti
-            List<Appointment> doctorAppointments = appointmentRepository.findByIdDoctor(doc.getID());
+            List<Appointment> doctorAppointments = new LinkedList<>();
+            List<String> pats = new LinkedList<>();
+            for (Appointment a: appointmentRepository.findByIdDoctor(doc.getID())) {
+                Optional<Patient> pat = patientRepository.findById(a.getIdPatient());
+                if(pat.isPresent()) {
+                    pats.add(pat.get().getName().concat(" ").concat(pat.get().getSurname()));
+                }
+                doctorAppointments.add(a);
+            }
+            model.addAttribute("pats", pats);
             model.addAttribute("appointments", doctorAppointments);
 
             return "welcomepagedoc";
