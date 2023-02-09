@@ -3,10 +3,12 @@
 <head>
   <title>Appointments details</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet"  th:href="@{/css/login.css}">
 </head>
 
 <body>
-<h1>Detail of appointments:</h1>
+<div class="center">
+<h2>Detail of appointments:</h2>
 <table border="1" align="center">
   <thead>
   <tr>
@@ -24,9 +26,15 @@
   </tbody>
 </table>
 
-<a href="profilepatient?id=99" th:href="@{profilepatient(id=${patient.getID()})}"> Profilo </a>
-<a href="patientapplist?id=99" th:href="@{patientapplist(id=${patient.getID()})}"> Lista appuntamenti </a>
-<a href="login"> Logout </a>
-
+<div class="inputbox">
+  <a href="profilepatient?id=99" th:href="@{profilepatient(id=${patient.getID()})}"> <input type="button" value="Profilo"> </a>
+</div>
+<div class="inputbox">
+  <a href="patientapplist?id=99" th:href="@{patientapplist(id=${patient.getID()})}"> <input type="button" value="Lista appuntamenti"> </a>
+</div>
+<div class="logout">
+  <a href="login"> <input type="button" value="Logout"> </a><br>
+</div>
+</div>
 </body>
 </html>
