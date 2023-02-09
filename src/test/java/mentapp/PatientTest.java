@@ -27,6 +27,10 @@ public class PatientTest extends BaseTest {
         NotFoundPageObject NotFound_page = login_page.UserNotFound("mariorossi", "rossi");
         login_page = NotFound_page.ShowLogin();
         assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+
+        NotFoundPageObject NotFound_page2 = login_page.UserNotFound("guest", "guest");
+        login_page = NotFound_page2.ShowLogin();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
     }
     @Test
     // Scenario 2: profilo paziente
