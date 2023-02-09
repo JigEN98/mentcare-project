@@ -1,6 +1,11 @@
 package mentapp.PO;
 
+<<<<<<< HEAD
 import mentapp.PO.admin.WelcomePageOfficePageObject;
+=======
+import mentapp.PO.doctor.WelcomePageDoctorPageObject;
+import mentapp.PO.patient.NotFoundPageObject;
+>>>>>>> docTest
 import mentapp.PO.patient.WelcomePagePatientPageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,6 +61,13 @@ public class LoginPageObject extends PageObject {
         this.password.sendKeys(password);
         this.submitButton.click();
         return new NotFoundPageObject(driver);
+    }
+
+    public WelcomePageDoctorPageObject welcomedoc(String username, String password){
+        this.username.sendKeys(username);
+        this.password.sendKeys(password);
+        this.submitButton.click();
+        return new WelcomePageDoctorPageObject(driver);
     }
 }
 

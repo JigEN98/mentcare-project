@@ -22,14 +22,14 @@
   </select><br>
   </div>
   <div class="inputbox">
-    <input type="submit" value="submit">
+    <input type="submit" value="submit" name="sub">
   </div>
 </form>
 <div class="inputbox">
-  <a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> <input type="button" value="Show the list"> </a><br>
+  <a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> <input type="button" value="Show the list" name="show"> </a><br>
 </div>
   <div class="logout">
-    <a href="login"> <input type="button" value="Logout"> </a><br>
+    <a href="login"> <input type="button" value="Logout" name="logout"> </a><br>
   </div>
 </div>
 </body>
