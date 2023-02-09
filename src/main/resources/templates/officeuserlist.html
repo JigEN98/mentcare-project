@@ -16,10 +16,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="user: ${users}">
-    <td th:text="${user.username}">tony</td>
-    <td th:text="${user.role}"> super </td>
-    <td th:text="${user.name} + ' ' + ${user.surname}"> 1 </td></tr>
+    <tr th:each="user, stat: ${users}">
+      <td th:text="${user.username}">tony</td>
+      <td th:text="${user.role}"> super </td>
+      <td th:text="${ns[stat.index]}"> super </td>
+    </tr>
   </tbody>
 </table>
 
