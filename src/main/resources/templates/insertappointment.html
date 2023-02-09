@@ -12,15 +12,15 @@
 <h2>Insert a new Appointment:</h2>
 
 <form method="post" action="insert_appointment?id=99" th:action="@{insert_appointment(id=${doctor})}">
-  Appointment Date: <input type="datetime-local" name="date"><br>
-  Appointment Description<input type="text" name="description"><br>
-  Select Patient<select name="id_pat">
+  <div class="inputbox"> <input type="datetime-local" name="date"><br> </div>
+  <div class="inputbox"><input type="text" name="description" value="Description" onfocus="if(this.value==this.defaultValue)this.value=''"><br></div>
+  <div class="inputbox"><select name="id_pat">
   <option value=""> -- </option>
   <option th:each="patient : ${patients}"
           th:value="${patient.getID()}"
           th:text="${patient.getName()} + ' ' + ${patient.getSurname()}"/>
   </select><br>
-
+  </div>
   <div class="inputbox">
     <input type="submit" value="submit">
   </div>

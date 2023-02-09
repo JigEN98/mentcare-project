@@ -59,7 +59,7 @@ body {
   height: 50px;
   margin-bottom: 30px;
 }
-.center .inputbox input, .center .logout input {
+.center .inputbox input, .center select, .center .logout input {
   position: absolute;
   top: 0;
   left: 0;
