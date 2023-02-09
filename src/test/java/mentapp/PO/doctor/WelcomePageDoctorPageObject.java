@@ -19,30 +19,49 @@ public class WelcomePageDoctorPageObject extends PageObject {
     @FindBy(tagName = "h1")
     private WebElement h1;
 
-    @FindBy(xpath = "//body/div[1]/div[2]/a[1]/input[1]")
-    private WebElement app_list;
-
-    @FindBy(xpath = "//body/div/table/tbody/tr[1]/td[1]")
-    private WebElement dateAppointment;
-
-    @FindBy(xpath = "//body/div/table/tbody/tr[1]/td[2]")
-    private WebElement descriptionAppointment;
-
-    @FindBy(xpath = "//body/div/table/tbody/tr[1]/td[3]")
-    private WebElement namePatientAppointment;
-
+    // appuntamenti
     @FindAll(@FindBy(name = "appointments"))
     private List<WebElement> listAppointments;
 
-    @FindAll(@FindBy(name = "patients"))
-    private List<WebElement> listPatients;
+    @FindBy(xpath = "//body/div/table[1]/tbody/tr[1]/td[1]")
+    private WebElement dateAppointment;
+
+    @FindBy(xpath = "//body/div/table[1]/tbody/tr[1]/td[2]")
+    private WebElement descriptionAppointment;
+
+    @FindBy(xpath = "//body/div/table[1]/tbody/tr[1]/td[3]")
+    private WebElement namePatientAppointment;
 
     @FindBy(name = "insertAppointment")
     private WebElement insertAppointment;
 
+    // dopo inserimento
+    @FindBy(xpath = "//body/div/table[1]/tbody/tr[6]/td[1]")
+    private WebElement ldateAppointment;
+
+    @FindBy(xpath = "//body/div/table[1]/tbody/tr[6]/td[2]")
+    private WebElement ldescriptionAppointment;
+
+    @FindBy(xpath = "//body/div/table[1]/tbody/tr[6]/td[3]")
+    private WebElement lnamePatientAppointment;
+
+    // pazienti
+    @FindBy(xpath = "//body/div/table[2]/tbody/tr[1]/td[1]")
+    private WebElement namePatient;
+
+    @FindBy(xpath = "//body/div/table[2]/tbody/tr[1]/td[2]")
+    private WebElement surnamePatient;
+
+    @FindBy(xpath = "//body/div/table[2]/tbody/tr[1]/td[3]")
+    private WebElement birthDatePatient;
+
+    @FindAll(@FindBy(name = "patients"))
+    private List<WebElement> listPatients;
+
     @FindBy(name = "insertPatient")
     private WebElement insertPatient;
 
+    // logout
     @FindBy(name = "logout")
     private WebElement logout;
 
@@ -50,6 +69,10 @@ public class WelcomePageDoctorPageObject extends PageObject {
     // ---------- Methods ----------
     public String Title(){
         return h1.getText();
+    }
+
+    public int getSizeAppointments() {
+        return this.listAppointments.size();
     }
 
     public String getDateAppointment() {
@@ -64,12 +87,34 @@ public class WelcomePageDoctorPageObject extends PageObject {
         return this.namePatientAppointment.getText();
     }
 
-    public int getSizeAppointments() {
-        return this.listAppointments.size();
+    public String getLDateAppointment() {
+        return this.ldateAppointment.getText();
+    }
+
+    public String getLDescriptionAppointment() {
+        return this.ldescriptionAppointment.getText();
+    }
+
+    public String getLNamePatientAppointment() {
+        return this.lnamePatientAppointment.getText();
     }
 
     public int getSizePatients() {
         return this.listPatients.size();
+    }
+    public String getNamePatient() {
+        return this.namePatient.getText();
+    }
+    public String getSurnamePatient() {
+        return this.surnamePatient.getText();
+    }
+    public String getBirthDatePatient() {
+        return this.birthDatePatient.getText();
+    }
+
+    public InsertAppointment showInsertAppointment() {
+        this.insertAppointment.click();
+        return new InsertAppointment(driver);
     }
 
     public LoginPageObject logout() {
