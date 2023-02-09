@@ -33,7 +33,7 @@ public class Patient {
     this.surname = surname;
   }
 
-  public void setBirthDate(Integer age) {
+  public void setBirthDate(LocalDate birthDate) {
     this.birthDate = birthDate;
   }
 

@@ -80,4 +80,16 @@ public class InitializeDB {
         return true;
     }
 
+    public void clearDB(){
+        userRepository.deleteAll();
+        doctorRepository.deleteAll();
+        patientRepository.deleteAll();
+        appointmentRepository.deleteAll();
+    }
+
+    public void resetDB(){
+        clearDB();
+        initDB();
+    }
+
 }
