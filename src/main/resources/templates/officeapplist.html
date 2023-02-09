@@ -17,10 +17,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="appointment: ${appointments}" align="center">
-    <td th:text="${appointment.date.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd HH:mm'))}">1970-01-01</td>
-    <td th:text="${appointment.idPatient}"> 1 </td>
-    <td th:text="${appointment.idDoctor}"> 1 </td>
+  <tr th:each="i: ${#numbers.sequence(0, appointments.size - 1)}" align="center">
+    <td th:text="${appointments[i].date}">1970-01-01</td>
+    <td th:text="${appointment[i].time}"> 9:00-10:00 </td>
+    <td th:text="${docs[i].idDoctor}"> 1 </td>
+    <td th:text="${pats[i].idDoctor}"> 1 </td>
     <td th:text="${appointment.description}"> TEST DESC </td>
   </tr>
   </tbody>
