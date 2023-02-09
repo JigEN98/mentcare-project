@@ -24,8 +24,6 @@ public class UnitTestPatient extends BaseTest {
         assertEquals(LocalDate.of(1970,11,11), pat.getBirthDate(), "Patient birth date was not updated");
         pat.setId(40L);
         assertEquals(40L, pat.getID(), "Patient ID was not updated");
-
-
     }
 
     @Test

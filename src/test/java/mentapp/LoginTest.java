@@ -1,7 +1,8 @@
 package mentapp;
 
 import mentapp.PO.LoginPageObject;
-import mentapp.PO.patient.NotFoundPageObject;
+import mentapp.PO.NotFoundPageObject;
+import mentapp.PO.admin.WelcomePageOfficePageObject;
 import mentapp.PO.patient.WelcomePagePatientPageObject;
 import org.junit.Test;
 
@@ -24,6 +25,30 @@ public class LoginTest extends BaseTest  {
 
         // -------------------- Errori possibili --------------------
         NotFoundPageObject NotFound_page = login_page.UserNotFound("mariorossi", "rossi");
+        login_page = NotFound_page.ShowLogin();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+
+        NotFoundPageObject NotFound_page2 = login_page.UserNotFound("guest", "guest");
+        login_page = NotFound_page2.ShowLogin();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+    }
+
+    @Test
+    // Scenario 1: login dell'admin
+    public void Scenario1_Admin() {
+        driver.get("http://localhost:8080/");
+        // -------------------- Login admin--------------------
+        LoginPageObject login_page = new LoginPageObject(driver);
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+        WelcomePageOfficePageObject welc_page = login_page.welcomeadmin("admin", "admin");
+        assertEquals("Verifico che sia la pagina corretta","ADMIN PANEL", welc_page.Title());
+
+        // -------------------- Logout --------------------
+        login_page = welc_page.logout();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+
+        // -------------------- Errori possibili --------------------
+        NotFoundPageObject NotFound_page = login_page.UserNotFound("admin", "office");
         login_page = NotFound_page.ShowLogin();
         assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
 

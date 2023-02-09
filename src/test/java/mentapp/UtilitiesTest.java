@@ -1,7 +1,6 @@
 package mentapp;
 
 import mentapp.PO.*;
-import mentapp.PO.patient.NotFoundPageObject;
 import mentapp.PO.patient.PatientAppListPageObject;
 import mentapp.PO.patient.ProfilePatientPageObject;
 import mentapp.PO.patient.WelcomePagePatientPageObject;

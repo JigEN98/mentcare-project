@@ -1,4 +1,4 @@
-package mentapp.PO.patient;
+package mentapp.PO;
 
 import mentapp.PO.LoginPageObject;
 import mentapp.PO.PageObject;
