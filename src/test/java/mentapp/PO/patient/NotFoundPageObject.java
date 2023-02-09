@@ -1,7 +1,7 @@
-package mentcare.PO.patient;
+package mentapp.PO.patient;
 
-import mentcare.PO.LoginPageObject;
-import mentcare.PO.PageObject;
+import mentapp.PO.LoginPageObject;
+import mentapp.PO.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

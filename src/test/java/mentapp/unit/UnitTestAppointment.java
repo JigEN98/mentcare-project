@@ -1,9 +1,9 @@
-package mentcare.unit;
+package mentapp.unit;
 
 import mentapp.models.Appointment;
 import mentapp.models.Doctor;
 import mentapp.models.Patient;
-import mentcare.BaseTest;
+import mentapp.BaseTest;
 import org.junit.Test;
 import java.text.ParseException;
 import java.time.LocalDate;

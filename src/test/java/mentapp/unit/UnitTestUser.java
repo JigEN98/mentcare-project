@@ -1,8 +1,8 @@
-package mentcare.unit;
+package mentapp.unit;
 
 import mentapp.models.Doctor;
 import mentapp.models.User;
-import mentcare.BaseTest;
+import mentapp.BaseTest;
 import org.junit.Test;
 import java.text.ParseException;
 import static org.junit.jupiter.api.Assertions.*;

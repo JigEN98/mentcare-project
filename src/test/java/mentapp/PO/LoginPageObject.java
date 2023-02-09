@@ -1,7 +1,7 @@
-package mentcare.PO;
+package mentapp.PO;
 
-import mentcare.PO.patient.NotFoundPageObject;
-import mentcare.PO.patient.WelcomePagePatientPageObject;
+import mentapp.PO.patient.NotFoundPageObject;
+import mentapp.PO.patient.WelcomePagePatientPageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

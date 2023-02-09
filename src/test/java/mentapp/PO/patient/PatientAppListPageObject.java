@@ -1,19 +1,19 @@
-package mentcare.PO.patient;
+package mentapp.PO.patient;
 
-import mentcare.PO.LoginPageObject;
-import mentcare.PO.PageObject;
+import mentapp.PO.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class WelcomePagePatientPageObject extends PageObject {
-    public WelcomePagePatientPageObject(WebDriver driver){
+public class PatientAppListPageObject extends PageObject {
+
+    public PatientAppListPageObject(WebDriver driver){
         super(driver);
     }
 
     // ---------- Locators ----------
     @FindBy(tagName = "h1")
-    private WebElement h1patient;
+    private WebElement h1_app;
 
     @FindBy(xpath = "//body/div[1]/div[1]/a[1]/input[1]")
     private WebElement profile;
@@ -24,10 +24,9 @@ public class WelcomePagePatientPageObject extends PageObject {
     @FindBy(xpath = "//body/div[1]/div[3]/a[1]/input[1]")
     private WebElement logout;
 
-
     // ---------- Methods ----------
     public String Title(){
-        return h1patient.getText();
+        return h1_app.getText();
     }
     public ProfilePatientPageObject showProfile() {
         this.profile.click();
@@ -37,8 +36,9 @@ public class WelcomePagePatientPageObject extends PageObject {
         this.app_list.click();
         return new PatientAppListPageObject(driver);
     }
-    public LoginPageObject logout() {
+    public ProfilePatientPageObject logout() {
         this.logout.click();
-        return new LoginPageObject(driver);
+        return new ProfilePatientPageObject(driver);
     }
+
 }
