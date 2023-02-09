@@ -19,7 +19,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="appointment, stat: ${appointments}">
+  <tr th:each="appointment, stat: ${appointments}" name="appointments">
     <td th:text="${appointment.date.format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd HH:mm'))}">1970-01-01</td>
     <td th:text="${appointment.description}"> TEST DESC </td>
     <td th:text="${pats[stat.index]}"> TEST DESC </td>
@@ -41,7 +41,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="patient: ${patients}">
+  <tr th:each="patient: ${patients}" name="patients">
     <td th:text="${patient.name}"> Name </td>
     <td th:text="${patient.surname}"> Surname </td>
     <td th:text="${patient.birthDate}"> birth date </td>
