@@ -24,28 +24,35 @@ public class Appointment {
         this.idPatient = idPatient;
         this.idDoctor = idDoctor;
     }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setIdDoctor(Long idDoctor) {
+        this.idDoctor = idDoctor;
+    }
+    public void setIdPatient(Long idPatient) {
+        this.idPatient = idPatient;
+    }
     public Long getID() {
         return this.id;
     }
     public LocalDateTime getDate() {
         return date;
     }
-
     public Long getIdDoctor() {
         return this.idDoctor;
     }
-
     public Long getIdPatient() {
         return this.idPatient;
     }
-
     public String getDescription() {
         return description;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Appointment[id='%d', date='%s', doc='%d', pat='%d']", this.id, this.date.toString(), this.idDoctor, this.idPatient);
     }
 
 }

@@ -19,6 +19,15 @@ public class Doctor {
         this.surname = surname;
         this.specialization = specialization;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+    public void setId(Long id) { this.id = id;}
+    public void setSpecialization(String specialization) { this.specialization = specialization;}
+
     public Long getID() {
         return this.id;
     }
