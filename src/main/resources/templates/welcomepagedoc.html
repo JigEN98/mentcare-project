@@ -16,8 +16,6 @@
     <th>Date</th>
     <th>Note</th>
     <th>Paziente</th>
-    <th>modify</th>
-    <th>delete</th>
   </tr>
   </thead>
   <tbody>
@@ -30,7 +28,9 @@
   </tr>
   </tbody>
 </table>
-<a href="insertapp?id=11" th:href="@{insertapp(id=${doctor.getID()})}"> insert appointment </a>
+  <div class="inputbox">
+    <a href="insertapp?id=11" th:href="@{insertapp(id=${doctor.getID()})}"> <input type="button" value="Insert appointment"> </a>
+  </div>
 <h2> Lista pazienti </h2>
 <table border="1">
   <thead>
@@ -52,7 +52,9 @@
   </tr>
   </tbody>
 </table>
-<a href="insertp?id=99" th:href="@{insertp(id=${doctor.getID()})}"> insert patient </a><br>
+  <div class="inputbox">
+    <a href="insertp?id=99" th:href="@{insertp(id=${doctor.getID()})}"> <input type="button" value="Insert patient"> </a><br>
+  </div>
   <div class="logout">
     <a href="login"> <input type="button" value="Logout"> </a><br>
   </div>
