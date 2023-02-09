@@ -10,7 +10,7 @@
 <div class="center">
 <h1 th:text="'Hello Dr. ' + ${doctor.surname} ">Hello</h1>
 <h2>Lista appuntamenti </h2>
-<table border="1">
+<table>
   <thead>
   <tr>
     <th>Date</th>
@@ -32,14 +32,12 @@
     <a href="insertapp?id=11" th:href="@{insertapp(id=${doctor.getID()})}"> <input type="button" value="Insert appointment"> </a>
   </div>
 <h2> Lista pazienti </h2>
-<table border="1">
+<table>
   <thead>
   <tr>
     <th>Name</th>
     <th>Surname</th>
     <th>Data di nascita</th>
-    <th>modify</th>
-    <th>delete</th>
   </tr>
   </thead>
   <tbody>
