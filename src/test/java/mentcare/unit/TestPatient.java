@@ -1,4 +1,4 @@
-package unit;
+package mentcare.unit;
 
 import mentapp.models.Doctor;
 import mentcare.BaseTest;

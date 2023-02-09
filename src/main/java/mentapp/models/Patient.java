@@ -37,7 +37,9 @@ public class Patient {
     this.birthDate = birthDate;
   }
 
-  public void setId(Long id) { this.id = id;}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public Long getID() {
     return this.id;
