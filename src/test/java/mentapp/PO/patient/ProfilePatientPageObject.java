@@ -1,5 +1,6 @@
 package mentapp.PO.patient;
 
+import mentapp.PO.LoginPageObject;
 import mentapp.PO.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,13 @@ public class ProfilePatientPageObject extends PageObject {
     @FindBy(tagName = "h1")
     private WebElement h1profile;
 
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/h4[1]")
+    private WebElement p_name;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/h4[2]")
+    private WebElement p_surname;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/h4[3]")
+    private WebElement p_date;
+
     @FindBy(xpath = "//body/div[1]/div[1]/a[1]/input[1]")
     private WebElement profile;
 
@@ -28,6 +36,9 @@ public class ProfilePatientPageObject extends PageObject {
     public String Title(){
         return h1profile.getText();
     }
+    public String CheckName(){return p_name.getText();}
+    public String CheckSurname(){return p_surname.getText();}
+    public String CheckDate(){return p_date.getText();}
     public ProfilePatientPageObject showProfile() {
         this.profile.click();
         return new ProfilePatientPageObject(driver);
@@ -36,9 +47,9 @@ public class ProfilePatientPageObject extends PageObject {
         this.app_list.click();
         return new PatientAppListPageObject(driver);
     }
-    public ProfilePatientPageObject logout() {
+    public LoginPageObject logout() {
         this.logout.click();
-        return new ProfilePatientPageObject(driver);
+        return new LoginPageObject(driver);
     }
 
 }
