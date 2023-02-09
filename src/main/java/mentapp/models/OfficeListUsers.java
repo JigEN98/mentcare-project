@@ -18,6 +18,22 @@ public class OfficeListUsers {
         this.surname = surname;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getUsername() {
         return this.username;
     }
