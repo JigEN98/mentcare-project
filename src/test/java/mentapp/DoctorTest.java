@@ -3,7 +3,7 @@ package mentapp;
 import mentapp.PO.LoginPageObject;
 import mentapp.PO.doctor.InsertAppointment;
 import mentapp.PO.doctor.WelcomePageDoctorPageObject;
-import mentapp.PO.patient.NotFoundPageObject;
+import mentapp.PO.NotFoundPageObject;
 import mentapp.PO.patient.WelcomePagePatientPageObject;
 import org.junit.Test;
 

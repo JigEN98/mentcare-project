@@ -1,11 +1,8 @@
 package mentapp.PO;
 
-<<<<<<< HEAD
+
 import mentapp.PO.admin.WelcomePageOfficePageObject;
-=======
 import mentapp.PO.doctor.WelcomePageDoctorPageObject;
-import mentapp.PO.patient.NotFoundPageObject;
->>>>>>> docTest
 import mentapp.PO.patient.WelcomePagePatientPageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

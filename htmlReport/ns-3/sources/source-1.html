@@ -40,40 +40,46 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name">DoctorController</td>
 <td class="coverageStat">
   <span class="percent">
-    7,7%
+    23,1%
   </span>
   <span class="absValue">
-    (1/13)
+    (3/13)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    0,8%
+    19,1%
   </span>
   <span class="absValue">
-    (1/131)
+    (25/131)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$a60d9030</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$c288bb</td>
+  </tr>
+  <tr>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$c288bb$$FastClassBySpringCGLIB$$12157746</td>
+  </tr>
+  <tr>
+    <td class="name">DoctorController$$FastClassBySpringCGLIB$$55f826e2</td>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
   <span class="percent">
-    7,7%
+    23,1%
   </span>
   <span class="absValue">
-    (1/13)
+    (3/13)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    0,8%
+    19,1%
   </span>
   <span class="absValue">
-    (1/131)
+    (25/131)
   </span>
 </td>
 </tr>
@@ -117,29 +123,29 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    private AppointmentRepository appointmentRepository;
 &nbsp;    @RequestMapping(&quot;/doctor&quot;)
 &nbsp;    public String setDoctor(@RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
-<b class="nc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
-<b class="nc">&nbsp;        if(result_doc.isPresent()) {</b>
-<b class="nc">&nbsp;            Doctor doc = result_doc.get();</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
+<b class="fc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
+<b class="fc">&nbsp;        if(result_doc.isPresent()) {</b>
+<b class="fc">&nbsp;            Doctor doc = result_doc.get();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
 &nbsp;
 &nbsp;            // lista dei pazienti
-<b class="nc">&nbsp;            List&lt;Patient&gt; doctorPatients = patientRepository.findByDoc(doc.getID());</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;patients&quot;, doctorPatients);</b>
+<b class="fc">&nbsp;            List&lt;Patient&gt; doctorPatients = patientRepository.findByDoc(doc.getID());</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;patients&quot;, doctorPatients);</b>
 &nbsp;
 &nbsp;            // lista degli appuntamenti
-<b class="nc">&nbsp;            List&lt;Appointment&gt; doctorAppointments = new LinkedList&lt;&gt;();</b>
-<b class="nc">&nbsp;            List&lt;String&gt; pats = new LinkedList&lt;&gt;();</b>
-<b class="nc">&nbsp;            for (Appointment a: appointmentRepository.findByIdDoctor(doc.getID())) {</b>
-<b class="nc">&nbsp;                Optional&lt;Patient&gt; pat = patientRepository.findById(a.getIdPatient());</b>
-<b class="nc">&nbsp;                if(pat.isPresent()) {</b>
-<b class="nc">&nbsp;                    pats.add(pat.get().getName().concat(&quot; &quot;).concat(pat.get().getSurname()));</b>
+<b class="fc">&nbsp;            List&lt;Appointment&gt; doctorAppointments = new LinkedList&lt;&gt;();</b>
+<b class="fc">&nbsp;            List&lt;String&gt; pats = new LinkedList&lt;&gt;();</b>
+<b class="fc">&nbsp;            for (Appointment a: appointmentRepository.findByIdDoctor(doc.getID())) {</b>
+<b class="fc">&nbsp;                Optional&lt;Patient&gt; pat = patientRepository.findById(a.getIdPatient());</b>
+<b class="fc">&nbsp;                if(pat.isPresent()) {</b>
+<b class="fc">&nbsp;                    pats.add(pat.get().getName().concat(&quot; &quot;).concat(pat.get().getSurname()));</b>
 &nbsp;                }
-<b class="nc">&nbsp;                doctorAppointments.add(a);</b>
-<b class="nc">&nbsp;            }</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;pats&quot;, pats);</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;appointments&quot;, doctorAppointments);</b>
+<b class="fc">&nbsp;                doctorAppointments.add(a);</b>
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;pats&quot;, pats);</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;appointments&quot;, doctorAppointments);</b>
 &nbsp;
-<b class="nc">&nbsp;            return &quot;welcomepagedoc&quot;;</b>
+<b class="fc">&nbsp;            return &quot;welcomepagedoc&quot;;</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            return &quot;notfound&quot;;</b>
 &nbsp;        }
@@ -255,14 +261,14 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    @RequestMapping(&quot;/insertapp&quot;)
 &nbsp;    public String inAppointment(Long id, Model model) {
-<b class="nc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
-<b class="nc">&nbsp;        if(result_doc.isPresent()) {</b>
-<b class="nc">&nbsp;            Long doc = result_doc.get().getID();</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
-<b class="nc">&nbsp;            List&lt;Patient&gt; pat = patientRepository.findByDoc(doc);</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;patients&quot;, pat);</b>
+<b class="fc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
+<b class="fc">&nbsp;        if(result_doc.isPresent()) {</b>
+<b class="fc">&nbsp;            Long doc = result_doc.get().getID();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
+<b class="fc">&nbsp;            List&lt;Patient&gt; pat = patientRepository.findByDoc(doc);</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;patients&quot;, pat);</b>
 &nbsp;
-<b class="nc">&nbsp;            return &quot;insertappointment&quot;;</b>
+<b class="fc">&nbsp;            return &quot;insertappointment&quot;;</b>
 &nbsp;        }
 <b class="nc">&nbsp;        return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Generic&quot;;</b>
 &nbsp;    }
@@ -402,7 +408,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-09 21:03</div>
+    <div style="float:right;">generated on 2023-02-09 21:53</div>
 </div>
 </body>
 </html>
