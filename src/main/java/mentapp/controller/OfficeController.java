@@ -85,11 +85,14 @@ public class OfficeController {
                            userNS.add(p.get().getName().concat(" ").concat(p.get().getSurname()));
                        }
                    }
-                   if(u.getRole().equals("doctor")) {
+                   else if(u.getRole().equals("doctor")) {
                        Optional<Doctor> d = doctorRepository.findById(u.getID());
                        if(d.isPresent()) {
                            userNS.add(d.get().getName().concat(" ").concat(d.get().getSurname()));
                        }
+                   }
+                   else {
+                           userNS.add("guest");
                    }
                    officeListUsers.add(u);
                }
