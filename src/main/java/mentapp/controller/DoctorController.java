@@ -47,6 +47,8 @@ public class DoctorController {
                 Optional<Patient> pat = patientRepository.findById(a.getIdPatient());
                 if(pat.isPresent()) {
                     pats.add(pat.get().getName().concat(" ").concat(pat.get().getSurname()));
+                } else {
+                    pats.add("paziente non presente!");
                 }
                 doctorAppointments.add(a);
             }
@@ -132,7 +134,6 @@ public class DoctorController {
             Patient pat = result.get();
             model.addAttribute("patient", pat);
 
-            System.out.println(date_s);
             String[] temp = date_s.split("-");
             Integer year = Integer.parseInt(temp[0]);
             Integer month =Integer.parseInt(temp[1]);
@@ -144,8 +145,11 @@ public class DoctorController {
             if(  date.isAfter(LocalDate.now())  || date.isBefore(LocalDate.of(1920,1,1))) {
                 return "redirect:/inputerror?id="+id_doc+"&&message=Date";
             }
-            patientRepository.delete(result.get());
-            patientRepository.save(new Patient(firstname, lastname, date, pat.getDoc()));
+
+            pat.setName(firstname);
+            pat.setSurname(lastname);
+            pat.setBirthDate(date);
+
             return "redirect:/doctor?id=" + pat.getDoc();
         } else{
             return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
@@ -192,7 +196,6 @@ public class DoctorController {
         if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {
             return "redirect:/inputerror?id=" + id + "&&message=Empty";
         }
-        System.out.println(date_s);
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
             Long doc = result_doc.get().getID();
@@ -200,7 +203,6 @@ public class DoctorController {
             //trasformo le date da stringa a LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);
-            System.out.println(appDate);
             List <Appointment> apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore
             for (Appointment a :apps){
                 if(  appDate.isEqual(a.getDate())  &&  a.getID()!=id  ){
@@ -254,18 +256,22 @@ public class DoctorController {
             LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);
             List <Appointment> apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore
             for (Appointment a :apps){
+                // check se lo slot è già occupato
                 if(  appDate.isEqual(a.getDate())  &&  a.getID()!=id  ){
-                    return "redirect:/inputerror?id="+id_doc+"&message=Date";//errore il dottore è impegnato
+                    return "redirect:/inputerror?id="+id_doc+"&message=Doc";//errore il dottore è impegnato
                 }
+                //if((appDate.plusMinutes(60).isBefore(a.getDate()) && appDate.isAfter(a.getDate())) || appDate.isEqual(a.getDate())) {}
             }
 
             //check date and time
             if( appDate.isBefore(LocalDateTime.now())) {
                 return "redirect:/inputerror?id="+id_doc+"&&message=Date";
             }
-            appointmentRepository.delete(result.get());
-            appointmentRepository.save(new Appointment(appDate, description, app.getIdPatient(), app.getIdDoctor()));
-            return "redirect:/doctor?id=" + app.getIdDoctor();
+
+            app.setDate(appDate);
+            app.setDescription(description);
+
+           return "redirect:/doctor?id=" + app.getIdDoctor();
         } else {
             return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
         }

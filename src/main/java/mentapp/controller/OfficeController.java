@@ -83,16 +83,20 @@ public class OfficeController {
                        Optional<Patient> p = patientRepository.findById(u.getID());
                        if(p.isPresent()) {
                            userNS.add(p.get().getName().concat(" ").concat(p.get().getSurname()));
+                       } else {
+                           userNS.add("only user!");
                        }
                    }
                    else if(u.getRole().equals("doctor")) {
                        Optional<Doctor> d = doctorRepository.findById(u.getID());
                        if(d.isPresent()) {
                            userNS.add(d.get().getName().concat(" ").concat(d.get().getSurname()));
+                       } else {
+                           userNS.add("only user!");
                        }
                    }
                    else {
-                           userNS.add("guest");
+                       userNS.add("guest");
                    }
                    officeListUsers.add(u);
                }
