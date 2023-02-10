@@ -54,14 +54,14 @@ public class PatientController {
     }
 
     @RequestMapping("/patientapplist")
-    public String patientapplist(@RequestParam(name="id", required=true) Long id, Model model) {
+    public String patientapplist(@RequestParam(name = "id", required = true) Long id, Model model) {
         Optional<Patient> result_pat = patientRepository.findById(id);
-        if(result_pat.isPresent()) {
+        if (result_pat.isPresent()) {
             Patient pat = result_pat.get();
             model.addAttribute("patient", pat);
 
-            Optional<Doctor> result_doc = doctorRepository.findById(pat.getDoc()) ;
-            if(result_doc.isPresent()) {
+            Optional<Doctor> result_doc = doctorRepository.findById(pat.getDoc());
+            if (result_doc.isPresent()) {
                 Doctor doc = result_doc.get();
                 model.addAttribute("doctor", doc);
 
@@ -73,14 +73,10 @@ public class PatientController {
 
                 return "patientapplist";
             }
-            else {
-                //doc not present
-                return "notfound";
-            }
 
-        } else {
-            return "notfound";
         }
+        return "notfound";
     }
 }
+
 

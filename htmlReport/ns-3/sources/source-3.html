@@ -59,10 +59,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    93,5%
+    91,7%
   </span>
   <span class="absValue">
-    (43/46)
+    (44/48)
   </span>
 </td>
 </tr>
@@ -159,16 +159,20 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                       Optional&lt;Patient&gt; p = patientRepository.findById(u.getID());</b>
 <b class="fc">&nbsp;                       if(p.isPresent()) {</b>
 <b class="fc">&nbsp;                           userNS.add(p.get().getName().concat(&quot; &quot;).concat(p.get().getSurname()));</b>
+&nbsp;                       } else {
+<b class="fc">&nbsp;                           userNS.add(&quot;only user!&quot;);</b>
 &nbsp;                       }
 <b class="fc">&nbsp;                   }</b>
 <b class="fc">&nbsp;                   else if(u.getRole().equals(&quot;doctor&quot;)) {</b>
 <b class="fc">&nbsp;                       Optional&lt;Doctor&gt; d = doctorRepository.findById(u.getID());</b>
 <b class="fc">&nbsp;                       if(d.isPresent()) {</b>
 <b class="fc">&nbsp;                           userNS.add(d.get().getName().concat(&quot; &quot;).concat(d.get().getSurname()));</b>
+&nbsp;                       } else {
+<b class="nc">&nbsp;                           userNS.add(&quot;only user!&quot;);</b>
 &nbsp;                       }
 <b class="fc">&nbsp;                   }</b>
 &nbsp;                   else {
-<b class="fc">&nbsp;                           userNS.add(&quot;guest&quot;);</b>
+<b class="fc">&nbsp;                       userNS.add(&quot;guest&quot;);</b>
 &nbsp;                   }
 <b class="fc">&nbsp;                   officeListUsers.add(u);</b>
 &nbsp;               }
@@ -208,7 +212,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-10 16:56</div>
+    <div style="float:right;">generated on 2023-02-11 00:45</div>
 </div>
 </body>
 </html>

@@ -48,18 +48,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    88,1%
+    90,2%
   </span>
   <span class="absValue">
-    (118/134)
+    (120/133)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$e727b60b</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8a31fead</td>
   </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$e727b60b$$FastClassBySpringCGLIB$$b08a7594</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8a31fead$$FastClassBySpringCGLIB$$1d1e1e80</td>
   </tr>
   <tr>
     <td class="name">DoctorController$$FastClassBySpringCGLIB$$55f826e2</td>
@@ -76,10 +76,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    88,1%
+    90,2%
   </span>
   <span class="absValue">
-    (118/134)
+    (120/133)
   </span>
 </td>
 </tr>
@@ -139,6 +139,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                Optional&lt;Patient&gt; pat = patientRepository.findById(a.getIdPatient());</b>
 <b class="fc">&nbsp;                if(pat.isPresent()) {</b>
 <b class="fc">&nbsp;                    pats.add(pat.get().getName().concat(&quot; &quot;).concat(pat.get().getSurname()));</b>
+&nbsp;                } else {
+<b class="nc">&nbsp;                    pats.add(&quot;paziente non presente!&quot;);</b>
 &nbsp;                }
 <b class="fc">&nbsp;                doctorAppointments.add(a);</b>
 <b class="fc">&nbsp;            }</b>
@@ -216,7 +218,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;        //check dati
 <b class="fc">&nbsp;        if(  firstname.isEmpty()  || lastname.isEmpty() || date_s.isEmpty() ) {</b>
-<b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Empty&quot;;</b>
+<b class="fc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Empty&quot;;</b>
 &nbsp;        }
 &nbsp;
 <b class="fc">&nbsp;        Optional&lt;Patient&gt; result = patientRepository.findById(id);</b>
@@ -224,7 +226,6 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            Patient pat = result.get();</b>
 <b class="fc">&nbsp;            model.addAttribute(&quot;patient&quot;, pat);</b>
 &nbsp;
-<b class="fc">&nbsp;            System.out.println(date_s);</b>
 <b class="fc">&nbsp;            String[] temp = date_s.split(&quot;-&quot;);</b>
 <b class="fc">&nbsp;            Integer year = Integer.parseInt(temp[0]);</b>
 <b class="fc">&nbsp;            Integer month =Integer.parseInt(temp[1]);</b>
@@ -234,10 +235,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;            //check date
 <b class="fc">&nbsp;            if(  date.isAfter(LocalDate.now())  || date.isBefore(LocalDate.of(1920,1,1))) {</b>
-<b class="nc">&nbsp;                return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Date&quot;;</b>
+<b class="fc">&nbsp;                return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Date&quot;;</b>
 &nbsp;            }
-<b class="fc">&nbsp;            patientRepository.delete(result.get());</b>
-<b class="fc">&nbsp;            patientRepository.save(new Patient(firstname, lastname, date, pat.getDoc()));</b>
+&nbsp;
+<b class="fc">&nbsp;            pat.setName(firstname);</b>
+<b class="fc">&nbsp;            pat.setSurname(lastname);</b>
+<b class="fc">&nbsp;            pat.setBirthDate(date);</b>
+&nbsp;
 <b class="fc">&nbsp;            return &quot;redirect:/doctor?id=&quot; + pat.getDoc();</b>
 &nbsp;        } else{
 <b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Generic&quot;;</b>
@@ -284,7 +288,6 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;        if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {</b>
 <b class="fc">&nbsp;            return &quot;redirect:/inputerror?id=&quot; + id + &quot;&amp;&amp;message=Empty&quot;;</b>
 &nbsp;        }
-<b class="fc">&nbsp;        System.out.println(date_s);</b>
 <b class="fc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
 <b class="fc">&nbsp;        if(result_doc.isPresent()) {</b>
 <b class="fc">&nbsp;            Long doc = result_doc.get().getID();</b>
@@ -292,11 +295,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;            //trasformo le date da stringa a LocalDateTime
 <b class="fc">&nbsp;            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&#39;T&#39;HH:mm&quot;);</b>
 <b class="fc">&nbsp;            LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);</b>
-<b class="fc">&nbsp;            System.out.println(appDate);</b>
 <b class="fc">&nbsp;            List &lt;Appointment&gt; apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore</b>
 <b class="fc">&nbsp;            for (Appointment a :apps){</b>
 <b class="fc">&nbsp;                if(  appDate.isEqual(a.getDate())  &amp;&amp;  a.getID()!=id  ){</b>
-<b class="nc">&nbsp;                    return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;message=Date&quot;;//errore il dottore è impegnato</b>
+<b class="fc">&nbsp;                    return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;message=Date&quot;;//errore il dottore è impegnato</b>
 &nbsp;                }
 <b class="fc">&nbsp;            }</b>
 &nbsp;
@@ -346,18 +348,22 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);</b>
 <b class="fc">&nbsp;            List &lt;Appointment&gt; apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore</b>
 <b class="fc">&nbsp;            for (Appointment a :apps){</b>
+&nbsp;                // check se lo slot è già occupato
 <b class="fc">&nbsp;                if(  appDate.isEqual(a.getDate())  &amp;&amp;  a.getID()!=id  ){</b>
-<b class="nc">&nbsp;                    return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;message=Date&quot;;//errore il dottore è impegnato</b>
+<b class="nc">&nbsp;                    return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;message=Doc&quot;;//errore il dottore è impegnato</b>
 &nbsp;                }
+&nbsp;                //if((appDate.plusMinutes(60).isBefore(a.getDate()) &amp;&amp; appDate.isAfter(a.getDate())) || appDate.isEqual(a.getDate())) {}
 <b class="fc">&nbsp;            }</b>
 &nbsp;
 &nbsp;            //check date and time
 <b class="fc">&nbsp;            if( appDate.isBefore(LocalDateTime.now())) {</b>
-<b class="nc">&nbsp;                return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Date&quot;;</b>
+<b class="fc">&nbsp;                return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Date&quot;;</b>
 &nbsp;            }
-<b class="fc">&nbsp;            appointmentRepository.delete(result.get());</b>
-<b class="fc">&nbsp;            appointmentRepository.save(new Appointment(appDate, description, app.getIdPatient(), app.getIdDoctor()));</b>
-<b class="fc">&nbsp;            return &quot;redirect:/doctor?id=&quot; + app.getIdDoctor();</b>
+&nbsp;
+<b class="fc">&nbsp;            app.setDate(appDate);</b>
+<b class="fc">&nbsp;            app.setDescription(description);</b>
+&nbsp;
+<b class="fc">&nbsp;           return &quot;redirect:/doctor?id=&quot; + app.getIdDoctor();</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Generic&quot;;</b>
 &nbsp;        }
@@ -410,7 +416,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-10 16:56</div>
+    <div style="float:right;">generated on 2023-02-11 00:45</div>
 </div>
 </body>
 </html>

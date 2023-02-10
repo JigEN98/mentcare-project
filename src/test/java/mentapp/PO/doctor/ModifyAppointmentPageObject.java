@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 public class ModifyAppointmentPageObject extends PageObject {
@@ -57,16 +58,14 @@ public class ModifyAppointmentPageObject extends PageObject {
         return new ErrorPageObject(driver);
     }
 
-    public ErrorPageObject submit_same() {
-        LocalDateTime date_app = LocalDateTime.of(2024, 02, 02, 10, 00);
+    public ErrorPageObject submit_past() {
+        LocalDateTime date_app = LocalDateTime.of(2020, Month.MARCH, 18, 10, 55);
         this.date.clear();
         this.date.sendKeys(date_app.format(DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm")));
-        this.descrizione.clear();
         this.descrizione.sendKeys("TEST");
         this.submitBTN.click();
         return new ErrorPageObject(driver);
     }
-
     public  WelcomePageDoctorPageObject showList() {
         this.listBTN.click();
         return new WelcomePageDoctorPageObject(driver);

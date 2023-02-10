@@ -41,6 +41,8 @@ public class ModifyPatientPageObject extends PageObject {
 
     public WelcomePageDoctorPageObject update_patient() {
 
+        this.name.clear();
+        this.surname.clear();
         name.sendKeys("Charles");
         surname.sendKeys("Leclerc");
         LocalDate date_pat = LocalDate.of(1997, 10, 16);
@@ -52,7 +54,8 @@ public class ModifyPatientPageObject extends PageObject {
     }
 
     public ErrorPageObject update_empty() {
-
+        this.name.clear();
+        this.surname.clear();
         name.sendKeys("");
         surname.sendKeys("Leclerc");
         LocalDate date_pat = LocalDate.of(1997, 10, 16);

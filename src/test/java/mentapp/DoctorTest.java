@@ -204,8 +204,8 @@ public class DoctorTest extends BaseTest {
         assertEquals("Verifico che sia la pagina corretta","Edit an appointment", modifyAppointment.Title());
         WelcomePageDoctorPageObject retPage = modifyAppointment.update_appointment();
         assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", retPage.Title());
-        assertEquals("Verifico che la data sia aggiornata","2025-10-11 10:00", retPage.getFDateAppointment());
-        assertEquals("Verifico che la descrizione sia aggiornata","TEST", retPage.getFDescriptionAppointment());
+        assertEquals("Verifico che la data sia aggiornata","2025-10-11 10:00", retPage.getDateAppointment());
+        assertEquals("Verifico che la descrizione sia aggiornata","TEST", retPage.getDescriptionAppointment());
 
         // -------------------- Errori possibili --------------------
         //Campo vuoto
@@ -213,11 +213,11 @@ public class DoctorTest extends BaseTest {
         ErrorPageObject empty_field = modifyAppointment.submit_empty();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Empty field", empty_field.MessageError());
         docPage = empty_field.ShowList();
-        //2 appuntamenti coincidono
-        /*modifyAppointment  = docPage.showModifyAppointment();
-        ErrorPageObject same_date = modifyAppointment.submit_same();
-        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", same_date.MessageError());
-        docPage = same_date.ShowList();*/
+        //Appuntamento nel passato
+        modifyAppointment  = docPage.showModifyAppointment();
+        ErrorPageObject past_date = modifyAppointment.submit_past();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", past_date.MessageError());
+        docPage = past_date.ShowList();
 
         // -------------------- Logout --------------------
         login_page = retPage.logout();
