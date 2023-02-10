@@ -27,7 +27,7 @@ public class WelcomePageDoctorPageObject extends PageObject {
     @FindBy(name ="table_pat")
     private WebElement table_pat;
 
-    @FindBy(xpath = "//body/div/table[1]/tbody/tr[1]/td[1]")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]")
     private WebElement dateAppointment;
 
     @FindBy(xpath = "//body/div/table[1]/tbody/tr[1]/td[2]")
@@ -39,6 +39,16 @@ public class WelcomePageDoctorPageObject extends PageObject {
     @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/a[1]/input[1]")
     private WebElement insertAppointment;
 
+    // prima inserimento
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[5]/td[1]")
+    private WebElement fdateAppointment;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[5]/td[2]")
+    private WebElement fdescriptionAppointment;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[5]/td[3]")
+    private WebElement fnamePatientAppointment;
+
     // dopo inserimento
     @FindBy(xpath = "//body/div/table[1]/tbody/tr[6]/td[1]")
     private WebElement ldateAppointment;
@@ -48,6 +58,8 @@ public class WelcomePageDoctorPageObject extends PageObject {
 
     @FindBy(xpath = "//body/div/table[1]/tbody/tr[6]/td[3]")
     private WebElement lnamePatientAppointment;
+
+
 
     // pazienti
     @FindBy(xpath = "//body/div/table[2]/tbody/tr[1]/td[1]")
@@ -67,6 +79,12 @@ public class WelcomePageDoctorPageObject extends PageObject {
 
     @FindBy(xpath = "/html[1]/body[1]/div[1]/table[2]/tbody[1]/tr[1]/td[5]/a[1]")
     private WebElement delete_pat;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[4]/a[1]")
+    private WebElement modify_app;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[2]/tbody[1]/tr[1]/td[4]/a[1]")
+    private WebElement modify_pat;
 
     @FindBy(xpath = "/html[1]/body[1]/div[1]/table[2]/tbody[1]/tr[3]/td[1]")
     private WebElement lpatientname;
@@ -99,6 +117,18 @@ public class WelcomePageDoctorPageObject extends PageObject {
 
     public String getNamePatientAppointment() {
         return this.namePatientAppointment.getText();
+    }
+
+    public String getFDateAppointment() {
+        return this.fdateAppointment.getText();
+    }
+
+    public String getFDescriptionAppointment() {
+        return this.fdescriptionAppointment.getText();
+    }
+
+    public String getFNamePatientAppointment() {
+        return this.fnamePatientAppointment.getText();
     }
 
     public String getLDateAppointment() {
@@ -137,6 +167,16 @@ public class WelcomePageDoctorPageObject extends PageObject {
     public InsertPatientPageObject showInsertPatient() {
         this.insertPatient.click();
         return new InsertPatientPageObject(driver);
+    }
+
+    public ModifyPatientPageObject showModifyPatient() {
+        this.modify_pat.click();
+        return new ModifyPatientPageObject(driver);
+    }
+
+    public ModifyAppointmentPageObject showModifyAppointment() {
+        this.modify_app.click();
+        return new ModifyAppointmentPageObject(driver);
     }
 
     public WelcomePageDoctorPageObject deleteApp() {

@@ -10,8 +10,8 @@ import static org.junit.Assert.assertEquals;
 public class AdminTest extends BaseTest {
 
     @Test
-    //Scenario 2: statsDB
-    public void Scenario2_StatsDB() {
+    //Scenario 9: statsDB
+    public void Scenario9_StatsDB() {
         driver.get("http://localhost:8080/");
         // -------------------- Premesse --------------------
         LoginPageObject login_page = new LoginPageObject(driver);

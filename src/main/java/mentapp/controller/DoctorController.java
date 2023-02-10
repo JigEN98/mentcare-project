@@ -132,6 +132,7 @@ public class DoctorController {
             Patient pat = result.get();
             model.addAttribute("patient", pat);
 
+            System.out.println(date_s);
             String[] temp = date_s.split("-");
             Integer year = Integer.parseInt(temp[0]);
             Integer month =Integer.parseInt(temp[1]);

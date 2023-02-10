@@ -64,7 +64,7 @@ public class LoginTest extends BaseTest  {
 
     @Test
     // scenario 1: login del dottore
-    public void loginDoctor() {
+    public void Scenario1_Doctor() {
         driver.get("http://localhost:8080/");
         // -------------------- Login dottore --------------------
         LoginPageObject login_page = new LoginPageObject(driver);

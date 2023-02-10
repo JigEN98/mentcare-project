@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > AppointmentRepository</title>
+  <title>Coverage Report > PatientRepository</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,14 +21,14 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">mentapp.repository</a>
 </div>
 
-<h1>Coverage Summary for Class: AppointmentRepository (mentapp.repository)</h1>
+<h1>Coverage Summary for Class: PatientRepository (mentapp.repository)</h1>
 
 <table class="coverageStats">
 <tr>
   <th class="name">Class</th>
 </tr>
 <tr>
-  <td class="name">AppointmentRepository</td>
+  <td class="name">PatientRepository</td>
 </tr>
 
 </table>
@@ -40,18 +40,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package mentapp.repository;
 &nbsp;
-&nbsp;import mentapp.models.Appointment;
+&nbsp;import java.util.List;
 &nbsp;import org.springframework.data.repository.CrudRepository;
 &nbsp;
-&nbsp;import java.util.List;
+&nbsp;import mentapp.models.Patient;
 &nbsp;
-&nbsp;public interface AppointmentRepository extends CrudRepository&lt;Appointment, Long&gt; {
-&nbsp;    List&lt;Appointment&gt; findAll();
-&nbsp;    Appointment findById(long id);
-&nbsp;    List&lt;Appointment&gt; findByIdDoctor(long idDoctor);
-&nbsp;    List&lt;Appointment&gt; findByIdPatient(long idPatient);
-&nbsp;
-&nbsp;    void deleteByIdPatient(Long idPatient);
+&nbsp;public interface PatientRepository extends CrudRepository&lt;Patient, Long&gt; {
+&nbsp;  List&lt;Patient&gt; findAll();
+&nbsp;  Patient findById(long id);
+&nbsp;  List&lt;Patient&gt; findByDoc(long doc);
 &nbsp;}
 </code>
 </pre>
@@ -76,7 +73,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-10 13:05</div>
+    <div style="float:right;">generated on 2023-02-10 14:19</div>
 </div>
 </body>
 </html>
