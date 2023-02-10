@@ -174,10 +174,10 @@ public class DoctorTest extends BaseTest {
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Empty field", empty_field.MessageError());
         docPage = empty_field.ShowList();
         //2 appuntamenti coincidono
-        /*insertAppointment  = docPage.showInsertAppointment();
+        insertAppointment  = docPage.showInsertAppointment();
         ErrorPageObject same_date = insertAppointment.submit_same();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", same_date.MessageError());
-        docPage = same_date.ShowList();*/
+        docPage = same_date.ShowList();
         //Appuntamento nel passato
         insertAppointment  = docPage.showInsertAppointment();
         ErrorPageObject past_date = insertAppointment.submit_past();
@@ -218,7 +218,6 @@ public class DoctorTest extends BaseTest {
         ErrorPageObject same_date = modifyAppointment.submit_same();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", same_date.MessageError());
         docPage = same_date.ShowList();*/
-
 
         // -------------------- Logout --------------------
         login_page = retPage.logout();

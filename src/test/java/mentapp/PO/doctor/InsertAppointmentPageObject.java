@@ -54,7 +54,7 @@ public class InsertAppointmentPageObject extends PageObject {
 
     public ErrorPageObject submit_empty() {
         LocalDateTime date_app = LocalDateTime.of(2023, 03, 18, 10, 55);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy'T'HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm");
         this.date.clear();
         this.date.sendKeys(date_app.format(formatter));
         this.description.sendKeys("");
@@ -66,7 +66,7 @@ public class InsertAppointmentPageObject extends PageObject {
 
     public ErrorPageObject submit_same() {
         LocalDateTime date_app = LocalDateTime.of(2024,10,2,9,00);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy'T'HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm");
         this.date.clear();
         this.date.sendKeys(date_app.format(formatter));
         this.description.sendKeys("TEST");
