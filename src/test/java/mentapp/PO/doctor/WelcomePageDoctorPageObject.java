@@ -17,7 +17,7 @@ public class WelcomePageDoctorPageObject extends PageObject {
     }
 
     // ---------- Locators ----------
-    @FindBy(xpath = "/html[1]/body[1]/div[1]/h2[1]")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/h1[1]")
     private WebElement h1_dash;
 
     // appuntamenti
@@ -68,6 +68,13 @@ public class WelcomePageDoctorPageObject extends PageObject {
     @FindBy(xpath = "/html[1]/body[1]/div[1]/table[2]/tbody[1]/tr[1]/td[5]/a[1]")
     private WebElement delete_pat;
 
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[2]/tbody[1]/tr[3]/td[1]")
+    private WebElement lpatientname;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[2]/tbody[1]/tr[3]/td[2]")
+    private WebElement lpatientsurname;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[2]/tbody[1]/tr[3]/td[3]")
+    private WebElement lpatientdate;
+
     // logout
     @FindBy(name = "logout")
     private WebElement logout;
@@ -107,7 +114,7 @@ public class WelcomePageDoctorPageObject extends PageObject {
     }
 
     public int getSizePatients() {
-        return table_app.findElements(By.tagName("tr")).size();
+        return table_pat.findElements(By.tagName("tr")).size();
     }
     public String getNamePatient() {
         return this.namePatient.getText();
@@ -118,10 +125,18 @@ public class WelcomePageDoctorPageObject extends PageObject {
     public String getBirthDatePatient() {
         return this.birthDatePatient.getText();
     }
+    public String getLnamepatient() { return this.lpatientname.getText();}
+    public String getLsurnamepatient() { return this.lpatientsurname.getText();}
+    public String getLdatepatient() { return this.lpatientdate.getText();}
 
     public InsertAppointmentPageObject showInsertAppointment() {
         this.insertAppointment.click();
         return new InsertAppointmentPageObject(driver);
+    }
+
+    public InsertPatientPageObject showInsertPatient() {
+        this.insertPatient.click();
+        return new InsertPatientPageObject(driver);
     }
 
     public WelcomePageDoctorPageObject deleteApp() {

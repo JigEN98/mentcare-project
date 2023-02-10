@@ -40,26 +40,26 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name">DoctorController</td>
 <td class="coverageStat">
   <span class="percent">
-    23,1%
+    69,2%
   </span>
   <span class="absValue">
-    (3/13)
+    (9/13)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    19,1%
+    45,1%
   </span>
   <span class="absValue">
-    (25/131)
+    (60/133)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$64274e55</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8a31fead</td>
   </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$64274e55$$FastClassBySpringCGLIB$$ff6c4eab</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8a31fead$$FastClassBySpringCGLIB$$1d1e1e80</td>
   </tr>
   <tr>
     <td class="name">DoctorController$$FastClassBySpringCGLIB$$55f826e2</td>
@@ -68,18 +68,18 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
   <span class="percent">
-    23,1%
+    69,2%
   </span>
   <span class="absValue">
-    (3/13)
+    (9/13)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    19,1%
+    45,1%
   </span>
   <span class="absValue">
-    (25/131)
+    (60/133)
   </span>
 </td>
 </tr>
@@ -152,11 +152,11 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;    @RequestMapping(&quot;/insertp&quot;)
 &nbsp;    public String inPatient(Long id, Model model) {
-<b class="nc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
-<b class="nc">&nbsp;        if(result_doc.isPresent()) {</b>
-<b class="nc">&nbsp;            Long doc = result_doc.get().getID();</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
-<b class="nc">&nbsp;            return &quot;insertpatient&quot;;</b>
+<b class="fc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
+<b class="fc">&nbsp;        if(result_doc.isPresent()) {</b>
+<b class="fc">&nbsp;            Long doc = result_doc.get().getID();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
+<b class="fc">&nbsp;            return &quot;insertpatient&quot;;</b>
 &nbsp;        }
 <b class="nc">&nbsp;        return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Generic&quot;;</b>
 &nbsp;    }
@@ -167,27 +167,27 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;                                @RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
 &nbsp;
 &nbsp;        //check dati
-<b class="nc">&nbsp;        if(  firstname.isEmpty()  || lastname.isEmpty() || date_s.isEmpty() ) {</b>
-<b class="nc">&nbsp;           return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Empty&quot;;</b>
+<b class="fc">&nbsp;        if(  firstname.isEmpty()  || lastname.isEmpty() || date_s.isEmpty() ) {</b>
+<b class="fc">&nbsp;           return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Empty&quot;;</b>
 &nbsp;        }
 &nbsp;
-<b class="nc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
-<b class="nc">&nbsp;        if(result_doc.isPresent()) {</b>
-<b class="nc">&nbsp;            Long doc = result_doc.get().getID();</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
-<b class="nc">&nbsp;            String[] temp = date_s.split(&quot;-&quot;);</b>
-<b class="nc">&nbsp;            Integer year = Integer.parseInt(temp[0]);</b>
-<b class="nc">&nbsp;            Integer month =Integer.parseInt(temp[1]);</b>
-<b class="nc">&nbsp;            Integer day =Integer.parseInt(temp[2]);</b>
+<b class="fc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
+<b class="fc">&nbsp;        if(result_doc.isPresent()) {</b>
+<b class="fc">&nbsp;            Long doc = result_doc.get().getID();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
+<b class="fc">&nbsp;            String[] temp = date_s.split(&quot;-&quot;);</b>
+<b class="fc">&nbsp;            Integer year = Integer.parseInt(temp[0]);</b>
+<b class="fc">&nbsp;            Integer month =Integer.parseInt(temp[1]);</b>
+<b class="fc">&nbsp;            Integer day =Integer.parseInt(temp[2]);</b>
 &nbsp;
-<b class="nc">&nbsp;            LocalDate date = LocalDate.of(year,month,day);</b>
+<b class="fc">&nbsp;            LocalDate date = LocalDate.of(year,month,day);</b>
 &nbsp;
 &nbsp;            //check date
-<b class="nc">&nbsp;            if(  date.isAfter(LocalDate.now())  || date.isBefore(LocalDate.of(1920,1,1))) {</b>
-<b class="nc">&nbsp;                return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Date&quot;;</b>
+<b class="fc">&nbsp;            if(  date.isAfter(LocalDate.now())  || date.isBefore(LocalDate.of(1920,1,1))) {</b>
+<b class="fc">&nbsp;                return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Date&quot;;</b>
 &nbsp;            }
-<b class="nc">&nbsp;            patientRepository.save(new Patient(firstname, lastname, date, id));</b>
-<b class="nc">&nbsp;            return &quot;redirect:/doctor?id=&quot; + doc;</b>
+<b class="fc">&nbsp;            patientRepository.save(new Patient(firstname, lastname, date, id));</b>
+<b class="fc">&nbsp;            return &quot;redirect:/doctor?id=&quot; + doc;</b>
 &nbsp;        }
 &nbsp;        else{
 <b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Generic&quot;;</b>
@@ -246,13 +246,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @RequestMapping(&quot;/delete_patient&quot;)
 &nbsp;    public String deletePatient(@RequestParam(name=&quot;id_doc&quot;, required=true) Long id_doc,
 &nbsp;                                @RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
-<b class="nc">&nbsp;        Optional&lt;Patient&gt; result = patientRepository.findById(id);</b>
-<b class="nc">&nbsp;        if (result.isPresent()){</b>
-<b class="nc">&nbsp;            patientRepository.delete(result.get());</b>
-<b class="nc">&nbsp;            Long id_paziente = result.get().getID();</b>
-<b class="nc">&nbsp;            appointmentRepository.deleteByIdPatient(id_paziente);</b>
+<b class="fc">&nbsp;        Optional&lt;Patient&gt; result = patientRepository.findById(id);</b>
+<b class="fc">&nbsp;        if (result.isPresent()){</b>
+<b class="fc">&nbsp;            patientRepository.delete(result.get());</b>
+<b class="fc">&nbsp;            Long id_paziente = result.get().getID();</b>
+<b class="fc">&nbsp;            appointmentRepository.deleteByIdPatient(id_paziente);</b>
 &nbsp;
-<b class="nc">&nbsp;            return &quot;redirect:/doctor?id=&quot;+result.get().getDoc();</b>
+<b class="fc">&nbsp;            return &quot;redirect:/doctor?id=&quot;+result.get().getDoc();</b>
 &nbsp;        }
 &nbsp;        else{
 <b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Generic&quot;;</b>
@@ -280,10 +280,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;                                    @RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
 &nbsp;
 &nbsp;        //check dati
-<b class="nc">&nbsp;        if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {</b>
-<b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Empty&quot;;</b>
+<b class="fc">&nbsp;        if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {</b>
+<b class="fc">&nbsp;            return &quot;redirect:/inputerror?id=&quot; + id + &quot;&amp;&amp;message=Empty&quot;;</b>
 &nbsp;        }
-&nbsp;
+<b class="nc">&nbsp;        System.out.println(date_s);</b>
 <b class="nc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
 <b class="nc">&nbsp;        if(result_doc.isPresent()) {</b>
 <b class="nc">&nbsp;            Long doc = result_doc.get().getID();</b>
@@ -291,6 +291,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;            //trasformo le date da stringa a LocalDateTime
 <b class="nc">&nbsp;            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&#39;T&#39;HH:mm&quot;);</b>
 <b class="nc">&nbsp;            LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);</b>
+<b class="nc">&nbsp;            System.out.println(appDate);</b>
 <b class="nc">&nbsp;            List &lt;Appointment&gt; apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore</b>
 <b class="nc">&nbsp;            for (Appointment a :apps){</b>
 <b class="nc">&nbsp;                if(  appDate.isEqual(a.getDate())  &amp;&amp;  a.getID()!=id  ){</b>
@@ -364,10 +365,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @RequestMapping(&quot;/delete_appointment&quot;)
 &nbsp;    public String deleteAppointment(@RequestParam(name=&quot;id_doc&quot;, required=true) Long id_doc,
 &nbsp;                                    @RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
-<b class="nc">&nbsp;        Optional&lt;Appointment&gt; result = appointmentRepository.findById(id);</b>
-<b class="nc">&nbsp;        if (result.isPresent()){</b>
-<b class="nc">&nbsp;            appointmentRepository.delete(result.get());</b>
-<b class="nc">&nbsp;            return &quot;redirect:/doctor?id=&quot;+result.get().getIdDoctor();</b>
+<b class="fc">&nbsp;        Optional&lt;Appointment&gt; result = appointmentRepository.findById(id);</b>
+<b class="fc">&nbsp;        if (result.isPresent()){</b>
+<b class="fc">&nbsp;            appointmentRepository.delete(result.get());</b>
+<b class="fc">&nbsp;            return &quot;redirect:/doctor?id=&quot;+result.get().getIdDoctor();</b>
 &nbsp;        }
 &nbsp;        else
 <b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Generic&quot;;</b>
@@ -379,10 +380,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;            @RequestParam(name=&quot;message&quot;, required=true) String message,
 &nbsp;            Model model) {
 &nbsp;
-<b class="nc">&nbsp;        model.addAttribute(&quot;doctor&quot;, id);</b>
-<b class="nc">&nbsp;        model.addAttribute(&quot;message&quot;, message);</b>
+<b class="fc">&nbsp;        model.addAttribute(&quot;doctor&quot;, id);</b>
+<b class="fc">&nbsp;        model.addAttribute(&quot;message&quot;, message);</b>
 &nbsp;
-<b class="nc">&nbsp;        return &quot;inputerror&quot;;</b>
+<b class="fc">&nbsp;        return &quot;inputerror&quot;;</b>
 &nbsp;    }
 &nbsp;}
 </code>
@@ -408,7 +409,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-09 22:39</div>
+    <div style="float:right;">generated on 2023-02-10 12:00</div>
 </div>
 </body>
 </html>

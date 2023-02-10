@@ -191,6 +191,7 @@ public class DoctorController {
         if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {
             return "redirect:/inputerror?id=" + id + "&&message=Empty";
         }
+        System.out.println(date_s);
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
             Long doc = result_doc.get().getID();
@@ -198,6 +199,7 @@ public class DoctorController {
             //trasformo le date da stringa a LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);
+            System.out.println(appDate);
             List <Appointment> apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore
             for (Appointment a :apps){
                 if(  appDate.isEqual(a.getDate())  &&  a.getID()!=id  ){

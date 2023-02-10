@@ -1,7 +1,9 @@
 package mentapp;
 
+import mentapp.PO.ErrorPageObject;
 import mentapp.PO.LoginPageObject;
 import mentapp.PO.doctor.InsertAppointmentPageObject;
+import mentapp.PO.doctor.InsertPatientPageObject;
 import mentapp.PO.doctor.WelcomePageDoctorPageObject;
 import mentapp.PO.NotFoundPageObject;
 import org.junit.Test;
@@ -19,13 +21,13 @@ public class DoctorTest extends BaseTest {
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
 
         // -------------------- dashboard dottore --------------------
-        assertEquals("Verifico che sia la pagina corretta","Lista appuntamenti", docPage.Title());
-        assertEquals("check size list patient", 5, docPage.getSizeAppointments());
+        assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", docPage.Title());
+        assertEquals("check size list patient", 6, docPage.getSizeAppointments());
         assertEquals("2024-10-02 09:00", docPage.getDateAppointment());
         assertEquals("Visita glicemia", docPage.getDescriptionAppointment());
         assertEquals("Mario Rossi", docPage.getNamePatientAppointment());
 
-        assertEquals("check size list patient", 2, docPage.getSizePatients());
+        assertEquals("check size list patient", 3, docPage.getSizePatients());
         assertEquals("Mario", docPage.getNamePatient());
         assertEquals("Rossi", docPage.getSurnamePatient());
         assertEquals("1987-03-01", docPage.getBirthDatePatient());
@@ -55,6 +57,7 @@ public class DoctorTest extends BaseTest {
         // -------------------- Login dottore --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
+        assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", docPage.Title());
         assertEquals("check size list appointment", 6, docPage.getSizeAppointments());
 
         // -------------------- inserimento appuntamento --------------------
@@ -88,12 +91,15 @@ public class DoctorTest extends BaseTest {
         // -------------------- premesse --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
+        assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", docPage.Title());
+        assertEquals("check size list appointment", 6, docPage.getSizeAppointments());
 
         // -------------------- eliminazione appuntamento--------------------
         docPage.getDateAppointment();
         assertEquals("2024-10-02 09:00", docPage.getDateAppointment());
         docPage.deleteApp();
         assertEquals("2024-09-02 10:00", docPage.getDateAppointment());
+        assertEquals("check size list appointment", 5, docPage.getSizeAppointments());
 
         // -------------------- Logout --------------------
         login_page = docPage.logout();
@@ -107,23 +113,36 @@ public class DoctorTest extends BaseTest {
         // -------------------- Login dottore --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
-        assertEquals("check size list patient", 2, docPage.getSizePatients());
+        assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", docPage.Title());
+        assertEquals("check size list patients", 3, docPage.getSizePatients());
+
 
         // -------------------- inserimento paziente --------------------
-        /*InsertPatient insert_p= docPage.showInsertPatient();
-        assertEquals("Insert Appointment:", insertAppointment.getTitle());
+        InsertPatientPageObject insertPatient = docPage.showInsertPatient();
+        assertEquals("Insert Patient:", insertPatient.Title());
+        WelcomePageDoctorPageObject retPage = insertPatient.submit_new_pat();
+        assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", retPage.Title());
+        assertEquals("check size list patients", 4, docPage.getSizePatients());
+        assertEquals("Verifico che il nome inserito sia corretto","Luca", retPage.getLnamepatient());
+        assertEquals("Verifico che il cognome inserito sia corretto","Toni", retPage.getLsurnamepatient());
+        assertEquals("Verifico che la data inserita sia corretta","1990-03-18", retPage.getLdatepatient());
 
-
-        WelcomePageDoctorPageObject retPage = insert_p.submit_new_pat();
-        assertEquals("Verifico che sia la pagina corretta","Lista appuntamenti", retPage.Title());
-        assertEquals("check size list patient", 7, retPage.getSizeAppointments());
-        assertEquals("2023-10-02 12:30", retPage.getLDateAppointment());
-        assertEquals("descrizione di test", retPage.getLDescriptionAppointment());
-        assertEquals("1", retPage.getLNamePatientAppointment());*/
+        // -------------------- Errori possibili --------------------
+        //Campo vuoto
+        insertPatient  = docPage.showInsertPatient();
+        ErrorPageObject empty_field = insertPatient.submit_empty();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Empty field", empty_field.MessageError());
+        docPage = empty_field.ShowList();
+        //Paziente nato dopo la data odierna
+        insertPatient  = docPage.showInsertPatient();
+        ErrorPageObject date_format = insertPatient.submit_date();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", empty_field.MessageError());
+        docPage = empty_field.ShowList();
 
         // -------------------- Logout --------------------
-        //login_page = retPage.logout();
+        login_page = retPage.logout();
         assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+
     }
 
 
