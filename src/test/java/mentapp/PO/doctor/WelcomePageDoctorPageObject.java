@@ -2,6 +2,7 @@ package mentapp.PO.doctor;
 
 import mentapp.PO.LoginPageObject;
 import mentapp.PO.PageObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -16,12 +17,15 @@ public class WelcomePageDoctorPageObject extends PageObject {
     }
 
     // ---------- Locators ----------
-    @FindBy(tagName = "h1")
-    private WebElement h1;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/h2[1]")
+    private WebElement h1_dash;
 
     // appuntamenti
-    @FindAll(@FindBy(name = "appointments"))
-    private List<WebElement> listAppointments;
+    @FindBy(name="table_app")
+    private WebElement table_app;
+
+    @FindBy(name ="table_pat")
+    private WebElement table_pat;
 
     @FindBy(xpath = "//body/div/table[1]/tbody/tr[1]/td[1]")
     private WebElement dateAppointment;
@@ -32,7 +36,7 @@ public class WelcomePageDoctorPageObject extends PageObject {
     @FindBy(xpath = "//body/div/table[1]/tbody/tr[1]/td[3]")
     private WebElement namePatientAppointment;
 
-    @FindBy(name = "insertAppointment")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/a[1]/input[1]")
     private WebElement insertAppointment;
 
     // dopo inserimento
@@ -55,14 +59,14 @@ public class WelcomePageDoctorPageObject extends PageObject {
     @FindBy(xpath = "//body/div/table[2]/tbody/tr[1]/td[3]")
     private WebElement birthDatePatient;
 
-    @FindAll(@FindBy(name = "patients"))
-    private List<WebElement> listPatients;
-
     @FindBy(name = "insertPatient")
     private WebElement insertPatient;
 
     @FindBy(xpath = "/html[1]/body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[5]/a[1]")
     private WebElement delete_app;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/table[2]/tbody[1]/tr[1]/td[5]/a[1]")
+    private WebElement delete_pat;
 
     // logout
     @FindBy(name = "logout")
@@ -71,11 +75,11 @@ public class WelcomePageDoctorPageObject extends PageObject {
 
     // ---------- Methods ----------
     public String Title(){
-        return h1.getText();
+        return h1_dash.getText();
     }
 
     public int getSizeAppointments() {
-        return this.listAppointments.size();
+        return table_app.findElements(By.tagName("tr")).size();
     }
 
     public String getDateAppointment() {
@@ -103,7 +107,7 @@ public class WelcomePageDoctorPageObject extends PageObject {
     }
 
     public int getSizePatients() {
-        return this.listPatients.size();
+        return table_app.findElements(By.tagName("tr")).size();
     }
     public String getNamePatient() {
         return this.namePatient.getText();
@@ -115,13 +119,18 @@ public class WelcomePageDoctorPageObject extends PageObject {
         return this.birthDatePatient.getText();
     }
 
-    public InsertAppointment showInsertAppointment() {
+    public InsertAppointmentPageObject showInsertAppointment() {
         this.insertAppointment.click();
-        return new InsertAppointment(driver);
+        return new InsertAppointmentPageObject(driver);
     }
 
-    public WelcomePageDoctorPageObject delete() {
+    public WelcomePageDoctorPageObject deleteApp() {
         this.delete_app.click();
+        return new WelcomePageDoctorPageObject(driver);
+    }
+
+    public WelcomePageDoctorPageObject deletePat() {
+        this.delete_pat.click();
         return new WelcomePageDoctorPageObject(driver);
     }
 

@@ -1,7 +1,7 @@
 package mentapp;
 
 import mentapp.PO.LoginPageObject;
-import mentapp.PO.doctor.InsertAppointment;
+import mentapp.PO.doctor.InsertAppointmentPageObject;
 import mentapp.PO.doctor.WelcomePageDoctorPageObject;
 import mentapp.PO.NotFoundPageObject;
 import org.junit.Test;
@@ -19,6 +19,7 @@ public class DoctorTest extends BaseTest {
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
 
         // -------------------- dashboard dottore --------------------
+        assertEquals("Verifico che sia la pagina corretta","Lista appuntamenti", docPage.Title());
         assertEquals("check size list patient", 5, docPage.getSizeAppointments());
         assertEquals("2024-10-02 09:00", docPage.getDateAppointment());
         assertEquals("Visita glicemia", docPage.getDescriptionAppointment());
@@ -54,17 +55,21 @@ public class DoctorTest extends BaseTest {
         // -------------------- Login dottore --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
+        assertEquals("check size list appointment", 6, docPage.getSizeAppointments());
 
-        InsertAppointment insertAppointment = docPage.showInsertAppointment();
-        assertEquals("Insert Appointment:", insertAppointment.getTitle());
-        insertAppointment.setDate();
-        insertAppointment.setDescription();
-        insertAppointment.setPatient();
-        /*WelcomePageDoctorPageObject retPage = insertAppointment.submitPat();
-        assertEquals("check size list patient", 6, retPage.getSizeAppointments());
-        //assertEquals("10/02/2023 20:42", retPage.getLDateAppointment());
+        // -------------------- inserimento appuntamento --------------------
+        InsertAppointmentPageObject insertAppointment = docPage.showInsertAppointment();
+        assertEquals("Insert Appointment:", insertAppointment.Title());
+        WelcomePageDoctorPageObject retPage = insertAppointment.submit_new_app();
+        assertEquals("Verifico che sia la pagina corretta","Lista appuntamenti", retPage.Title());
+        assertEquals("check size list patient", 7, retPage.getSizeAppointments());
+        assertEquals("2023-10-02 12:30", retPage.getLDateAppointment());
         assertEquals("descrizione di test", retPage.getLDescriptionAppointment());
-        assertEquals("Mario Rossi", retPage.getLNamePatientAppointment());*/
+        assertEquals("1", retPage.getLNamePatientAppointment());
+
+        // -------------------- Logout --------------------
+        login_page = retPage.logout();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
     }
 
     @Test
@@ -87,8 +92,12 @@ public class DoctorTest extends BaseTest {
         // -------------------- eliminazione appuntamento--------------------
         docPage.getDateAppointment();
         assertEquals("2024-10-02 09:00", docPage.getDateAppointment());
-        docPage.delete();
+        docPage.deleteApp();
         assertEquals("2024-09-02 10:00", docPage.getDateAppointment());
+
+        // -------------------- Logout --------------------
+        login_page = docPage.logout();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
     }
 
     @Test
@@ -98,6 +107,23 @@ public class DoctorTest extends BaseTest {
         // -------------------- Login dottore --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
+        assertEquals("check size list patient", 2, docPage.getSizePatients());
+
+        // -------------------- inserimento paziente --------------------
+        /*InsertPatient insert_p= docPage.showInsertPatient();
+        assertEquals("Insert Appointment:", insertAppointment.getTitle());
+
+
+        WelcomePageDoctorPageObject retPage = insert_p.submit_new_pat();
+        assertEquals("Verifico che sia la pagina corretta","Lista appuntamenti", retPage.Title());
+        assertEquals("check size list patient", 7, retPage.getSizeAppointments());
+        assertEquals("2023-10-02 12:30", retPage.getLDateAppointment());
+        assertEquals("descrizione di test", retPage.getLDescriptionAppointment());
+        assertEquals("1", retPage.getLNamePatientAppointment());*/
+
+        // -------------------- Logout --------------------
+        //login_page = retPage.logout();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
     }
 
 
@@ -114,6 +140,18 @@ public class DoctorTest extends BaseTest {
         // -------------------- premesse --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
+
+        // -------------------- eliminazione paziente--------------------
+        docPage.getDateAppointment();
+        assertEquals("Mario", docPage.getNamePatient());
+        assertEquals("Rossi", docPage.getSurnamePatient());
+        docPage.deletePat();
+        assertEquals("Gianluca", docPage.getNamePatient());
+        assertEquals("Verdi", docPage.getSurnamePatient());
+
+        // -------------------- Logout --------------------
+        login_page = docPage.logout();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
 
     }
 

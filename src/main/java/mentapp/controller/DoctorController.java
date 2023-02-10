@@ -184,14 +184,14 @@ public class DoctorController {
     @RequestMapping("/insert_appointment")
     public String insertAppointment(@RequestParam(name="date", required=true) String date_s,
                                     @RequestParam(name="description", required=true) String description,
-                                    @RequestParam(name="id_pat", required=true) Long id_pat,
+                                    @RequestParam(name="id_pat", required=true) String id_pat,
                                     @RequestParam(name="id", required=true) Long id, Model model) {
 
         //check dati
         if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {
             return "redirect:/inputerror?id="+id+"&&message=Empty";
         }
-
+        Long id_p = Long.parseLong(id_pat);
         Optional<Doctor> result_doc = doctorRepository.findById(id);
         if(result_doc.isPresent()) {
             Long doc = result_doc.get().getID();
@@ -211,7 +211,7 @@ public class DoctorController {
                 return "redirect:/inputerror?id="+id+"&&message=Date";
             }
 
-            appointmentRepository.save(new Appointment(appDate,description, id_pat, doc));
+            appointmentRepository.save(new Appointment(appDate,description, id_p, doc));
             return "redirect:/doctor?id=" + doc;
         }
         else{

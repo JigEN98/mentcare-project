@@ -6,8 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class InsertAppointment extends PageObject {
-    public InsertAppointment(WebDriver driver) {
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class InsertAppointmentPageObject extends PageObject {
+    public InsertAppointmentPageObject(WebDriver driver) {
         super(driver);
     }
 
@@ -23,7 +26,7 @@ public class InsertAppointment extends PageObject {
     @FindBy(name = "id_pat")
     private WebElement patient;
 
-    @FindBy(name = "sub")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/form[1]/div[4]/input[1]")
     private WebElement BTNsubmit;
 
     @FindBy(name = "show")
@@ -32,23 +35,18 @@ public class InsertAppointment extends PageObject {
     @FindBy(name = "logout")
     private WebElement BTNlogout;
 
-    public String getTitle(){
+    public String Title(){
         return h2.getText();
     }
 
-    public void setDate() {
-        this.date.sendKeys("10/02/2023 20:42");
-    }
-    public void setDescription() {
-        this.description.sendKeys("descrizione di test");
-    }
-
-    public void setPatient() {
-        this.patient.sendKeys("Mario Rossi");
-    }
-
-    public WelcomePageDoctorPageObject submitPat() {
-        this.patient.submit();
+    public WelcomePageDoctorPageObject submit_new_app() {
+        LocalDateTime date_app = LocalDateTime.of(2023, 03, 18, 10, 55);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        this.date.clear();
+        this.date.sendKeys(date_app.format(formatter));
+        this.description.sendKeys("TEST");
+        this.patient.sendKeys("6");
+        this.BTNsubmit.click();
         return new WelcomePageDoctorPageObject(driver);
     }
 
