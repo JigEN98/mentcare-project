@@ -85,4 +85,15 @@ public class InsertAppointmentPageObject extends PageObject {
         this.BTNlogout.click();
         return new LoginPageObject(driver);
     }
+
+    public ErrorPageObject submit_past() {
+        LocalDateTime date_app = LocalDateTime.of(2020, Month.MARCH, 18, 10, 55);
+        this.date.clear();
+        this.date.sendKeys(date_app.format(DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm")));
+        this.description.sendKeys("TEST");
+        Select select = new Select(this.patient);
+        select.selectByVisibleText("Mario Rossi");
+        this.BTNsubmit.click();
+        return new ErrorPageObject(driver);
+    }
 }

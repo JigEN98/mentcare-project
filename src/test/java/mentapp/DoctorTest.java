@@ -106,6 +106,22 @@ public class DoctorTest extends BaseTest {
         assertEquals("Verifico che il cognome sia aggiornato","Leclerc", retPage.getSurnamePatient());
         assertEquals("Verifico che il cognome sia aggiornato","1997-10-16", retPage.getBirthDatePatient());
 
+        // -------------------- Errori possibili --------------------
+        //Campo vuoto
+        modifyPatient = docPage.showModifyPatient();
+        ErrorPageObject empty_field = modifyPatient.update_empty();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Empty field", empty_field.MessageError());
+        docPage = empty_field.ShowList();
+        //Paziente nato dopo la data odierna
+        modifyPatient   = docPage.showModifyPatient();
+        ErrorPageObject date_format = modifyPatient.update_date();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", date_format.MessageError());
+        docPage = date_format.ShowList();
+
+        // -------------------- Logout --------------------
+        login_page = retPage.logout();
+        assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
+
     }
 
     @Test
@@ -162,6 +178,11 @@ public class DoctorTest extends BaseTest {
         ErrorPageObject same_date = insertAppointment.submit_same();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", same_date.MessageError());
         docPage = same_date.ShowList();*/
+        //Appuntamento nel passato
+        insertAppointment  = docPage.showInsertAppointment();
+        ErrorPageObject past_date = insertAppointment.submit_past();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", past_date.MessageError());
+        docPage = past_date.ShowList();
 
 
         // -------------------- Logout --------------------

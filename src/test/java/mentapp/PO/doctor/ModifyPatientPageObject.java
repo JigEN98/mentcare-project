@@ -1,5 +1,6 @@
 package mentapp.PO.doctor;
 
+import mentapp.PO.ErrorPageObject;
 import mentapp.PO.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,5 +49,28 @@ public class ModifyPatientPageObject extends PageObject {
         this.date.sendKeys(date_pat.format(formatter));
         this.submitBTN.click();
         return new WelcomePageDoctorPageObject(driver);
+    }
+
+    public ErrorPageObject update_empty() {
+
+        name.sendKeys("");
+        surname.sendKeys("Leclerc");
+        LocalDate date_pat = LocalDate.of(1997, 10, 16);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.date.clear();
+        this.date.sendKeys(date_pat.format(formatter));
+        this.submitBTN.click();
+        return new ErrorPageObject(driver);
+    }
+
+    public ErrorPageObject update_date() {
+        LocalDate date_pat = LocalDate.of(2024, 03, 18);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.date.clear();
+        this.date.sendKeys(date_pat.format(formatter));
+        this.name.sendKeys("Luca");
+        this.surname.sendKeys("Toni");
+        this.submitBTN.click();
+        return new ErrorPageObject(driver);
     }
 }
