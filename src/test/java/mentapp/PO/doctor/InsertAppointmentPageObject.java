@@ -26,7 +26,7 @@ public class InsertAppointmentPageObject extends PageObject {
     @FindBy(name = "id_pat")
     private WebElement patient;
 
-    @FindBy(xpath = "/html[1]/body[1]/div[1]/form[1]/div[4]/input[1]")
+    @FindBy(name = "sub")
     private WebElement BTNsubmit;
 
     @FindBy(name = "show")
