@@ -1,12 +1,14 @@
 package mentapp.PO.doctor;
 
+import mentapp.PO.ErrorPageObject;
 import mentapp.PO.LoginPageObject;
 import mentapp.PO.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+import org.openqa.selenium.support.ui.*;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 public class InsertAppointmentPageObject extends PageObject {
@@ -40,14 +42,38 @@ public class InsertAppointmentPageObject extends PageObject {
     }
 
     public WelcomePageDoctorPageObject submit_new_app() {
+        LocalDateTime date_app = LocalDateTime.of(2023, Month.MARCH, 18, 10, 55);
+        this.date.clear();
+        this.date.sendKeys(date_app.format(DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm")));
+        this.description.sendKeys("TEST");
+        Select select = new Select(this.patient);
+        select.selectByVisibleText("Mario Rossi");
+        this.BTNsubmit.click();
+        return new WelcomePageDoctorPageObject(driver);
+    }
+
+    public ErrorPageObject submit_empty() {
         LocalDateTime date_app = LocalDateTime.of(2023, 03, 18, 10, 55);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy'T'HH:mm");
+        this.date.clear();
+        this.date.sendKeys(date_app.format(formatter));
+        this.description.sendKeys("");
+        Select select = new Select(this.patient);
+        select.selectByVisibleText("Mario Rossi");
+        this.BTNsubmit.click();
+        return new ErrorPageObject(driver);
+    }
+
+    public ErrorPageObject submit_same() {
+        LocalDateTime date_app = LocalDateTime.of(2024,10,2,9,00);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy'T'HH:mm");
         this.date.clear();
         this.date.sendKeys(date_app.format(formatter));
         this.description.sendKeys("TEST");
-        this.patient.sendKeys("6");
+        Select select = new Select(this.patient);
+        select.selectByVisibleText("Mario Rossi");
         this.BTNsubmit.click();
-        return new WelcomePageDoctorPageObject(driver);
+        return new ErrorPageObject(driver);
     }
 
     public  WelcomePageDoctorPageObject showList() {

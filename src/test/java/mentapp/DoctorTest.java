@@ -64,11 +64,24 @@ public class DoctorTest extends BaseTest {
         InsertAppointmentPageObject insertAppointment = docPage.showInsertAppointment();
         assertEquals("Insert Appointment:", insertAppointment.Title());
         WelcomePageDoctorPageObject retPage = insertAppointment.submit_new_app();
-        assertEquals("Verifico che sia la pagina corretta","Lista appuntamenti", retPage.Title());
-        assertEquals("check size list patient", 7, retPage.getSizeAppointments());
-        assertEquals("2023-10-02 12:30", retPage.getLDateAppointment());
-        assertEquals("descrizione di test", retPage.getLDescriptionAppointment());
-        assertEquals("1", retPage.getLNamePatientAppointment());
+        assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", retPage.Title());
+        assertEquals("check size list appointment", 7, docPage.getSizeAppointments());
+        assertEquals("Verifico che sia la data sia corretta","2023-03-18 10:55", retPage.getLDateAppointment());
+        assertEquals("Verifico che sia la descrizione sia corretta","TEST", retPage.getLDescriptionAppointment());
+        assertEquals("Verifico che sia il paziente sia corretto","Mario Rossi", retPage.getLNamePatientAppointment());
+
+        // -------------------- Errori possibili --------------------
+        //Campo vuoto
+        insertAppointment  = docPage.showInsertAppointment();
+        ErrorPageObject empty_field = insertAppointment.submit_empty();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Empty field", empty_field.MessageError());
+        docPage = empty_field.ShowList();
+        //2 appuntamenti coincidono
+        /*insertAppointment  = docPage.showInsertAppointment();
+        ErrorPageObject same_date = insertAppointment.submit_same();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", same_date.MessageError());
+        docPage = same_date.ShowList();*/
+
 
         // -------------------- Logout --------------------
         login_page = retPage.logout();
@@ -136,8 +149,8 @@ public class DoctorTest extends BaseTest {
         //Paziente nato dopo la data odierna
         insertPatient  = docPage.showInsertPatient();
         ErrorPageObject date_format = insertPatient.submit_date();
-        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", empty_field.MessageError());
-        docPage = empty_field.ShowList();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", date_format.MessageError());
+        docPage = date_format.ShowList();
 
         // -------------------- Logout --------------------
         login_page = retPage.logout();

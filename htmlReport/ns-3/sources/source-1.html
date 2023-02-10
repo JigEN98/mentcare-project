@@ -48,18 +48,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    45,1%
+    56,4%
   </span>
   <span class="absValue">
-    (60/133)
+    (75/133)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8a31fead</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8581f93e</td>
   </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8a31fead$$FastClassBySpringCGLIB$$1d1e1e80</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8581f93e$$FastClassBySpringCGLIB$$e137fb2</td>
   </tr>
   <tr>
     <td class="name">DoctorController$$FastClassBySpringCGLIB$$55f826e2</td>
@@ -76,10 +76,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    45,1%
+    56,4%
   </span>
   <span class="absValue">
-    (60/133)
+    (75/133)
   </span>
 </td>
 </tr>
@@ -283,29 +283,29 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;        if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {</b>
 <b class="fc">&nbsp;            return &quot;redirect:/inputerror?id=&quot; + id + &quot;&amp;&amp;message=Empty&quot;;</b>
 &nbsp;        }
-<b class="nc">&nbsp;        System.out.println(date_s);</b>
-<b class="nc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
-<b class="nc">&nbsp;        if(result_doc.isPresent()) {</b>
-<b class="nc">&nbsp;            Long doc = result_doc.get().getID();</b>
-<b class="nc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
+<b class="fc">&nbsp;        System.out.println(date_s);</b>
+<b class="fc">&nbsp;        Optional&lt;Doctor&gt; result_doc = doctorRepository.findById(id);</b>
+<b class="fc">&nbsp;        if(result_doc.isPresent()) {</b>
+<b class="fc">&nbsp;            Long doc = result_doc.get().getID();</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;doctor&quot;, doc);</b>
 &nbsp;            //trasformo le date da stringa a LocalDateTime
-<b class="nc">&nbsp;            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&#39;T&#39;HH:mm&quot;);</b>
-<b class="nc">&nbsp;            LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);</b>
-<b class="nc">&nbsp;            System.out.println(appDate);</b>
-<b class="nc">&nbsp;            List &lt;Appointment&gt; apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore</b>
-<b class="nc">&nbsp;            for (Appointment a :apps){</b>
-<b class="nc">&nbsp;                if(  appDate.isEqual(a.getDate())  &amp;&amp;  a.getID()!=id  ){</b>
+<b class="fc">&nbsp;            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&#39;T&#39;HH:mm&quot;);</b>
+<b class="fc">&nbsp;            LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);</b>
+<b class="fc">&nbsp;            System.out.println(appDate);</b>
+<b class="fc">&nbsp;            List &lt;Appointment&gt; apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore</b>
+<b class="fc">&nbsp;            for (Appointment a :apps){</b>
+<b class="fc">&nbsp;                if(  appDate.isEqual(a.getDate())  &amp;&amp;  a.getID()!=id  ){</b>
 <b class="nc">&nbsp;                    return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;message=Date&quot;;//errore il dottore è impegnato</b>
 &nbsp;                }
-<b class="nc">&nbsp;            }</b>
+<b class="fc">&nbsp;            }</b>
 &nbsp;
 &nbsp;            //check date and time
-<b class="nc">&nbsp;            if( appDate.isBefore(LocalDateTime.now())) {</b>
+<b class="fc">&nbsp;            if( appDate.isBefore(LocalDateTime.now())) {</b>
 <b class="nc">&nbsp;                return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Date&quot;;</b>
 &nbsp;            }
 &nbsp;
-<b class="nc">&nbsp;            appointmentRepository.save(new Appointment(appDate,description, id_pat, doc));</b>
-<b class="nc">&nbsp;            return &quot;redirect:/doctor?id=&quot; + doc;</b>
+<b class="fc">&nbsp;            appointmentRepository.save(new Appointment(appDate,description, id_pat, doc));</b>
+<b class="fc">&nbsp;            return &quot;redirect:/doctor?id=&quot; + doc;</b>
 &nbsp;        }
 &nbsp;        else{
 <b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id+&quot;&amp;&amp;message=Generic&quot;;</b>
@@ -409,7 +409,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-10 12:00</div>
+    <div style="float:right;">generated on 2023-02-10 13:05</div>
 </div>
 </body>
 </html>
