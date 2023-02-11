@@ -230,6 +230,11 @@ public class DoctorController {
         if (result.isPresent()) {
             Appointment app = result.get();
             model.addAttribute("appointment", app);
+
+            List<Patient> pat = patientRepository.findByDoc(id_doc);
+            model.addAttribute("patients", pat);
+
+
             return "modifyappointment";
         } else {
             return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
@@ -238,12 +243,13 @@ public class DoctorController {
 
     @RequestMapping("/update_appointment")
     public String updateAppointment(@RequestParam(name="id_doc", required=true) Long id_doc,
+                                    @RequestParam(name="id_pat", required=true) Long id_pat,
                                     @RequestParam(name="date", required=true) String date_s,
                                     @RequestParam(name="description", required=true) String description,
                                     @RequestParam(name="id", required=true) Long id, Model model) {
 
         //check dati
-        if(  date_s.isEmpty()  || description.isEmpty() || id==null ) {
+        if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {
             return "redirect:/inputerror?id="+id_doc+"&&message=Empty";
         }
         Optional<Appointment> result = appointmentRepository.findById(id);
@@ -270,6 +276,7 @@ public class DoctorController {
 
             app.setDate(appDate);
             app.setDescription(description);
+            app.setIdPatient(id_pat);
 
            return "redirect:/doctor?id=" + app.getIdDoctor();
         } else {

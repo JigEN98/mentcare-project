@@ -28,7 +28,10 @@ public class ModifyAppointmentPageObject extends PageObject {
     @FindBy(xpath = "/html[1]/body[1]/div[1]/form[1]/div[2]/input[1]")
     private WebElement descrizione;
 
-    @FindBy(xpath = "/html[1]/body[1]/div[1]/form[1]/div[3]/input[1]")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/form[1]/div[3]/select[1]")
+    private WebElement p_name;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/form[1]/div[4]/input[1]")
     private WebElement submitBTN;
 
     @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/a[1]/input[1]")
@@ -45,6 +48,8 @@ public class ModifyAppointmentPageObject extends PageObject {
         this.date.sendKeys(date_app.format(DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm")));
         this.descrizione.clear();
         this.descrizione.sendKeys("TEST");
+        Select select = new Select(this.p_name);
+        select.selectByVisibleText("Gianluca Verdi");
         this.submitBTN.click();
         return new WelcomePageDoctorPageObject(driver);
     }
@@ -63,6 +68,8 @@ public class ModifyAppointmentPageObject extends PageObject {
         this.date.clear();
         this.date.sendKeys(date_app.format(DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm")));
         this.descrizione.sendKeys("TEST");
+        Select select = new Select(this.p_name);
+        select.selectByVisibleText("Gianluca Verdi");
         this.submitBTN.click();
         return new ErrorPageObject(driver);
     }

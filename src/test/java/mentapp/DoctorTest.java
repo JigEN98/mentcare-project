@@ -206,6 +206,7 @@ public class DoctorTest extends BaseTest {
         assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", retPage.Title());
         assertEquals("Verifico che la data sia aggiornata","2025-10-11 10:00", retPage.getDateAppointment());
         assertEquals("Verifico che la descrizione sia aggiornata","TEST", retPage.getDescriptionAppointment());
+        assertEquals("Verifico che il nome sia aggiornato","Gianluca Verdi", retPage.getNamePatientAppointment());
 
         // -------------------- Errori possibili --------------------
         //Campo vuoto

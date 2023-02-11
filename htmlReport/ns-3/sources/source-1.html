@@ -48,18 +48,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    90,2%
+    90,4%
   </span>
   <span class="absValue">
-    (120/133)
+    (123/136)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8a31fead</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$cec56014</td>
   </tr>
   <tr>
-    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$8a31fead$$FastClassBySpringCGLIB$$1d1e1e80</td>
+    <td class="name">DoctorController$$EnhancerBySpringCGLIB$$cec56014$$FastClassBySpringCGLIB$$b593f208</td>
   </tr>
   <tr>
     <td class="name">DoctorController$$FastClassBySpringCGLIB$$55f826e2</td>
@@ -76,10 +76,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    90,2%
+    90,4%
   </span>
   <span class="absValue">
-    (120/133)
+    (123/136)
   </span>
 </td>
 </tr>
@@ -322,6 +322,11 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;        if (result.isPresent()) {</b>
 <b class="fc">&nbsp;            Appointment app = result.get();</b>
 <b class="fc">&nbsp;            model.addAttribute(&quot;appointment&quot;, app);</b>
+&nbsp;
+<b class="fc">&nbsp;            List&lt;Patient&gt; pat = patientRepository.findByDoc(id_doc);</b>
+<b class="fc">&nbsp;            model.addAttribute(&quot;patients&quot;, pat);</b>
+&nbsp;
+&nbsp;
 <b class="fc">&nbsp;            return &quot;modifyappointment&quot;;</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Generic&quot;;</b>
@@ -330,12 +335,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    @RequestMapping(&quot;/update_appointment&quot;)
 &nbsp;    public String updateAppointment(@RequestParam(name=&quot;id_doc&quot;, required=true) Long id_doc,
+&nbsp;                                    @RequestParam(name=&quot;id_pat&quot;, required=true) Long id_pat,
 &nbsp;                                    @RequestParam(name=&quot;date&quot;, required=true) String date_s,
 &nbsp;                                    @RequestParam(name=&quot;description&quot;, required=true) String description,
 &nbsp;                                    @RequestParam(name=&quot;id&quot;, required=true) Long id, Model model) {
 &nbsp;
 &nbsp;        //check dati
-<b class="fc">&nbsp;        if(  date_s.isEmpty()  || description.isEmpty() || id==null ) {</b>
+<b class="fc">&nbsp;        if(  date_s.isEmpty()  || description.isEmpty() || id_pat==null ) {</b>
 <b class="fc">&nbsp;            return &quot;redirect:/inputerror?id=&quot;+id_doc+&quot;&amp;&amp;message=Empty&quot;;</b>
 &nbsp;        }
 <b class="fc">&nbsp;        Optional&lt;Appointment&gt; result = appointmentRepository.findById(id);</b>
@@ -362,6 +368,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 <b class="fc">&nbsp;            app.setDate(appDate);</b>
 <b class="fc">&nbsp;            app.setDescription(description);</b>
+<b class="fc">&nbsp;            app.setIdPatient(id_pat);</b>
 &nbsp;
 <b class="fc">&nbsp;           return &quot;redirect:/doctor?id=&quot; + app.getIdDoctor();</b>
 &nbsp;        } else {
@@ -416,7 +423,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-02-11 00:45</div>
+    <div style="float:right;">generated on 2023-02-11 16:48</div>
 </div>
 </body>
 </html>
