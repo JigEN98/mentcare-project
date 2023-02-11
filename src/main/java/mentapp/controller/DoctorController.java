@@ -208,6 +208,12 @@ public class DoctorController {
                 if(  appDate.isEqual(a.getDate())  &&  a.getID()!=id  ){
                     return "redirect:/inputerror?id="+id+"&message=Date";//errore il dottore è impegnato
                 }
+                // se metto un orario mentre si sta svolgendo un'altra visita, altrimenti se metto un orario che si sovrapporrebbe a un'altra visita
+                if(appDate.isAfter(a.getDate()) && appDate.isBefore(a.getDate().plusMinutes(60)) && a.getID()!=id) {
+                    return "redirect:/inputerror?id="+id+"&message=Doc";//errore il dottore è impegnato
+                } else if(a.getDate().isAfter(appDate) && a.getDate().isBefore(appDate.plusMinutes(60)) && a.getID()!=id) {
+                    return "redirect:/inputerror?id="+id+"&message=Doc";//errore il dottore è impegnato
+                }
             }
 
             //check date and time
@@ -264,6 +270,12 @@ public class DoctorController {
             for (Appointment a :apps){
                 // check se lo slot è già occupato
                 if(  appDate.isEqual(a.getDate())  &&  a.getID()!=id  ){
+                    return "redirect:/inputerror?id="+id_doc+"&message=Doc";//errore il dottore è impegnato
+                }
+                // se metto un orario mentre si sta svolgendo un'altra visita, altrimenti se metto un orario che si sovrapporrebbe a un'altra visita
+                if(appDate.isAfter(a.getDate()) && appDate.isBefore(a.getDate().plusMinutes(60)) && a.getID()!=id) {
+                    return "redirect:/inputerror?id="+id_doc+"&message=Doc";//errore il dottore è impegnato
+                } else if(a.getDate().isAfter(appDate) && a.getDate().isBefore(appDate.plusMinutes(60)) && a.getID()!=id) {
                     return "redirect:/inputerror?id="+id_doc+"&message=Doc";//errore il dottore è impegnato
                 }
                 //if((appDate.plusMinutes(60).isBefore(a.getDate()) && appDate.isAfter(a.getDate())) || appDate.isEqual(a.getDate())) {}
