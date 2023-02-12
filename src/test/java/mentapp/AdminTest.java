@@ -21,7 +21,7 @@ public class AdminTest extends BaseTest {
         // -------------------- statistiche db --------------------
         StatsDBPageObject stats_page = welc_page.statsDB();
         assertEquals("Verifico che sia la pagina corretta", "Database Stats", stats_page.Title());
-        assertEquals("Verifico che il numero di utenti sia corretto", "Users: 11", stats_page.checkUsers());
+        assertEquals("Verifico che il numero di utenti sia corretto", "Users: 13", stats_page.checkUsers());
         assertEquals("Verifico che il numero di pazienti sia corretto", "Patients: 5", stats_page.checkPatients());
         assertEquals("Verifico che il numero di dottori sia corretto", "Doctors: 5", stats_page.checkDoctors());
         assertEquals("Verifico che il numero di appuntamenti sia corretto", "Appointments: 7", stats_page.checkAppointments());

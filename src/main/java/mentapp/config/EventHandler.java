@@ -14,8 +14,6 @@ public class EventHandler {
     @Autowired
     InitializeDB initializeDB;
 
-    //private final boolean testingMode = true;
-
     @EventListener(ApplicationReadyEvent.class)
     public void OnReady() throws IOException {
         System.out.println("System: OnReady");

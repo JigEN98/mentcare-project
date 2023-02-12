@@ -32,6 +32,10 @@ public class LoginController {
             Model model) {
 
         User user = userRepository.findByUsername(username);
+        if(user == null)
+        {
+            return "notfound";
+        }
 
         if(user.getPassword().equals(password)) {
 
@@ -49,11 +53,8 @@ public class LoginController {
             }
             else
                 return "notfound";
-
-            // check admin
         } else {
             // password wrong!
-            System.out.println("psw wrong");
             return "notfound";
         }
 

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -240,7 +239,6 @@ public class DoctorController {
             List<Patient> pat = patientRepository.findByDoc(id_doc);
             model.addAttribute("patients", pat);
 
-
             return "modifyappointment";
         } else {
             return "redirect:/inputerror?id="+id_doc+"&&message=Generic";
@@ -278,7 +276,6 @@ public class DoctorController {
                 } else if(a.getDate().isAfter(appDate) && a.getDate().isBefore(appDate.plusMinutes(60)) && a.getID()!=id) {
                     return "redirect:/inputerror?id="+id_doc+"&message=Doc";//errore il dottore è impegnato
                 }
-                //if((appDate.plusMinutes(60).isBefore(a.getDate()) && appDate.isAfter(a.getDate())) || appDate.isEqual(a.getDate())) {}
             }
 
             //check date and time

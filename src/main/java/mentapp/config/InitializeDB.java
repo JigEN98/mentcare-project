@@ -52,8 +52,8 @@ public class InitializeDB {
         userRepository.save(new User("mariorossi", "mario", "patient", p1.getID()));
         userRepository.save(new User("glucaverdi", "gluca", "patient", p2.getID()));
         userRepository.save(new User("fabrizioviola", "fabrizio", "patient", p3.getID()));
-        //userRepository.save(new User("marcoceleste", "marco", "patient", p4.getID()));
-        //userRepository.save(new User("ettoremarroni", "ettore", "patient", p5.getID()));
+        userRepository.save(new User("marcoceleste", "marco", "patient", p4.getID()));
+        userRepository.save(new User("ettoremarroni", "ettore", "patient", p5.getID()));
 
         userRepository.save(new User("lucaciano", "luca", "doctor", d1.getID()));
         userRepository.save(new User("rosariopelli", "rosario", "doctor", d2.getID()));
@@ -76,9 +76,6 @@ public class InitializeDB {
 
         appointmentRepository.save(new Appointment(LocalDateTime.of(2025,11,2,12,00), "Visita corona", p4.getID(), d2.getID()));
         appointmentRepository.save(new Appointment(LocalDateTime.of(2025,5,12,13,00), "Visita rettale", p5.getID(), d2.getID()));
-
-
-
 
         System.out.println("All initialized!");
         return true;
