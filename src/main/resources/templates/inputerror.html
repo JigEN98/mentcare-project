@@ -11,7 +11,7 @@
 <div class="center">
   <b><div th:switch="${message}" align="center">
     <p th:case="'Date'">ERROR: Date format</p>
-    <p th:case="'Doc'">Slot is already occupied! Visits last 1 hour</p>
+    <p th:case="'Doc'">ERROR: Slot is already occupied! Visits last 1 hour</p>
     <p th:case="'Time'">ERROR: Time format</p>
     <p th:case="'Empty'">ERROR: Empty field</p>
     <p th:case="*">ERROR: Generic Error</p>

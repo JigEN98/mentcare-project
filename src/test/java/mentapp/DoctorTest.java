@@ -183,6 +183,17 @@ public class DoctorTest extends BaseTest {
         ErrorPageObject past_date = insertAppointment.submit_past();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", past_date.MessageError());
         docPage = past_date.ShowList();
+        //Appuntamento sovrapposto post
+        insertAppointment  = docPage.showInsertAppointment();
+        ErrorPageObject close_date = insertAppointment.submit_close();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", close_date.MessageError());
+        docPage = past_date.ShowList();
+        //Appuntamento sovrapposto pre
+        insertAppointment  = docPage.showInsertAppointment();
+        ErrorPageObject close_date_2 = insertAppointment.submit_close_2();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", close_date_2.MessageError());
+        docPage = past_date.ShowList();
+
 
 
         // -------------------- Logout --------------------
@@ -218,6 +229,21 @@ public class DoctorTest extends BaseTest {
         modifyAppointment  = docPage.showModifyAppointment();
         ErrorPageObject past_date = modifyAppointment.submit_past();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Date format", past_date.MessageError());
+        docPage = past_date.ShowList();
+        //2 appuntamenti coincidono
+        modifyAppointment  = docPage.showModifyAppointment();
+        ErrorPageObject same_date = modifyAppointment.submit_same();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", same_date.MessageError());
+        docPage = same_date.ShowList();
+        //Appuntamento sovrapposto post
+        modifyAppointment  = docPage.showModifyAppointment();
+        ErrorPageObject close_date = modifyAppointment.submit_close();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", close_date.MessageError());
+        docPage = past_date.ShowList();
+        //Appuntamento sovrapposto pre
+        modifyAppointment  = docPage.showModifyAppointment();
+        ErrorPageObject close_date_2 = modifyAppointment.submit_close_2();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", close_date_2.MessageError());
         docPage = past_date.ShowList();
 
         // -------------------- Logout --------------------

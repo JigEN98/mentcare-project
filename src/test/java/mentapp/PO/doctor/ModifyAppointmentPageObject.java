@@ -73,6 +73,42 @@ public class ModifyAppointmentPageObject extends PageObject {
         this.submitBTN.click();
         return new ErrorPageObject(driver);
     }
+
+    public ErrorPageObject submit_same() {
+        LocalDateTime date_app = LocalDateTime.of(2024,9,2,10,00);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm");
+        this.date.clear();
+        this.date.sendKeys(date_app.format(formatter));
+        this.descrizione.sendKeys("TEST");
+        Select select = new Select(this.p_name);
+        select.selectByVisibleText("Gianluca Verdi");
+        this.submitBTN.click();
+        return new ErrorPageObject(driver);
+    }
+
+    public ErrorPageObject submit_close() {
+        LocalDateTime date_app = LocalDateTime.of(2024,9,2,10,10);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm");
+        this.date.clear();
+        this.date.sendKeys(date_app.format(formatter));
+        this.descrizione.sendKeys("TEST");
+        Select select = new Select(this.p_name);
+        select.selectByVisibleText("Gianluca Verdi");
+        this.submitBTN.click();
+        return new ErrorPageObject(driver);
+    }
+
+    public ErrorPageObject submit_close_2() {
+        LocalDateTime date_app = LocalDateTime.of(2024,9,2,9,50);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm");
+        this.date.clear();
+        this.date.sendKeys(date_app.format(formatter));
+        this.descrizione.sendKeys("TEST");
+        Select select = new Select(this.p_name);
+        select.selectByVisibleText("Gianluca Verdi");
+        this.submitBTN.click();
+        return new ErrorPageObject(driver);
+    }
     public  WelcomePageDoctorPageObject showList() {
         this.listBTN.click();
         return new WelcomePageDoctorPageObject(driver);
