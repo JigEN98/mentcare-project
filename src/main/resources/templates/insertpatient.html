@@ -16,16 +16,13 @@
     <div class="inputbox"><input type="text" name="surname" value="Surname" onfocus="if(this.value==this.defaultValue)this.value=''"><br></div>
     <div class="inputbox"><input type="date" name="date"><br></div>
     <div class="inputbox">
-        <input type="submit" value="submit">
+        <input type="submit" value="Insert!">
     </div>
 </form>
 
 <div class="inputbox">
     <a href="doctor?id=99" th:href="@{doctor(id=${doctor})}"> <input type="button" value="Show the list"> </a>
 </div>
-    <div class="logout">
-        <a href="login"> <input type="button" value="Logout"> </a><br>
-    </div>
 </div>
 </body>
 </html>

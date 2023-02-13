@@ -24,7 +24,7 @@ public class InitializeDB {
     @Autowired
     AppointmentRepository appointmentRepository;
 
-    public boolean initDB() {
+    public void initDB() {
         System.out.println("Initialize database");
 
         Doctor d1 = new Doctor("Luca", "Ciano", "Pediatria");
@@ -78,7 +78,6 @@ public class InitializeDB {
         appointmentRepository.save(new Appointment(LocalDateTime.of(2025,5,12,13,00), "Visita rettale", p5.getID(), d2.getID()));
 
         System.out.println("All initialized!");
-        return true;
     }
 
     public void clearDB(){
