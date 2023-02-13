@@ -31,7 +31,7 @@ public class PatientAppListPageObject extends PageObject {
     @FindBy(xpath = "//body/div[1]/div[2]/a[1]/input[1]")
     private WebElement app_list;
 
-    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[3]/a[1]/input[1]")
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/a[1]/input[1]")
     private WebElement logout;
 
     // ---------- Methods ----------
