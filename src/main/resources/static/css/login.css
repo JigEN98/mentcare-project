@@ -7,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(45deg, greenyellow, dodgerblue);
+  background: linear-gradient(45deg, #B7F5FF, dodgerblue);
   font-family: 'Montserrat';
   -youbkit-touch-callout: none; /* Safari iOS */
   -youbkit-user-select: none;   /* Chrome 6.0+, Safari 3.1+, Edge e Opera 15+ */
@@ -120,11 +120,11 @@ body {
   background: linear-gradient(45deg, #FF9900, #FF1635);
 }
 .center .inputbox:hover [type="submit"] {
-  background: linear-gradient(45deg, greenyellow, dodgerblue);
+  background: linear-gradient(45deg, #B7F5FF, dodgerblue);
 }
 
 .center .inputbox:hover [type="button"] {
-  background: linear-gradient(45deg, greenyellow, dodgerblue);
+  background: linear-gradient(45deg, #B7F5FF, dodgerblue);
 }
 
 table{
