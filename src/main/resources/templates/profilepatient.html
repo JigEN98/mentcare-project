@@ -10,14 +10,11 @@
 <body>
 <div class="center">
 <h1>Profile</h1><br>
-<h4 th:text="'Nome: ' + ${profilepatient.name} ">Nome: Luca</h4>
-<h4 th:text="'Cognome: ' + ${profilepatient.surname} ">Cognome: Mallo</h4>
-<h4 th:text="'Data di nascita: ' + ${profilepatient.birthDate} ">Data di nascita: 12</h4>
+<h4 th:text="'Name: ' + ${profilepatient.name} ">Nome: Luca</h4>
+<h4 th:text="'Surname: ' + ${profilepatient.surname} ">Cognome: Mallo</h4>
+<h4 th:text="'Date of birth: ' + ${profilepatient.birthDate} ">Data di nascita: 12</h4>
 <br>
 <br>
-  <div class="inputbox">
-    <a href="profilepatient?id=99" th:href="@{profilepatient(id=${profilepatient.getID()})}"> <input type="button" value="Profilo"> </a>
-  </div>
   <div class="inputbox">
     <a href="patientapplist?id=99" th:href="@{patientapplist(id=${profilepatient.getID()})}"> <input type="button" value="Lista appuntamenti"> </a>
   </div>
