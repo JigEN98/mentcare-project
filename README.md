@@ -12,7 +12,7 @@
 - [Funzionamento](#funzionamento)
 - [Scenari](#scenari)
     -  1 [Login](#1-login)
-    -  [Medico](#2-dashboard-dottore)
+    -  [Dottore](#2-dashboard-dottore)
         -  2 [Dashboard dottore](#2-dashboard-dottore)
         -  3 [Inserisci paziente](#3-inserisci-paziente)
         -  4 [Modifica paziente](#4-modifica-paziente)
