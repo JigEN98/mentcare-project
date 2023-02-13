@@ -7,6 +7,7 @@ import mentapp.repository.AppointmentRepository;
 import mentapp.repository.DoctorRepository;
 import mentapp.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -202,6 +203,10 @@ public class DoctorController {
             //trasformo le date da stringa a LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);
+
+            if(appDate.getHour() < 8 || appDate.getHour()>18)
+                return "redirect:/inputerror?id="+id+"&message=Box";//ambulatorio chiuso!
+
             List <Appointment> apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore
             for (Appointment a :apps){
                 if(  appDate.isEqual(a.getDate())  &&  a.getID()!=id  ){
@@ -264,6 +269,10 @@ public class DoctorController {
             //trasformo le date da stringa a LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);
+
+            if(appDate.getHour() < 8 || appDate.getHour()>18)
+                return "redirect:/inputerror?id="+id+"&message=Box";//ambulatorio chiuso!
+
             List <Appointment> apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore
             for (Appointment a :apps){
                 // check se lo slot è già occupato

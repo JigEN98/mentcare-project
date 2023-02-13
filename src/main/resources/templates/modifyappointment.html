@@ -15,7 +15,6 @@
   <div class="inputbox"> <input type="datetime-local" name="date" value="2022-02-07" th:value="${appointment.date}"><br> </div>
   <div class="inputbox"> <input type="text" name="description" value="TEST" th:value="${appointment.description}"><br> </div>
   <div class="inputbox"><select name="id_pat">
-    <option value=""> Select Patient: </option>
     <option th:each="patient : ${patients}"
             th:value="${patient.getID()}"
             th:text="${patient.getName()} + ' ' + ${patient.getSurname()}"/>
