@@ -56,7 +56,7 @@ body {
 .center .inputbox, .center .logout{
   position: relative;
   height: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .center .inputbox input, .center select, .center .logout input {
   position: absolute;
@@ -126,3 +126,11 @@ body {
 .center .inputbox:hover [type="button"] {
   background: linear-gradient(45deg, greenyellow, dodgerblue);
 }
+
+table{
+    width: 100%;
+    text-align: left;
+    border-spacing: 10px;
+    border-collapse: separate;
+    margin-bottom: 20px;
+    }
