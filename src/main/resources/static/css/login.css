@@ -71,7 +71,7 @@ body {
   font-size: 1.2em;
 }
 .center .inputbox:last-child, .center .logout:last-child {
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 .center .inputbox span {
   position: absolute;
