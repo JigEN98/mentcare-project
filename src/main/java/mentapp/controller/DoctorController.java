@@ -270,8 +270,9 @@ public class DoctorController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             LocalDateTime appDate = LocalDateTime.parse(date_s, formatter);
 
-            if(appDate.getHour() < 8 || appDate.getHour()>18)
-                return "redirect:/inputerror?id="+id+"&message=Box";//ambulatorio chiuso!
+            if(appDate.getHour() < 8 || appDate.getHour()>18) {
+                return "redirect:/inputerror?id=" + id_doc + "&message=Box";//ambulatorio chiuso!
+            }
 
             List <Appointment> apps = appointmentRepository.findAll(); //tutti gli appuntamenti del dottore
             for (Appointment a :apps){

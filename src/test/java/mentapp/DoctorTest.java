@@ -187,17 +187,22 @@ public class DoctorTest extends BaseTest {
         insertAppointment  = docPage.showInsertAppointment();
         ErrorPageObject close_date = insertAppointment.submit_close();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", close_date.MessageError());
-        docPage = past_date.ShowList();
+        docPage = close_date.ShowList();
         //Appuntamento sovrapposto pre
         insertAppointment  = docPage.showInsertAppointment();
         ErrorPageObject close_date_2 = insertAppointment.submit_close_2();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", close_date_2.MessageError());
-        docPage = past_date.ShowList();
+        docPage = close_date_2.ShowList();
+        //Ambulatorio chiuso
+        insertAppointment  = docPage.showInsertAppointment();
+        ErrorPageObject closed = insertAppointment.closed();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Structure close! You can only book appointments from 8am to 18pm!", closed.MessageError());
+        docPage = closed.ShowList();
 
 
 
         // -------------------- Logout --------------------
-        login_page = retPage.logout();
+        login_page = docPage.logout();
         assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
     }
 
@@ -239,15 +244,20 @@ public class DoctorTest extends BaseTest {
         modifyAppointment  = docPage.showModifyAppointment();
         ErrorPageObject close_date = modifyAppointment.submit_close();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", close_date.MessageError());
-        docPage = past_date.ShowList();
+        docPage = close_date.ShowList();
         //Appuntamento sovrapposto pre
         modifyAppointment  = docPage.showModifyAppointment();
         ErrorPageObject close_date_2 = modifyAppointment.submit_close_2();
         assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Slot is already occupied! Visits last 1 hour", close_date_2.MessageError());
-        docPage = past_date.ShowList();
+        docPage = close_date_2.ShowList();
+        //Ambulatorio chiuso
+        modifyAppointment   = docPage.showModifyAppointment();
+        ErrorPageObject closed = modifyAppointment .closed();
+        assertEquals("Verifico che sia l'errore mostrato sia corretto","ERROR: Structure close! You can only book appointments from 8am to 18pm!", closed.MessageError());
+        docPage = closed.ShowList();
 
         // -------------------- Logout --------------------
-        login_page = retPage.logout();
+        login_page = docPage.logout();
         assertEquals("Verifico che sia la pagina corretta","MentCare Login", login_page.Title());
     }
 

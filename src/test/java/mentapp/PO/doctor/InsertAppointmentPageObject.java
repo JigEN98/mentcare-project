@@ -112,6 +112,18 @@ public class InsertAppointmentPageObject extends PageObject {
         return new ErrorPageObject(driver);
     }
 
+    public ErrorPageObject closed() {
+        LocalDateTime date_app = LocalDateTime.of(2024,10,2,2,30);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm");
+        this.date.clear();
+        this.date.sendKeys(date_app.format(formatter));
+        this.description.sendKeys("TEST");
+        Select select = new Select(this.patient);
+        select.selectByVisibleText("Mario Rossi");
+        this.BTNsubmit.click();
+        return new ErrorPageObject(driver);
+    }
+
     public  WelcomePageDoctorPageObject showList() {
         this.BTNshow.click();
         return new WelcomePageDoctorPageObject(driver);
