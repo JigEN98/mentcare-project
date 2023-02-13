@@ -12,16 +12,14 @@
 - [Funzionamento](#funzionamento)
 - [Scenari](#scenari)
     -  1 [Login](#1-login)
-    -  [Dottore](#2-dashboard-dottore)
-        -  2 [Dashboard dottore](#2-dashboard-dottore)
-        -  3 [Inserisci paziente](#3-inserisci-paziente)
-        -  4 [Modifica paziente](#4-modifica-paziente)
-        -  5 [Elimina paziente](#5-elimina-paziente)
-        -  6 [Inserisci appuntamento](#6-inserisci-appuntamento)
-        -  7 [Modifica appuntamento](#7-modifica-appuntamento)
-        -  8 [Elimina appuntamento](#8-elimina-appuntamento)
-    -  [Admin](#9-statistiche-db)
-        -  9 [Statistiche DB](#9-statistiche-db)
+    -  2 [Dashboard dottore](#2-dashboard-dottore)
+    -  3 [Inserisci paziente](#3-inserisci-paziente)
+    -  4 [Modifica paziente](#4-modifica-paziente)
+    -  5 [Elimina paziente](#5-elimina-paziente)
+    -  6 [Inserisci appuntamento](#6-inserisci-appuntamento)
+    -  7 [Modifica appuntamento](#7-modifica-appuntamento)
+    -  8 [Elimina appuntamento](#8-elimina-appuntamento)
+    -  9 [Statistiche DB](#9-statistiche-db)
 - [Quality Assurance](#quality-assurance)
     - [Code coverage](#code-coverage)
 - [Autori](#autori)
@@ -46,9 +44,9 @@ Mentcare è un sistema informativo per la gestione di informazioni di pazienti e
 
 Il sistema necessita dell'implementazione delle seguenti funzionalità:
 
--   memorizzare le informazioni relative ai pazienti e di poterle visualizzare
--   registrare le informazioni relative agli appuntamenti di un dottore e di poterle visualizzare
--   premettere agli utenti di accedere a queste informazioni, in base alla tipologia di utente e al suo ruolo
+-   memorizzare le informazioni relative ai pazienti e la loro visualizzazione
+-   registrare le informazioni relative agli appuntamenti di un dottore e la loro visualizzazione
+-   permettere agli utenti di accedere a queste informazioni, in base alla tipologia di utente e al suo ruolo
 
 Gli utenti di tale sistema sono:
 
@@ -58,9 +56,9 @@ Gli utenti di tale sistema sono:
 
 #### Vincoli strutturali
 - tutti gli utenti del sistema devono autenticarsi con username e password per accedere alle funzionalità a loro riservate. In particolare:
-  -- I pazienti necessitano di effettuare il login per visualizzare il loro profilo e i loro appuntamenti fissati;
-  -- I dottori necessitano di effettuare il login per gestire i loro appuntamenti e i loro pazienti
-  -- L'admin necessita di effettuare il login per monitorare le statistiche e gli utenti del sistema.
+  - I pazienti necessitano di effettuare il login per visualizzare il loro profilo e i loro appuntamenti fissati;
+  - I dottori necessitano di effettuare il login per gestire i loro appuntamenti e i loro pazienti
+  - L'admin necessita di effettuare il login per monitorare le statistiche e gli utenti del sistema.
 - un dottore ha accesso alle sole informazioni relative ai pazienti a lui assegnati
 - un paziente può essere assegnato ad un solo medico
 - un appuntamento è associato ad uno ed un solo paziente
@@ -206,7 +204,7 @@ All'interno del package mentapp sono inoltre presenti i file relativi ai test es
 </p>
 
 ### Code coverage
-Per verificare la coverage del progetto abbiamo utilizzato lo strumento automatizzato IntelliJ Coverage con l'obiettivo di raggiungere una coverage generale del 90%. Da parte dei membri del gruppo è stato svolto un ulteriore lavoro minuzioso nella ricerca di ampliare tutti i test effettuati che ha permesso di raggiungere una coverage tendente al 100%. Il report generato è inserito all'interno della cartella CoverageReport:
+Per verificare la coverage del progetto abbiamo utilizzato lo strumento automatizzato IntelliJ Coverage con l'obiettivo di raggiungere una coverage generale del 90%. Da parte dei membri del gruppo è stato svolto un ulteriore lavoro minuzioso nella ricerca di ampliare tutti i test effettuati che ha permesso di raggiungere una coverage tendente al 100%. Il report generato è inserito all'interno della cartella CoverageTestReport:
 
 
 <p align="center">
@@ -216,6 +214,6 @@ Per verificare la coverage del progetto abbiamo utilizzato lo strumento automati
 
 
 ## Autori
-- Diego Garofolo: VR
-- Matteo Robol: VR
-- Enrico Zaghi: VR
+- Diego Garofolo: VR473579
+- Matteo Robol: VR480952
+- Enrico Zaghi: VR490441
