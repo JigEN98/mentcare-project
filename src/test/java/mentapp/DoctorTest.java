@@ -131,6 +131,7 @@ public class DoctorTest extends BaseTest {
         // -------------------- premesse --------------------
         LoginPageObject login_page = new LoginPageObject(driver);
         WelcomePageDoctorPageObject docPage = login_page.welcomedoc("lucaciano", "luca");
+        assertEquals("Verifico che sia la pagina corretta","Hello Dr. Ciano", docPage.Title());
 
         // -------------------- eliminazione paziente--------------------
         docPage.getDateAppointment();

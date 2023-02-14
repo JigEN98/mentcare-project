@@ -32,19 +32,12 @@ public class LoginPageObject extends PageObject {
         return h2loginpage.getText();
     }
 
-    public WelcomePagePatientPageObject welcomepat(String username, String password){
+    public WelcomePagePatientPageObject welcomepat(String username, String password) {
         this.username.sendKeys(username);
         this.password.sendKeys(password);
         this.submitButton.click();
         return new WelcomePagePatientPageObject(driver);
     }
-
-    /*public ReceptionistPatientListPageObject UserReceptionist(String username, String password){
-        this.username.sendKeys(username);
-        this.password.sendKeys(password);
-        this.submitButton.click();
-        return new ReceptionistPatientListPageObject(driver);
-    }*/
 
     public WelcomePageOfficePageObject welcomeadmin(String username, String password){
         this.username.sendKeys(username);

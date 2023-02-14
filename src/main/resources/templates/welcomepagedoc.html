@@ -3,12 +3,12 @@
 <head>
   <title>MENTCARE doctor</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet"  th:href="@{/css/login.css}">
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'></head>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link rel="stylesheet"  th:href="@{/css/login.css}"></head>
 
 <body>
 <div class="center">
-<h1 th:text="'Hello Dr. ' + ${doctor.surname} ">Hello</h1>
+<h1 th:text="'Hello Dr. ' + ${doctor.surname} " name="title">Hello Dr. </h1>
 <h2>Appointments list </h2>
 <table name="table_app">
   <thead>
