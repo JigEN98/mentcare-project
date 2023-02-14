@@ -204,7 +204,7 @@ All'interno del package mentapp sono inoltre presenti i file relativi ai test es
 </p>
 
 ### Code coverage
-Per verificare la coverage del progetto abbiamo utilizzato lo strumento automatizzato IntelliJ Coverage con l'obiettivo di raggiungere una coverage generale del 90%. Da parte dei membri del gruppo è stato svolto un ulteriore lavoro minuzioso nella ricerca di ampliare tutti i test effettuati che ha permesso di raggiungere una coverage tendente al 100%. Il report generato è inserito all'interno della cartella CoverageTestReport:
+Per verificare la coverage del progetto abbiamo utilizzato lo strumento automatizzato IntelliJ Coverage con l'obiettivo di raggiungere una coverage generale del 90%. Da parte dei membri del gruppo è stato svolto un ulteriore lavoro minuzioso nella ricerca di ampliare tutti i test effettuati che ha permesso di raggiungere una coverage tendente al 100%. Il report generato è riportato di seguito:
 
 
 <p align="center">
